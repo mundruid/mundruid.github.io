@@ -30,10 +30,10 @@
   
     
   
-  <meta name="description" content="Network Automation Engineer" />
+  <meta name="description" content="Review of the Prometheus Query Language (PromQL), its value and capabilities of processing time series for Network Automation. You may read this post in the [NTC Blog Introduction to PromQL](https://blog.networktocode.com/post/promql_for_network_telemetry/)." />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://mundruid.github.io/tags/" />
+  <link rel="alternate" hreflang="en-us" href="https://mundruid.github.io/post/promql/" />
 
   
 
@@ -268,8 +268,6 @@
   
 
   
-    <link rel="alternate" href="/tags/index.xml" type="application/rss+xml" title="Xenia Mountrouidou (DrX)" />
-  
 
   
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -278,7 +276,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_3.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_180x180_fill_lanczos_center_3.png" />
 
-  <link rel="canonical" href="https://mundruid.github.io/tags/" />
+  <link rel="canonical" href="https://mundruid.github.io/post/promql/" />
 
   
   
@@ -295,33 +293,82 @@
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="Xenia Mountrouidou (DrX)" />
-  <meta property="og:url" content="https://mundruid.github.io/tags/" />
-  <meta property="og:title" content="Tags | Xenia Mountrouidou (DrX)" />
-  <meta property="og:description" content="Network Automation Engineer" /><meta property="og:image" content="https://mundruid.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png" />
+  <meta property="og:url" content="https://mundruid.github.io/post/promql/" />
+  <meta property="og:title" content="Introduction to PromQL | Xenia Mountrouidou (DrX)" />
+  <meta property="og:description" content="Review of the Prometheus Query Language (PromQL), its value and capabilities of processing time series for Network Automation. You may read this post in the [NTC Blog Introduction to PromQL](https://blog.networktocode.com/post/promql_for_network_telemetry/)." /><meta property="og:image" content="https://mundruid.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png" />
     <meta property="twitter:image" content="https://mundruid.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
   
     
-      <meta property="og:updated_time" content="2021-05-13T00:00:00&#43;00:00" />
+      <meta
+        property="article:published_time"
+        content="2021-02-13T00:00:00&#43;00:00"
+      />
     
+    <meta property="article:modified_time" content="2020-02-13T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://mundruid.github.io/post/promql/"
+  },
+  "headline": "Introduction to PromQL",
+  
+  "datePublished": "2021-02-13T00:00:00Z",
+  "dateModified": "2020-02-13T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Xenia Mountrouidou"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Xenia Mountrouidou (DrX)",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mundruid.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Review of the Prometheus Query Language (PromQL), its value and capabilities of processing time series for Network Automation. You may read this post in the [NTC Blog Introduction to PromQL](https://blog.networktocode.com/post/promql_for_network_telemetry/)."
+}
+</script>
+
+  
+
+  
+
   
 
   
 
 
 
-  
-
-  
 
 
-
-
-
-  <title>Tags | Xenia Mountrouidou (DrX)</title>
+  <title>Introduction to PromQL | Xenia Mountrouidou (DrX)</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   "  >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="336cd4b900cb5f6407d05c701936f849" >
 
   
   
@@ -724,7 +771,9 @@
   </div>
 
   <div class="page-body">
-    
+    <article class="article">
+
+  
 
 
 
@@ -742,58 +791,29 @@
   
   
   
-    
-  
-<div class="universal-wrapper pt-3">
-  <h1>Tags</h1>
+<div class="article-container pt-3">
+  <h1>Introduction to PromQL</h1>
 
   
-
-  
-</div>
-
-
-
-<div class="universal-wrapper">
+  <p class="page-subtitle">NTC Blog PromQL for Network Telemetry.</p>
   
 
-  
   
     
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tag/data-analytics/" >Data Analytics</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
 
 
 <div class="article-metadata">
 
+  
+  
+  
+  
+  <div>
+    
+
+  <span >
+      Xenia Mountrouidou</span>
+  </div>
   
   
 
@@ -802,317 +822,7 @@
     
     
       
-    
-    May 13, 2020
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tag/network/" >Network</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    May 13, 2020
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tag/pandas/" >Pandas</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    May 13, 2020
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tag/traffic/" >Traffic</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    May 13, 2020
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tag/automation/" >Automation</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
+          Last updated on
       
     
     Feb 13, 2020
@@ -1122,86 +832,13 @@
   
 
   
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tag/promql/" >PromQL</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    Feb 13, 2020
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    0 min read
   </span>
   
 
   
-
-  
-
-  
   
   
   
@@ -1209,262 +846,188 @@
   
 
   
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/blog/">Blog</a></span>
   
 
 </div>
 
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
       
     </div>
 
     
 
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/promql/">PromQL</a>
+  
+  <a class="badge badge-light" href="/tag/network/">Network</a>
+  
+  <a class="badge badge-light" href="/tag/automation/">Automation</a>
+  
+  <a class="badge badge-light" href="/tag/telemetry/">Telemetry</a>
+  
+  <a class="badge badge-light" href="/tag/time-series-database/">Time Series Database</a>
+  
 </div>
 
-    
-  
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
     
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tag/telemetry/" >Telemetry</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
       
-
       
         
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://mundruid.github.io/post/promql/&amp;text=Introduction%20to%20PromQL" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
     
       
-    
-    Feb 13, 2020
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tag/time-series-database/" >Time Series Database</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
       
         
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://mundruid.github.io/post/promql/&amp;t=Introduction%20to%20PromQL" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
     
       
-    
-    Feb 13, 2020
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tag/deep-learning/" >Deep Learning</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
       
         
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Introduction%20to%20PromQL&amp;body=https://mundruid.github.io/post/promql/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
     
       
-    
-    Apr 27, 2016
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
       
-    </div>
-
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://mundruid.github.io/post/promql/&amp;title=Introduction%20to%20PromQL" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
     
-
-  </div>
-  <div class="ml-3">
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Introduction%20to%20PromQL%20https://mundruid.github.io/post/promql/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
     
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://mundruid.github.io/post/promql/&amp;title=Introduction%20to%20PromQL" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
     
-  </div>
+  </ul>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+  
+  
     
-  
+
+
+
 
   
 
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/pandas1/">Introduction to Pandas for Network Development</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
   </div>
 
   <div class="page-footer">

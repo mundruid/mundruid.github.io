@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts | Xenia Mountrouidou (DrX)</title>
-    <link>https://mundruid.github.io/post/</link>
-      <atom:link href="https://mundruid.github.io/post/index.xml" rel="self" type="application/rss+xml" />
-    <description>Posts</description>
+    <title>Pandas | Xenia Mountrouidou (DrX)</title>
+    <link>https://mundruid.github.io/tag/pandas/</link>
+      <atom:link href="https://mundruid.github.io/tag/pandas/index.xml" rel="self" type="application/rss+xml" />
+    <description>Pandas</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 13 May 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://mundruid.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
-      <title>Posts</title>
-      <link>https://mundruid.github.io/post/</link>
+      <title>Pandas</title>
+      <link>https://mundruid.github.io/tag/pandas/</link>
     </image>
     
     <item>
@@ -17,14 +17,6 @@
       <link>https://mundruid.github.io/post/pandas1/</link>
       <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
       <guid>https://mundruid.github.io/post/pandas1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Introduction to PromQL</title>
-      <link>https://mundruid.github.io/post/promql/</link>
-      <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/promql/</guid>
       <description></description>
     </item>
     

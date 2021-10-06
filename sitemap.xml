@@ -11,6 +11,24 @@
     <loc>https://mundruid.github.io/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://mundruid.github.io/project/example/</loc>
+    <lastmod>2021-09-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mundruid.github.io/tag/network-security/</loc>
+    <lastmod>2021-09-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mundruid.github.io/project/</loc>
+    <lastmod>2021-09-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mundruid.github.io/tag/security-metrics/</loc>
+    <lastmod>2021-09-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mundruid.github.io/tags/</loc>
+    <lastmod>2021-09-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mundruid.github.io/tag/telemetry/</loc>
+    <lastmod>2021-09-27T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://mundruid.github.io/category/blog/</loc>
     <lastmod>2020-05-13T00:00:00+00:00</lastmod>
   </url><url>
@@ -32,9 +50,6 @@
     <loc>https://mundruid.github.io/post/</loc>
     <lastmod>2020-05-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mundruid.github.io/tags/</loc>
-    <lastmod>2020-05-13T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mundruid.github.io/tag/traffic/</loc>
     <lastmod>2020-05-13T00:00:00+00:00</lastmod>
   </url><url>
@@ -47,9 +62,6 @@
     <loc>https://mundruid.github.io/tag/promql/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mundruid.github.io/tag/telemetry/</loc>
-    <lastmod>2020-02-13T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mundruid.github.io/tag/time-series-database/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
   </url><url>
@@ -58,15 +70,6 @@
   </url><url>
     <loc>https://mundruid.github.io/slides/example/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mundruid.github.io/tag/deep-learning/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mundruid.github.io/project/example/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mundruid.github.io/project/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mundruid.github.io/publication-type/1/</loc>
     <lastmod>2013-07-01T00:00:00+00:00</lastmod>

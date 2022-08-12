@@ -5,12 +5,28 @@
     <link>https://mundruid.github.io/</link>
       <atom:link href="https://mundruid.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Xenia Mountrouidou (DrX)</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 13 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 27 Aug 2022 13:00:00 +0000</lastBuildDate>
     <image>
       <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Xenia Mountrouidou (DrX)</title>
       <link>https://mundruid.github.io/</link>
     </image>
+    
+    <item>
+      <title>IoT Spy: Observability and Alerting for Internet of Things (IoT) Security</title>
+      <link>https://mundruid.github.io/talk/iot-spy-observability-and-alerting-for-internet-of-things-iot-security/</link>
+      <pubDate>Sat, 27 Aug 2022 13:00:00 +0000</pubDate>
+      <guid>https://mundruid.github.io/talk/iot-spy-observability-and-alerting-for-internet-of-things-iot-security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Introduction to a Telemetry Stack - Part 3</title>
+      <link>https://mundruid.github.io/post/alerting/</link>
+      <pubDate>Tue, 19 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://mundruid.github.io/post/alerting/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Forecasting the Network</title>
@@ -146,10 +162,10 @@ $$&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;fragments&#34;&gt;Fragments&lt;/h2&gt;
 &lt;p&gt;Make content appear incrementally&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{{% fragment %}} One {{% /fragment %}}
-{{% fragment %}} **Two** {{% /fragment %}}
-{{% fragment %}} Three {{% /fragment %}}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{% fragment %}} One {{% /fragment %}}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{% fragment %}} **Two** {{% /fragment %}}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{% fragment %}} Three {{% /fragment %}}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
 &lt;span class=&#34;fragment &#34; &gt;
   One
 &lt;/span&gt;

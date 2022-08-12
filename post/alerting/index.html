@@ -78,10 +78,10 @@
   
     
   
-  <meta name="description" content="A highly-customizable Hugo academic resume theme powered by Wowchemy website builder." />
+  <meta name="description" content="This is the third part of the telemetry stack introduction that introduces basic concepts of an alerting engine and how to implement these with Prometheus AlertManager. You can read this post in &lt;a href=&#34;https://blog.networktocode.com/post/telemetry-stack-series-part-03/&#34; target=&#34;_blank&#34;&gt;Introduction to a Telemetry Stack - Part 3&lt;/a&gt;" />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://mundruid.github.io/tag/time-series-database/" />
+  <link rel="alternate" hreflang="en-us" href="https://mundruid.github.io/post/alerting/" />
 
   
   
@@ -273,8 +273,6 @@
 
   
   
-    <link rel="alternate" href="/tag/time-series-database/index.xml" type="application/rss+xml" title="Xenia Mountrouidou (DrX)" />
-  
 
   
   
@@ -285,7 +283,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_32x32_fill_lanczos_center_3.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_180x180_fill_lanczos_center_3.png" />
 
-  <link rel="canonical" href="https://mundruid.github.io/tag/time-series-database/" />
+  <link rel="canonical" href="https://mundruid.github.io/post/alerting/" />
 
   
   
@@ -311,24 +309,73 @@
     <meta property="twitter:creator" content="@wowchemy" />
   
   <meta property="og:site_name" content="Xenia Mountrouidou (DrX)" />
-  <meta property="og:url" content="https://mundruid.github.io/tag/time-series-database/" />
-  <meta property="og:title" content="Time Series Database | Xenia Mountrouidou (DrX)" />
-  <meta property="og:description" content="A highly-customizable Hugo academic resume theme powered by Wowchemy website builder." /><meta property="og:image" content="https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png" />
+  <meta property="og:url" content="https://mundruid.github.io/post/alerting/" />
+  <meta property="og:title" content="Introduction to a Telemetry Stack - Part 3 | Xenia Mountrouidou (DrX)" />
+  <meta property="og:description" content="This is the third part of the telemetry stack introduction that introduces basic concepts of an alerting engine and how to implement these with Prometheus AlertManager. You can read this post in &lt;a href=&#34;https://blog.networktocode.com/post/telemetry-stack-series-part-03/&#34; target=&#34;_blank&#34;&gt;Introduction to a Telemetry Stack - Part 3&lt;/a&gt;" /><meta property="og:image" content="https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png" />
     <meta property="twitter:image" content="https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
   
     
-      <meta property="og:updated_time" content="2021-02-13T00:00:00&#43;00:00" />
+      <meta
+        property="article:published_time"
+        content="2022-07-19T00:00:00&#43;00:00"
+      />
     
+    <meta property="article:modified_time" content="2022-07-19T00:00:00&#43;00:00">
   
 
   
 
 
+    
+
+
+
+
+
 
   
 
 
-  <title>Time Series Database | Xenia Mountrouidou (DrX)</title>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://mundruid.github.io/post/alerting/"
+  },
+  "headline": "Introduction to a Telemetry Stack - Part 3",
+  
+  "datePublished": "2022-07-19T00:00:00Z",
+  "dateModified": "2022-07-19T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Xenia Mountrouidou"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Xenia Mountrouidou (DrX)",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "This is the third part of the telemetry stack introduction that introduces basic concepts of an alerting engine and how to implement these with Prometheus AlertManager. You can read this post in \u003ca href=\"https://blog.networktocode.com/post/telemetry-stack-series-part-03/\" target=\"_blank\"\u003eIntroduction to a Telemetry Stack - Part 3\u003c/a\u003e"
+}
+</script>
+
+  
+
+  
+
+  
+
+
+  <title>Introduction to a Telemetry Stack - Part 3 | Xenia Mountrouidou (DrX)</title>
 
   
   
@@ -348,7 +395,7 @@
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   "  >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="3b52de44a428362d4c2df87197ff3bb7" >
 
   
   
@@ -758,7 +805,9 @@
     
     
 
-    
+    <article class="article">
+
+  
 
 
 
@@ -776,61 +825,15 @@
   
   
   
-    
-  
-<div class="universal-wrapper pt-3">
-  <h1>Time Series Database</h1>
+<div class="article-container pt-3">
+  <h1>Introduction to a Telemetry Stack - Part 3</h1>
 
   
-
-  
-</div>
-
-
-
-<div class="universal-wrapper">
+  <p class="page-subtitle">Alerting with AlertManager.</p>
   
 
-  
   
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item view-compact">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/post/promql/" >Introduction to PromQL</a>
-    </div>
-
-    
-    <a href="/post/promql/"  class="summary-link">
-      <div class="article-style">
-        Review of the Prometheus Query Language (PromQL), its value and capabilities of processing time series for Network Automation. You can read this post in the <a href="https://blog.networktocode.com/post/promql_for_network_telemetry/" target="_blank">NTC Blog Introduction to PromQL</a>
-      </div>
-    </a>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
 
 
 <div class="article-metadata">
@@ -853,10 +856,8 @@
     
     
       
-          Last updated on
-      
     
-    Feb 13, 2020
+    Jul 19, 2022
   </span>
   
 
@@ -883,23 +884,163 @@
 
 </div>
 
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
       
     </div>
 
     
 
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/pandas/">Pandas</a>
+  
+  <a class="badge badge-light" href="/tag/network/">Network</a>
+  
+  <a class="badge badge-light" href="/tag/traffic/">Traffic</a>
+  
+  <a class="badge badge-light" href="/tag/data-analytics/">Data Analytics</a>
+  
 </div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://mundruid.github.io/post/alerting/&amp;text=Introduction%20to%20a%20Telemetry%20Stack%20-%20Part%203" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://mundruid.github.io/post/alerting/&amp;t=Introduction%20to%20a%20Telemetry%20Stack%20-%20Part%203" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Introduction%20to%20a%20Telemetry%20Stack%20-%20Part%203&amp;body=https://mundruid.github.io/post/alerting/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://mundruid.github.io/post/alerting/&amp;title=Introduction%20to%20a%20Telemetry%20Stack%20-%20Part%203" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Introduction%20to%20a%20Telemetry%20Stack%20-%20Part%203%20https://mundruid.github.io/post/alerting/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://mundruid.github.io/post/alerting/&amp;title=Introduction%20to%20a%20Telemetry%20Stack%20-%20Part%203" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
 
   
 
-  
 
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
   </div>
 
   <div class="page-footer">

@@ -4,29 +4,31 @@
   
   
   <url>
-    <loc></loc><lastmod>2022-03-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+    <loc>https://mundruid.github.io/talk/iot-spy-observability-and-alerting-for-internet-of-things-iot-security/</loc><lastmod>2022-08-27T13:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
-    <loc>https://mundruid.github.io/category/blog/</loc><lastmod>2022-03-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+    <loc>https://mundruid.github.io/event/</loc><lastmod>2022-08-27T13:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
-    <loc>https://mundruid.github.io/categories/</loc><lastmod>2022-03-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+    <loc>https://mundruid.github.io/</loc><lastmod>2022-08-27T13:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
-    <loc>https://mundruid.github.io/tag/data-analytics/</loc><lastmod>2022-03-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+    <loc>https://mundruid.github.io/category/blog/</loc><lastmod>2022-07-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://mundruid.github.io/categories/</loc><lastmod>2022-07-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://mundruid.github.io/tag/data-analytics/</loc><lastmod>2022-07-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://mundruid.github.io/post/alerting/</loc><lastmod>2022-07-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://mundruid.github.io/tag/network/</loc><lastmod>2022-07-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://mundruid.github.io/tag/pandas/</loc><lastmod>2022-07-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://mundruid.github.io/post/</loc><lastmod>2022-07-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://mundruid.github.io/tags/</loc><lastmod>2022-07-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://mundruid.github.io/tag/traffic/</loc><lastmod>2022-07-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://mundruid.github.io/post/pandas3/</loc><lastmod>2022-03-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://mundruid.github.io/tag/network/</loc><lastmod>2022-03-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://mundruid.github.io/tag/pandas/</loc><lastmod>2022-03-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://mundruid.github.io/post/</loc><lastmod>2022-03-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://mundruid.github.io/tags/</loc><lastmod>2022-03-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://mundruid.github.io/tag/traffic/</loc><lastmod>2022-03-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc></loc><lastmod>2022-03-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://mundruid.github.io/</loc><lastmod>2022-03-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://mundruid.github.io/post/pandas2/</loc><lastmod>2022-01-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
@@ -48,8 +50,6 @@
   <url>
     <loc>https://mundruid.github.io/talk/iot-spy-security-metrics-for-smart-devices-with-telegraf-influxdb-and-grafana/</loc><lastmod>2021-06-01T13:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
-    <loc>https://mundruid.github.io/event/</loc><lastmod>2021-06-01T13:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
     <loc>https://mundruid.github.io/post/pandas1/</loc><lastmod>2021-05-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://mundruid.github.io/tag/automation/</loc><lastmod>2020-02-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
@@ -62,21 +62,13 @@
   <url>
     <loc>https://mundruid.github.io/publication-type/1/</loc><lastmod>2021-01-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
-    <loc></loc><lastmod>2021-01-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc></loc><lastmod>2021-01-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
     <loc>https://mundruid.github.io/publication/iot_security_metrics/</loc><lastmod>2021-01-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://mundruid.github.io/publication_types/</loc><lastmod>2021-01-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://mundruid.github.io/publication/</loc><lastmod>2021-01-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
-    <loc></loc><lastmod>2021-01-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
     <loc>https://mundruid.github.io/publication/cyberhunt2019/</loc><lastmod>2021-01-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc></loc><lastmod>2021-01-19T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://mundruid.github.io/talk/testing-your-python-code/</loc><lastmod>2020-11-01T13:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>

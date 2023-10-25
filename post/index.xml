@@ -5,7 +5,7 @@
     <link>https://mundruid.github.io/post/</link>
       <atom:link href="https://mundruid.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 19 Aug 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
@@ -13,20 +13,19 @@
     </image>
     
     <item>
-      <title>Exploring the data - Statistics</title>
-      <link>https://mundruid.github.io/post/ml-sec-6/</link>
-      <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/ml-sec-6/</guid>
-      <description>&lt;p&gt;Graphs are great for visual people,  &amp;ldquo;show me the numbers!&amp;rdquo;. EDA with statistics can offer a great summary and tell the story of your data in a condense way without too much code.&lt;/p&gt;
-&lt;p&gt;In this blog, we will explore the basics statistics for EDA and a bonus set of Python EDA libraries that combine stats and visualization.&lt;/p&gt;
-&lt;p&gt;The code in this blog can be found in the repo &lt;a href=&#34;https://github.com/mundruid/cyber-ml&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;cyber-ml&lt;/a&gt;.&lt;/p&gt;
+      <title>Exploring the data - AI</title>
+      <link>https://mundruid.github.io/post/ml-sec-7/</link>
+      <pubDate>Sat, 19 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://mundruid.github.io/post/ml-sec-7/</guid>
+      <description>&lt;p&gt;Exploratory Data Analysis (EDA) is a versatile tool to get to know your data. However, it can be cumbersome, involving complex mathematics to summarize datasets and elaborate code to create good visualizations that give insight into your data. This is why I am excited to introduce you to the package &lt;a href=&#34;https://docs.pandas-ai.com/en/latest/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Pandas AI&lt;/a&gt; that can perform EDA simply by posing questions to your data in natural language.&lt;/p&gt;
+&lt;p&gt;The code in this blog can be found in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/cyber_ml/blog_eda_3.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_eda_3.ipynb&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
 &lt;h3 id=&#34;what&#34;&gt;What?&lt;/h3&gt;
-&lt;p&gt;Statistical analysis gives a summary of your data by aggregating them to a meaningful quantitative form. Your data needs to be measurable or converted to metrics that can be summarized.&lt;/p&gt;
+&lt;p&gt;Pandas AI is an open-source package powered by OpenAI API calls and Pandas dataframe abstractions that offer you the ability to explore your data using language models. Thus, Pandas AI is allowing you to pose questions about your data, test your hypothesis, extract features, and even make graphs. Pandas AI can be used with generic functions or your own custom prompting.&lt;/p&gt;
 &lt;h3 id=&#34;why&#34;&gt;Why?&lt;/h3&gt;
-&lt;p&gt;Statistical EDA is an quick way to get an insight of your data and can tell the story of these data combined with graphical techniques. Statistical analysis can verify the conclusions that you extracted using graphs, or lead you to some new insights or point out erroneous biases.&lt;/p&gt;
+&lt;p&gt;Many times we need a simple solution for EDA because of time and resources. Pandas AI provides this solution to perform hypothesis testing and summarization without the math. Combining this with &lt;code&gt;skimpy&lt;/code&gt;, &lt;code&gt;summarytools&lt;/code&gt;, and &lt;code&gt;sweetviz&lt;/code&gt; summaries and visualizations, you can finish your EDA within less than 20 lines of code and enjoy the rest of your day!&lt;/p&gt;
 &lt;h3 id=&#34;how&#34;&gt;How?&lt;/h3&gt;
-&lt;p&gt;Let&amp;rsquo;s recap the three parts of EDA that we are currently exploring. We are right in the middle!&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s recap the three parts of EDA that we are currently exploring. We are at the last part, putting everything together with AI powerd EDA.&lt;/p&gt;
 &lt;div class=&#34;markmap&#34; style=&#34;height: 500px;&#34;&gt;
 
 &lt;pre&gt;- Exploratory Data Analysis
@@ -42,19 +41,269 @@
         - Randomness
         - Distribution measures
         - Outliers
-    - Probability distributions (part 3)&lt;/pre&gt;
+    - Pandas AI for data exploration (part 3 - we are here)&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&#34;load-data&#34;&gt;Load data&lt;/h2&gt;
+&lt;p&gt;We will use a pretty neat trick to load the data that we created in the previous blog posts that we saved in &lt;code&gt;pkl&lt;/code&gt; (read &amp;ldquo;pickle&amp;rdquo;) files:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai_df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;to_pickle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;../data/blog_eda/mirai.pkl&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;benign_df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;to_pickle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;../data/blog_eda/benign.pkl&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Where &lt;code&gt;mirai_df&lt;/code&gt; and &lt;code&gt;benign_df&lt;/code&gt; were storing the packet captures from Mirai botnet and normal network traffic respectively. We read and transformed these into a Pandas dataframe in previous blogs. We can now load this data:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai_df&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read_pickle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;../data/blog_eda/mirai.pkl&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;benign_df&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read_pickle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;../data/blog_eda/benign.pkl&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is a trick that we use to save time and transfer processed data from notebook to notebook. We will also load the pickles that hold the processed flows transformed into numeric data. If you want to refresh your memory on how we created these pickle files, check out the EDA Part 1, 2 blog.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai_flow_df_numeric&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read_pickle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;../data/blog_eda/mirai_flow_numeric.pkl&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;benign_flow_df_numeric&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read_pickle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;../data/blog_eda/benign_flow_numeric.pkl&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;pandas-ai&#34;&gt;Pandas AI&lt;/h2&gt;
+&lt;p&gt;Now we are ready to use the OpenAI API to explore our data with Pandas AI. To this end, you will need to create an &lt;a href=&#34;https://platform.openai.com/account/api-keys&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OpenAI API key&lt;/a&gt; which is free for the first month, and then you will need to pay as you go.&lt;/p&gt;
+&lt;p&gt;We save the API key in a &lt;code&gt;.env&lt;/code&gt; file and make sure that we put this in our &lt;code&gt;.gitignore&lt;/code&gt; so that we are not leaking secrets to Github/Gitlab. Then use this awesome &lt;code&gt;python-dotenv&lt;/code&gt; package to load our secrets:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;dotenv&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;load_dotenv&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# finds .env file and loads the vars&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;load_dotenv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;openai_api_key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getenv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;OPENAI_API_KEY&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Key not found&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The only line we will need to have in our &lt;code&gt;.env&lt;/code&gt; file is the following:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;OPENAI_API_KEY&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&amp;lt;your key&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;interrogate-your-data&#34;&gt;Interrogate your data&lt;/h3&gt;
+&lt;p&gt;Now we are ready to ask some questions about our data. First let&amp;rsquo;s create an LLM object that we will use to reference the OpenAI API, and then we will create a &lt;code&gt;PandasAI&lt;/code&gt; object that uses the &lt;code&gt;llm&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# pandasai imports&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pandasai.llm.openai&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;OpenAI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pandasai&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;PandasAI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Instantiate a LLM&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;llm&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;OpenAI&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;api_token&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;openai_api_key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;pandas_ai&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;PandasAI&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;llm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The easiest thing to do is to use an out of the box function to clean our data from duplicate and &lt;code&gt;None&lt;/code&gt; values:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pandasai&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SmartDataframe&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai_smart&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SmartDataframe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;DataFrame&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mirai_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;llm&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;llm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai_cleaned_df&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mirai_smart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clean_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;benign_smart&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SmartDataframe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;DataFrame&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;benign_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;llm&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;llm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;benign_cleaned_df&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;benign_smart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clean_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Above, you can see the power of the LLM over your data. The &lt;code&gt;SmartDataframe&lt;/code&gt; object converts our Pandas dataframes to readable objects by the llm, and a simple function such as &lt;code&gt;clean_data()&lt;/code&gt; that, behind the scenes, uses prompting to clean up our data from duplicates and &lt;code&gt;None&lt;/code&gt; values. Try to print the shape of your dataframes before and after the cleanup, and you will observe that there are fewer lines after the cleanup.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s get the most popular IPs that the Mirai pcap was using as sources:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;top_5_source_IPs&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pandas_ai&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;mirai_clean_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prompt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Which are the 5 most popular source IP addresses?&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;top_5_source_IPs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-top-5-mirai-ips&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;IPs&#34; srcset=&#34;
+               /post/ml-sec-7/images/ips_hubc3cb3f9a0448a27705bf6b2e8a0a1c2_15060_e92437895e688bbff8eb1ede5e17c6e3.webp 400w,
+               /post/ml-sec-7/images/ips_hubc3cb3f9a0448a27705bf6b2e8a0a1c2_15060_71b1d7ab829b2e1b156adebbb8fa8d9b.webp 760w,
+               /post/ml-sec-7/images/ips_hubc3cb3f9a0448a27705bf6b2e8a0a1c2_15060_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-7/images/ips_hubc3cb3f9a0448a27705bf6b2e8a0a1c2_15060_e92437895e688bbff8eb1ede5e17c6e3.webp&#34;
+               width=&#34;234&#34;
+               height=&#34;166&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Top 5 Mirai IPs
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s now find the most popular services that Mirai was aiming at:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;top_5_dst_ports&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pandas_ai&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;mirai_clean_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prompt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Which are the 5 most popular destination ports?&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;top_5_dst_ports&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-top-5-mirai-ports&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;ports&#34; srcset=&#34;
+               /post/ml-sec-7/images/ports_hu07a5730f9f91b2507379607690c743fb_11328_7a5d3172bf3b09a1d293d8b002f7133c.webp 400w,
+               /post/ml-sec-7/images/ports_hu07a5730f9f91b2507379607690c743fb_11328_46903f92f6ba3a31ca48b725e2af0b3d.webp 760w,
+               /post/ml-sec-7/images/ports_hu07a5730f9f91b2507379607690c743fb_11328_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-7/images/ports_hu07a5730f9f91b2507379607690c743fb_11328_7a5d3172bf3b09a1d293d8b002f7133c.webp&#34;
+               width=&#34;234&#34;
+               height=&#34;166&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Top 5 Mirai Ports
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Thus, the method uses actual prompting and not an out-of-the-box function. Think about all the questions that you can ask of your data, avoiding complex math and regular expressions.&lt;/p&gt;
+&lt;h3 id=&#34;make-graphs&#34;&gt;Make Graphs&lt;/h3&gt;
+&lt;p&gt;Pandas AI can also make simple plots with prompting:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;pandas_ai&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;mirai_clean_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;prompt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Plot the scatter plot of stream durations and number of packets.&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-mirai-scatter-plot&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;scatter&#34; srcset=&#34;
+               /post/ml-sec-7/images/scatter_huefb2574e9acf9b822a88a9e48f43ab89_29330_bf3490525ffcd258f7c5c8770b48655a.webp 400w,
+               /post/ml-sec-7/images/scatter_huefb2574e9acf9b822a88a9e48f43ab89_29330_0a27620b18811ac2ce5df2f63158bb1d.webp 760w,
+               /post/ml-sec-7/images/scatter_huefb2574e9acf9b822a88a9e48f43ab89_29330_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-7/images/scatter_huefb2574e9acf9b822a88a9e48f43ab89_29330_bf3490525ffcd258f7c5c8770b48655a.webp&#34;
+               width=&#34;582&#34;
+               height=&#34;463&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Mirai scatter plot
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;pandas_ai&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;benign_clean_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prompt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Plot a barplot of top 10 destination ports.&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-benign-histogram-plot&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;histogram&#34; srcset=&#34;
+               /post/ml-sec-7/images/histogram_hub3207a16f90093cf944ae62be79f444b_27900_44c245487a63943b8fac008421bc143f.webp 400w,
+               /post/ml-sec-7/images/histogram_hub3207a16f90093cf944ae62be79f444b_27900_c9790d4d2da80b1f07c2cc90d71e4dcc.webp 760w,
+               /post/ml-sec-7/images/histogram_hub3207a16f90093cf944ae62be79f444b_27900_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-7/images/histogram_hub3207a16f90093cf944ae62be79f444b_27900_44c245487a63943b8fac008421bc143f.webp&#34;
+               width=&#34;631&#34;
+               height=&#34;437&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Benign histogram plot
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;In this case, we avoided reading endless documents about how to make plots and still got some decent plots. Maybe they are not as customizable as our traditional visualization plots with code, but they still give a visual representation of our data.&lt;/p&gt;
+&lt;h3 id=&#34;generate-features&#34;&gt;Generate features&lt;/h3&gt;
+&lt;p&gt;Again, we will use an out of the box function. Our output will lead to dataframes with three extra columns, the generated features.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai_cleaned_df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;generate_features&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;benign_clean_df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;generate_features&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this case, there is a little hocus-pocus. How were these features generated, and how meaningful are they? That is an open question.&lt;/p&gt;
+&lt;h2 id=&#34;going-even-deeper&#34;&gt;Going even deeper&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&#34;https://www.langchain.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Langchain&lt;/a&gt; framework can be used with Pandas AI by just changing your imports:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pandasai&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SmartDataframe&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;langchain.llms&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;OpenAI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;langchain_llm&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;OpenAI&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;openai_api_key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;my-openai-api-key&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SmartDataframe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;data.csv&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;llm&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;langchain_llm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It is worth writing a series of blogs on Langchain itself. However, for now, I will just describe it as a framework that can give you &amp;ldquo;super powers&amp;rdquo; when you use Large Language Models (LLMs) by adding context to your problem (i.e., memory), creating chains of thought that break down an issue into small parts, scaling up your prompting capability, loading documents into an LLM, and so many more things!&lt;/p&gt;
+&lt;h2 id=&#34;recap&#34;&gt;Recap&lt;/h2&gt;
+&lt;p&gt;We have reviewed a powerful package that can help us get insights into our data, the &lt;code&gt;PandasAI&lt;/code&gt;. As language models keep improving and the Pandas AI open source community keeps contributing to getting this better, I cannot wait to see how this will empower cybersecurity analysts. A word of caution though: since this framework is using a language model as a black box, it is a good idea to verify part of your results with traditional Python functions. Think of all the possibilities of training your own &lt;code&gt;data language model&lt;/code&gt; for the purpose of cybersecurity data analytics with a more transparent model. This takes time, resources, and a lot more blogs to get into the implementation details!&lt;/p&gt;
+&lt;p&gt;In future blogs, we will see how Pandas AI can help us with feature engineering, and we will explore the power of LLMs even for modeling with &lt;code&gt;scikit-llm&lt;/code&gt;. Stay tuned!&lt;/p&gt;
+&lt;p&gt;&amp;ndash; Xenia&lt;/p&gt;
+&lt;h2 id=&#34;going-even-deeper-1&#34;&gt;Going Even Deeper&lt;/h2&gt;
+&lt;h3 id=&#34;pandas-ai-1&#34;&gt;Pandas AI&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/gventuri/pandas-ai/blob/main/examples/with_multiple_dataframes.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Pandas AI examples&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.promptingguide.ai/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Prompt Engineering Guide&lt;/a&gt;: this can help you generate elaborate prompts for your Pandas AI&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;langchain&#34;&gt;Langchain&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://youtube.com/playlist?list=PLqZXAkvF1bPNQER9mLmDbntNfSpzdDIU5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Youtube Langchain Playlist&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.reaminated.com/run-chatgpt-style-questions-over-your-own-files-using-the-openai-api-and-langchain&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Run chatgpt over your own files using Langchain&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.scottlogic.com/2023/05/04/langchain-mini.html?mc_cid=9d2181107d&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Reimplementing Langchain&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/gkamradt/langchain-tutorials/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Langchain cookbook&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Code examples for this blog can be found in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/cyber_ml/blog_eda_3.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_eda_3.ipynb&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;llms&#34;&gt;LLMs&lt;/h3&gt;
+&lt;h3 id=&#34;did-you-find-this-page-helpful-consider-sharing-it-&#34;&gt;Did you find this page helpful? Consider sharing it 🙌&lt;/h3&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Exploring the data - Statistics</title>
+      <link>https://mundruid.github.io/post/ml-sec-6/</link>
+      <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
+      <guid>https://mundruid.github.io/post/ml-sec-6/</guid>
+      <description>&lt;p&gt;Graphs are great for visual learners; however, with statistics, you can literally say, &amp;ldquo;Show me the numbers!&amp;rdquo;. EDA with statistics offers a dense data summary and tells the story of your data in a condensed way without having to write too much code since there are many existing packages to help you get the job done.&lt;/p&gt;
+&lt;p&gt;In this blog, we will explore the basics of statistics for EDA and a set of Python EDA libraries that combine statistics and visualization.&lt;/p&gt;
+&lt;p&gt;The code in this blog can be found in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/cyber_ml/blog_eda_2.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_eda_2.ipynb&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
+&lt;h3 id=&#34;what&#34;&gt;What?&lt;/h3&gt;
+&lt;p&gt;Statistical analysis gives a summary of your data by aggregating it in a meaningful quantitative form. One of the caveats is that your data needs to be measurable or converted to metrics to be summarized with statistics. Categorical data, such as protocols, IP addresses, and many more that we encounter in security data that are not actually numbers, needs to be converted in a meaningful way while maintaining their context. We will review some of these methods here and continue reviewing them in the &lt;code&gt;Feature Engineering&lt;/code&gt; set of blogs.&lt;/p&gt;
+&lt;h3 id=&#34;why&#34;&gt;Why?&lt;/h3&gt;
+&lt;p&gt;Statistical EDA is a quick way to get an insight into your data and can tell the story of these data when combined with graphical techniques. Statistical analysis can verify the conjectures that you made using graphs, lead you to new insights, or point out erroneous biases.&lt;/p&gt;
+&lt;h3 id=&#34;how&#34;&gt;How?&lt;/h3&gt;
+&lt;p&gt;Let&amp;rsquo;s recap the three parts of EDA that we are currently exploring. We are right in the middle!&lt;/p&gt;
+&lt;div class=&#34;markmap&#34; style=&#34;height: 500px;&#34;&gt;
+
+&lt;pre&gt;- Exploratory Data Analysis
+    - Graphical techniques (part 1)
+        - Histograms
+        - Scatter
+        - Box
+        - Autocorrelation
+    - Statistical techniques (part 2 - we are here)
+        - Location
+        - Scale
+        - Skewness
+        - Randomness
+        - Distribution measures
+        - Outliers
+    - Pandas AI for data exploration (part 3)&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&#34;eda-statistical-techniques&#34;&gt;EDA Statistical Techniques&lt;/h2&gt;
-&lt;p&gt;This is a great opportunity to explore more features of the Pandas Data Frames and how we can convert our data to quantitative metrics that we can summarize with statistics.&lt;/p&gt;
-&lt;h2 id=&#34;we-will-need-numbers&#34;&gt;We will need numbers&lt;/h2&gt;
+&lt;p&gt;This is a great opportunity to explore more features of the Pandas dataframes and how we can convert our data into quantitative metrics that we can summarize with statistics.&lt;/p&gt;
+&lt;h2 id=&#34;preprocessing&#34;&gt;Preprocessing&lt;/h2&gt;
 &lt;p&gt;Here is where we will do some data preprocessing. Here are the steps:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Read the packet capture with &lt;code&gt;scapy&lt;/code&gt;, the Python swiss knife for processing packet captures.
+&lt;li&gt;
+&lt;p&gt;Read the packet capture with &lt;code&gt;scapy&lt;/code&gt;, the Python swiss knife for processing packet captures.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;n&#34;&gt;pcap_reader_mirai&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;PcapReader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;../data/blog_eda/mirai.pcap&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;n&#34;&gt;pcap_reader_benign&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;PcapReader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;../data/blog_eda/benign.pcapng&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;Convert the packet capture to a Pandas dataframe. I created a function that takes as input your &lt;code&gt;PcapReader&lt;/code&gt; object and converts it to a dataframe with columns: &lt;code&gt;(timestamp, src_ip, dst_ip, src_port, dst_port, payload, packet_length, protocol)&lt;/code&gt;. The timestamp indicates the time the packet arrived. Why convert our pcap data to a Pandas DataFrame? Because there are a lot of functions that can be used on a dataframe to perform exploaratory data analysis.
+&lt;li&gt;
+&lt;p&gt;Convert the packet capture to a Pandas dataframe. I created a function that takes as input the &lt;code&gt;PcapReader&lt;/code&gt; object and converts it to a dataframe with columns: &lt;code&gt;(timestamp, src_ip, dst_ip, src_port, dst_port, payload, packet_length, protocol)&lt;/code&gt;. The timestamp indicates the time the packet arrived. The ports and IPs are part of what defines a data flow. The rest of the data is useful for studying network traffic patterns and extracting behavior.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The question arises: Why convert our PCAP data to a Pandas dataframe? There are a lot of functions that can be used on a dataframe to perform exploratory data analysis.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;pcap_to_dataframe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pcap_reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;PcapReader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;DataFrame&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&amp;#34;Converts raw packet capture to a Pandas dataframe.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;
@@ -131,8 +380,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;Finally, I wrote a function to convert the Pandas dataframe data to flows based on: &lt;code&gt;(src_ip, dst_ip, src_port, dst_port)&lt;/code&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Finally, I wrote a function to convert the Pandas dataframe data to flows based on: &lt;code&gt;(src_ip, dst_ip, src_port, dst_port)&lt;/code&gt;. In this case, I use the versatile &lt;code&gt;groupby&lt;/code&gt; Pandas function, which is equivalent to SQL &lt;code&gt;GROUP BY&lt;/code&gt;. Think of this function as a mashup of data based on specific columns, i.e., features, that gives you the opportunity to perform operations in this group. In my case, I iterate through all the packets, i.e., members, of a flow and calculate the total flow length as a sum of packet length and duration by subtracting the min from the max timestamp. At the end, I put the flow data in another Pandas data frame. Note that you may choose to perform your EDA exploration with pure packets and get different insights.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;extract_flows&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;DataFrame&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;DataFrame&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;c1&#34;&gt;# Create an empty list to store stream data as separate dataframes&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;n&#34;&gt;dfs&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;
@@ -181,11 +431,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;n&#34;&gt;benign_flow_df&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;extract_flows&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;benign_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Now we can finally explore our preprocessed data.&lt;/p&gt;
-&lt;h3 id=&#34;measure-interval&#34;&gt;Measure interval&lt;/h3&gt;
-&lt;p&gt;Let&amp;rsquo;s start with some hidden gems of the Pandas dataframes that can be used for EDA:&lt;/p&gt;
+&lt;p&gt;Now we are ready to explore the data with summary statistics and other fun aggregations.&lt;/p&gt;
+&lt;h2 id=&#34;exploration-out-of-the-box&#34;&gt;Exploration out of the box&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;To check all the columns of our dataframe, we can use the &lt;code&gt;columns&lt;/code&gt; field. For example the following returns all the column titles of the mirai dataframe:
+&lt;li&gt;To check all the columns of our dataframe, we can use the &lt;code&gt;columns&lt;/code&gt; field. For example, the following returns all the column titles of the Mirai dataframe:
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;miral_flow_df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;columns&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -206,10 +455,10 @@
 &lt;figure  id=&#34;figure-pandas-columns&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;col&#34; srcset=&#34;
-               /post/ml-sec-6/images/columns_hu53aab30e7b2d2dcad43e0a6026c8cbf1_13583_6ea4b13dada5a09ac052c4e05462cc00.webp 400w,
-               /post/ml-sec-6/images/columns_hu53aab30e7b2d2dcad43e0a6026c8cbf1_13583_6e1a3fec981bc689df423345debd174c.webp 760w,
+               /post/ml-sec-6/images/columns_hu53aab30e7b2d2dcad43e0a6026c8cbf1_13583_8aeecbfdc4c75aabff8351c369140c0a.webp 400w,
+               /post/ml-sec-6/images/columns_hu53aab30e7b2d2dcad43e0a6026c8cbf1_13583_8470a1df09a520111e085b3d499d65f4.webp 760w,
                /post/ml-sec-6/images/columns_hu53aab30e7b2d2dcad43e0a6026c8cbf1_13583_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/ml-sec-6/images/columns_hu53aab30e7b2d2dcad43e0a6026c8cbf1_13583_6ea4b13dada5a09ac052c4e05462cc00.webp&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-6/images/columns_hu53aab30e7b2d2dcad43e0a6026c8cbf1_13583_8aeecbfdc4c75aabff8351c369140c0a.webp&#34;
                width=&#34;620&#34;
                height=&#34;80&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -217,7 +466,7 @@
       Pandas Columns
     &lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/li&gt;
-&lt;li&gt;An even more useful field is the &lt;code&gt;dtypes&lt;/code&gt; that returns all the data types:
+&lt;li&gt;An even more useful field is &lt;code&gt;dtypes&lt;/code&gt;, that returns all the data types of the columns in our dataframe:
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai_flow_df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;types&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -238,10 +487,10 @@
 &lt;figure  id=&#34;figure-pandas-data-types&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;dtypes&#34; srcset=&#34;
-               /post/ml-sec-6/images/dtypes_hu29910d02ace9d12e8856ef74143003b4_15285_998f0097d419822fba15a34aa4f1eba9.webp 400w,
-               /post/ml-sec-6/images/dtypes_hu29910d02ace9d12e8856ef74143003b4_15285_6a145cb317f6aee9f0c9f191ee63dcd5.webp 760w,
+               /post/ml-sec-6/images/dtypes_hu29910d02ace9d12e8856ef74143003b4_15285_b34e6b6a445c6d9ea55b5c1ed296190f.webp 400w,
+               /post/ml-sec-6/images/dtypes_hu29910d02ace9d12e8856ef74143003b4_15285_9d1418868f54a1235813bcaa465ee555.webp 760w,
                /post/ml-sec-6/images/dtypes_hu29910d02ace9d12e8856ef74143003b4_15285_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/ml-sec-6/images/dtypes_hu29910d02ace9d12e8856ef74143003b4_15285_998f0097d419822fba15a34aa4f1eba9.webp&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-6/images/dtypes_hu29910d02ace9d12e8856ef74143003b4_15285_b34e6b6a445c6d9ea55b5c1ed296190f.webp&#34;
                width=&#34;257&#34;
                height=&#34;199&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -249,42 +498,315 @@
       Pandas Data Types
     &lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/li&gt;
+&lt;li&gt;We can get descriptive statistics, such as count, mean, and standard deviation, with just one function, &lt;code&gt;describe()&lt;/code&gt;:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai_flow_df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;describe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-pandas-descriptive-statistics&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;describe&#34; srcset=&#34;
+               /post/ml-sec-6/images/describe_hu047f7aba237078fa598d423c51d5ce3b_47836_1bad745d9b72a7f2ae1de27d7fea25e2.webp 400w,
+               /post/ml-sec-6/images/describe_hu047f7aba237078fa598d423c51d5ce3b_47836_5623829e09304c5d399ee052d2066c03.webp 760w,
+               /post/ml-sec-6/images/describe_hu047f7aba237078fa598d423c51d5ce3b_47836_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-6/images/describe_hu047f7aba237078fa598d423c51d5ce3b_47836_1bad745d9b72a7f2ae1de27d7fea25e2.webp&#34;
+               width=&#34;726&#34;
+               height=&#34;231&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Pandas Descriptive Statistics
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;count&lt;/li&gt;
-&lt;li&gt;mean&lt;/li&gt;
-&lt;li&gt;stddev&lt;/li&gt;
-&lt;li&gt;skewness&lt;/li&gt;
-&lt;li&gt;percentiles&lt;/li&gt;
-&lt;li&gt;min/max&lt;/li&gt;
-&lt;/ul&gt;
 &lt;h2 id=&#34;test-a-hypothesis&#34;&gt;Test a hypothesis&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Autocorrelation&lt;/li&gt;
-&lt;li&gt;Goodness of fit test&lt;/li&gt;
-&lt;li&gt;Outlier detection&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;As we are exploring our data, we will have a hypothesis about it that we can test—an assumption that we will need to prove true or false. One of the most common statistical tests is the &lt;code&gt;t-test&lt;/code&gt;, which compares the averages of two groups. For example, if our hypothesis is that the number of packets in a flow is significantly different in the Mirai packet capture compared to the benign packet capture, we perform the &lt;code&gt;t-test&lt;/code&gt; to prove this. Of course, the results of this hypothesis test would be even more revealing if our data was a black box and we did not know that one packet capture was malicious activity and the other was benign.&lt;/p&gt;
+&lt;p&gt;We use the &lt;code&gt;ttest_ind&lt;/code&gt; package in the following function:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;scipy.stats&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ttest_ind&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;hypothesis_testing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;df2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;col&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;group1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;df1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;group2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;df2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;pvalue&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ttest_ind&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;group2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pvalue&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.05&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;The difference between benign and mirai traffic &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; is statistically significant (p &amp;lt; 0.05)&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;The difference between benign and mirai traffic &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; is not statistically significant (p &amp;gt;= 0.05)&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;hypothesis_testing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mirai_flow_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;benign_flow_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Number of Packets&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;The difference between benign and mirai traffic Number of Packets is statistically significant (p &amp;lt; 0.05)&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;In this case, we have proven a significant difference between the two packet captures.&lt;/p&gt;
+&lt;h2 id=&#34;find-outliers&#34;&gt;Find outliers&lt;/h2&gt;
+&lt;p&gt;Many times our data takes values that are extreme, either too high or too low compared to the rest of the data. Outliers may indicate abnormal activity in packet captures, and they can be identified using the &lt;code&gt;Z-score&lt;/code&gt;. Intuitively, the Z-score measures the distance of each datapoint from the average of all data points in units of &lt;code&gt;standard deviations&lt;/code&gt; and can be calculated with the following formula: &lt;code&gt;(data_point - average_of_data_points) / standard_deviation_of_data_points&lt;/code&gt;. We can use the function &lt;code&gt;zscore&lt;/code&gt; to get the outliers in the Mirai packet capture for the Total Length of a flow:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;detect_outliers_zscore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;column&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;threshold&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;zscores&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;np&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;abs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;zscore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;column&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;zscores&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;threshold&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;outliers&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;detect_outliers_zscore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mirai_flow_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Total Length&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;threshold&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;outliers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-outliers-in-mirai-capture&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;outliers&#34; srcset=&#34;
+               /post/ml-sec-6/images/outliers_hu46a69ec0043324e549d39b0909d0db5c_121900_eaeaa3b7a4d0e9683263d9f10ab5eb95.webp 400w,
+               /post/ml-sec-6/images/outliers_hu46a69ec0043324e549d39b0909d0db5c_121900_9f1e4ca2575d5706b6e156e0f8fac98b.webp 760w,
+               /post/ml-sec-6/images/outliers_hu46a69ec0043324e549d39b0909d0db5c_121900_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-6/images/outliers_hu46a69ec0043324e549d39b0909d0db5c_121900_eaeaa3b7a4d0e9683263d9f10ab5eb95.webp&#34;
+               width=&#34;585&#34;
+               height=&#34;490&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Outliers in Mirai Capture
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;As you can see above, we have used a threshold to decide whether a data point is an outlier or not. In this case, we decided on a positive threshold, and anything above that means that the total length of that flow is 3 standard deviations higher than the mean. This can be useful to find very large flows that may indicate file transfers and investigate further.&lt;/p&gt;
+&lt;h2 id=&#34;discover-correlations&#34;&gt;Discover correlations&lt;/h2&gt;
+&lt;p&gt;The correlation and autocorrelation measures are useful summary statistics to find relationships between variables.&lt;/p&gt;
+&lt;p&gt;Correlation measures the strength and direction (increase or decrease) of a linear relationship between variables. For example, the length and the total packets in a flow will have a positive correlation since as the number of packets increases, the total length of the flow will increase. Below is an example correlation matrix of all columns of the Mirai Pandas dataframe. In the main diagonal of the matrix we calculate the correlation of the same columns, for example, the correlation of &lt;code&gt;Source Port&lt;/code&gt; to &lt;code&gt;Source Port&lt;/code&gt;. Therefore, these diagonal values will always be equal to 1. We observe some positive correlations that are high (&lt;code&gt;&amp;gt;0.5&lt;/code&gt;). For example, the correlation between &lt;code&gt;Total Length&lt;/code&gt; and &lt;code&gt;Number of Packets&lt;/code&gt; as expected, and an unexpected correlation between &lt;code&gt;Destination IP&lt;/code&gt; and &lt;code&gt;Protocol&lt;/code&gt; for example.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Calculate the correlation matrix&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;correlation_matrix&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mirai_flow_df_numeric&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;corr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Print the correlation matrix and autocorrelation&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Correlation Matrix:&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;correlation_matrix&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-correlations-in-mirai-capture&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;correlation&#34; srcset=&#34;
+               /post/ml-sec-6/images/correlation_hu8b97e9b13e2a7f9ce73bc38886ba0f80_135476_e6504a9448a47567917cd27294037378.webp 400w,
+               /post/ml-sec-6/images/correlation_hu8b97e9b13e2a7f9ce73bc38886ba0f80_135476_2113f235c62d6fdd34cda36ee98d238b.webp 760w,
+               /post/ml-sec-6/images/correlation_hu8b97e9b13e2a7f9ce73bc38886ba0f80_135476_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-6/images/correlation_hu8b97e9b13e2a7f9ce73bc38886ba0f80_135476_e6504a9448a47567917cd27294037378.webp&#34;
+               width=&#34;650&#34;
+               height=&#34;647&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Correlations in Mirai Capture
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Autocorrelation measures the similarity between a signal and a delayed version of itself. For example, if the autocorrelation of the &lt;code&gt;Number of Packets&lt;/code&gt; is positive and close to 1, this implies a repeating pattern of the number of packets in consecutive time intervals.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Calculate the autocorrelation for a specific column (e.g., &amp;#39;Number of Packets&amp;#39;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;autocorrelation&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mirai_flow_df_numeric&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Number of Packets&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;autocorr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;Autocorrelation for &amp;#39;Number of Packets&amp;#39;:&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;autocorrelation&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-correlations-in-mirai-capture&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;autocorrelation&#34; srcset=&#34;
+               /post/ml-sec-6/images/autocorrelation_hu6fa945bcd15d91b3d7f0be09828d6b73_7410_4f2bf1b9d876fac0cddfa88851428c80.webp 400w,
+               /post/ml-sec-6/images/autocorrelation_hu6fa945bcd15d91b3d7f0be09828d6b73_7410_a7fa90492d931a07c6160281ba310170.webp 760w,
+               /post/ml-sec-6/images/autocorrelation_hu6fa945bcd15d91b3d7f0be09828d6b73_7410_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-6/images/autocorrelation_hu6fa945bcd15d91b3d7f0be09828d6b73_7410_4f2bf1b9d876fac0cddfa88851428c80.webp&#34;
+               width=&#34;365&#34;
+               height=&#34;44&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Correlations in Mirai Capture
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;As you can see here again, we demonstrate the usefulness of converting the data to a Pandas dataframe since both functions used were out-of-the-box Pandas functions.&lt;/p&gt;
 &lt;h2 id=&#34;eda-python-libraries&#34;&gt;EDA Python Libraries&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;sweetviz&lt;/li&gt;
-&lt;li&gt;summarytools&lt;/li&gt;
-&lt;li&gt;skimpy&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Wrapping up EDA with statistics, I want to share three of my favorite libraries for stats and visualizations. There are two caveats to using these libraries:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;summarytools&lt;/code&gt; and &lt;code&gt;skimpy&lt;/code&gt; render only on a Jupyter notebook. However, their results are valuable since, with a few lines of code, you get a quick view of your summary statistics, distributions, missing values, duplicates, etc.&lt;/li&gt;
+&lt;li&gt;All libraries need to process numeric data. So we will have to translate our IPs, for example, to numbers, but there are some pretty easy ways to do this&amp;hellip; with more Python libraries!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;to-numbers&#34;&gt;To Numbers&lt;/h3&gt;
+&lt;p&gt;In the example below, we use &lt;code&gt;ipaddress&lt;/code&gt; to convert our IPs to numbers:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;ipaddress&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# convert ip address to numeric values&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;ip_to_numeric&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ip&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;ip_obj&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ipaddress&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ip_interface&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ip&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ip_obj&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;network&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;network_address&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# convert IPs to numeric mirai data&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai_flow_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Source IP Numeric&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mirai_flow_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Source IP&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;apply&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ip_to_numeric&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai_flow_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Destination IP Numeric&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mirai_flow_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Destination IP&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;apply&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;ip_to_numeric&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;code&gt;dtypes&lt;/code&gt; pandas function that we used above was very useful for us to discover whether we have numbers. Note that the &lt;code&gt;Duration&lt;/code&gt; column was not a number. Let&amp;rsquo;s convert it:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# convert duration from object to float&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai_flow_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Duration&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mirai_flow_df_numeric&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Duration&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;astype&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;float&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;benign_flow_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Duration&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;benign_flow_df_numeric&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Duration&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;astype&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;float&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now we are ready to use some sweet visualizations.&lt;/p&gt;
+&lt;h3 id=&#34;sweetviz&#34;&gt;sweetviz&lt;/h3&gt;
+&lt;p&gt;As the name implies, this is a pretty sweet set of visualizations that you can share with anyone in your team because they render your data to HTML. Here are the three lines of code to generate these:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;sweetviz&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;sv&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;my_report&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sv&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;analyze&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mirai_flow_df_numeric&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;my_report&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;show_html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The figure below shows part of the visualization (due to space limitations):&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-a-sweet-visualization-of-the-mirai-packet-capture&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;sweetviz&#34; srcset=&#34;
+               /post/ml-sec-6/images/sweetviz_hu4e94353890b2c23dff7fd9e4c576f4e1_230746_6a999316000ae7e467334030baa84d71.webp 400w,
+               /post/ml-sec-6/images/sweetviz_hu4e94353890b2c23dff7fd9e4c576f4e1_230746_8c7013218efe2dd593df0b64ee46a5ca.webp 760w,
+               /post/ml-sec-6/images/sweetviz_hu4e94353890b2c23dff7fd9e4c576f4e1_230746_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-6/images/sweetviz_hu4e94353890b2c23dff7fd9e4c576f4e1_230746_6a999316000ae7e467334030baa84d71.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;338&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      A sweet visualization of the Mirai packet capture
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;summarytools&#34;&gt;summarytools&lt;/h3&gt;
+&lt;p&gt;To depict data distributions and calculate useful statistics, you can use the package &lt;code&gt;summarytools&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;summarytools&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dfSummary&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;dfSummary&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mirai_flow_df_numeric&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-summary-statistics-and-visualization-of-mirai-packet-capture&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;summarytools&#34; srcset=&#34;
+               /post/ml-sec-6/images/summarytools_hu856a8dad9ee22d0619fa559353f9538d_123153_65709ed8de193b4eba9e5453ccc59297.webp 400w,
+               /post/ml-sec-6/images/summarytools_hu856a8dad9ee22d0619fa559353f9538d_123153_5db58f58fc6c77540c6d9e351eaaa99e.webp 760w,
+               /post/ml-sec-6/images/summarytools_hu856a8dad9ee22d0619fa559353f9538d_123153_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-6/images/summarytools_hu856a8dad9ee22d0619fa559353f9538d_123153_65709ed8de193b4eba9e5453ccc59297.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;509&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Summary statistics and visualization of Mirai packet capture
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;skimpy&#34;&gt;skimpy&lt;/h3&gt;
+&lt;p&gt;Last but not least, &lt;code&gt;skimpy&lt;/code&gt; offers another view of summary statistics, percentiles, and histograms:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;skimpy&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;skim&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;skim&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mirai_flow_df_numeric&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-skim-of-mirai-packet-capture&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;skim&#34; srcset=&#34;
+               /post/ml-sec-6/images/skim_hub074dda646b6f6ecf5e413685a0a56f0_73534_eaa962e1c2ecc992d747f269391abe4e.webp 400w,
+               /post/ml-sec-6/images/skim_hub074dda646b6f6ecf5e413685a0a56f0_73534_b4c23b3628145926ed4555810daf4989.webp 760w,
+               /post/ml-sec-6/images/skim_hub074dda646b6f6ecf5e413685a0a56f0_73534_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-6/images/skim_hub074dda646b6f6ecf5e413685a0a56f0_73534_eaa962e1c2ecc992d747f269391abe4e.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;352&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Skim of Mirai packet capture
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
 &lt;h2 id=&#34;recap&#34;&gt;Recap&lt;/h2&gt;
+&lt;p&gt;I hope that you enjoyed these pretty graphs and let&amp;rsquo;s not forget about the cool statistics. On the next blog we will explore our data using Pandas AI!&lt;/p&gt;
 &lt;p&gt;&amp;ndash; Xenia&lt;/p&gt;
 &lt;h2 id=&#34;going-even-deeper&#34;&gt;Going Even Deeper&lt;/h2&gt;
-&lt;p&gt;Code examples for this blog can be found in &lt;a href=&#34;https://github.com/mundruid/cyber-ml&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;cyber-ml&lt;/a&gt; repo.&lt;/p&gt;
-&lt;h3 id=&#34;python-graphing&#34;&gt;Python graphing&lt;/h3&gt;
+&lt;p&gt;Code examples for this blog can be found in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/cyber_ml/blog_eda_2.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_eda_2.ipynb&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;statistics&#34;&gt;Statistics&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.python-graph-gallery.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Python graph gallery&lt;/a&gt;: great collection of graphs and coding examples using matplotlib, seaborn, and plotly.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://plotly.com/python/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Plotly graphs&lt;/a&gt;: another useful collection with examples.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://seaborn.pydata.org/examples/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Seaborn gallery&lt;/a&gt;: comprehensive collection of Seaborn graphs with examples.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://matplotlib.org/stable/gallery/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Matplotlib&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;eda&#34;&gt;EDA&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.itl.nist.gov/div898/handbook/eda/eda.htm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NIST EDA Handbook&lt;/a&gt;: a comprehensive website on EDA techniques.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://youtu.be/xi0vhXFPegw&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;EDA with Python Pandas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;One of my favorite statistics books: &lt;a href=&#34;https://sites.temple.edu/woollcottsmith/cartoon-guide-to-statistics/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Cartoon Guide to Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Masterful visualizations for understanding statistics and probability: &lt;a href=&#34;https://seeing-theory.brown.edu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Seeing Theory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.statisticsdonewrong.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Statistics done wrong&lt;/a&gt; ebook&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://itl.nist.gov/div898/handbook/index.htm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NIST Handbook of statistical methods&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Book &lt;a href=&#34;https://archive.org/details/springer_10.1007-978-0-387-21736-9/page/n5/mode/2up&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;All of Statistics&lt;/a&gt; is a detailed review for statistics.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;did-you-find-this-page-helpful-consider-sharing-it-&#34;&gt;Did you find this page helpful? Consider sharing it 🙌&lt;/h3&gt;
 </description>
@@ -296,18 +818,18 @@
       <pubDate>Fri, 31 Mar 2023 00:00:00 +0000</pubDate>
       <guid>https://mundruid.github.io/post/ml-sec-5/</guid>
       <description>&lt;p&gt;Even though it is not as glamorous as machine learning, data exploration will give you a return on the time that you invest in it. Knowing the story about your data with graphical and mathematical techniques will lead to better feature engineering, model choices, and tuning of these models.&lt;/p&gt;
-&lt;p&gt;This blog aims to give you good applications for data exploration in security, code examples, and additional resources. As always, the code in this blog is in the repo &lt;a href=&#34;https://github.com/mundruid/cyber-ml&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;cyber-ml&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This blog aims to give you good applications for data exploration in security, code examples, and additional resources. As always, the code in this blog is in the repo &lt;a href=&#34;https://github.com/mundruid/cyber-ml/cyber_ml/blog_eda_1.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_eda_1&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
 &lt;h3 id=&#34;what&#34;&gt;What?&lt;/h3&gt;
 &lt;p&gt;The concept of Exploratory Data Analysis (EDA) is a fundamental statistical framework. I like the definition from NIST that characterizes EDA as a &lt;code&gt;philosophy&lt;/code&gt; of approaching data as a complete unknown entity and identifying the story they are telling us. The goals of EDA are to test assumptions, find outliers, identify important features, choose a model, and tune the model parameters.&lt;/p&gt;
 &lt;h3 id=&#34;why&#34;&gt;Why?&lt;/h3&gt;
 &lt;p&gt;It is not glorious to make graphs and gather statistics about your data; however, this pays off towards your ML success. Every time I tried to do the cool stuff first, such as feature extraction or modeling, I failed miserably. If you do not understand the underlying structure of the data, you will not be able to pick the proper techniques to engineer features or pick the features you need. Choosing models randomly is also not a good idea in terms of time and computation resources.&lt;/p&gt;
 &lt;h3 id=&#34;how&#34;&gt;How?&lt;/h3&gt;
-&lt;p&gt;We will split this topic again into multiple posts to enjoy the journey of graphing, statistics, and probability distributions with some fun coding examples.&lt;/p&gt;
+&lt;p&gt;We will split this topic again into multiple posts to enjoy the journey of graphing, statistics, and interesting new ways to explore your data with AI libraries.&lt;/p&gt;
 &lt;div class=&#34;markmap&#34; style=&#34;height: 500px;&#34;&gt;
 
 &lt;pre&gt;- Exploratory Data Analysis
-    - Graphical techniques (part 1)
+    - Graphical techniques (part 1 - we are here)
         - Histograms
         - Scatter
         - Box
@@ -319,7 +841,7 @@
         - Randomness
         - Distribution measures
         - Outliers
-    - Probability distributions (part 3)&lt;/pre&gt;
+    - Pandas AI for data exploration (part 3)&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&#34;exploratory-data-analysis-eda&#34;&gt;Exploratory Data Analysis (EDA)&lt;/h2&gt;
@@ -359,10 +881,10 @@
 &lt;figure  id=&#34;figure-pandas-histogram&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;hist&#34; srcset=&#34;
-               /post/ml-sec-5/images/hist-pandas_hue1a918195fd5fb13ac7a3c64a28b5765_9125_52a72b3b8e19f81d45c2715556cedc24.webp 400w,
+               /post/ml-sec-5/images/hist-pandas_hue1a918195fd5fb13ac7a3c64a28b5765_9125_c48eb5367e2313f5b188e32c69f816ef.webp 400w,
                /post/ml-sec-5/images/hist-pandas_hue1a918195fd5fb13ac7a3c64a28b5765_9125_d7401d0204ae30e00dc1feb1321eb69e.webp 760w,
                /post/ml-sec-5/images/hist-pandas_hue1a918195fd5fb13ac7a3c64a28b5765_9125_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/hist-pandas_hue1a918195fd5fb13ac7a3c64a28b5765_9125_52a72b3b8e19f81d45c2715556cedc24.webp&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/hist-pandas_hue1a918195fd5fb13ac7a3c64a28b5765_9125_c48eb5367e2313f5b188e32c69f816ef.webp&#34;
                width=&#34;524&#34;
                height=&#34;397&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -394,10 +916,10 @@
 &lt;figure  id=&#34;figure-seaborn-histogram&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;hist2&#34; srcset=&#34;
-               /post/ml-sec-5/images/hist-seaborn_hu356446148f69ce529ce2535277b489cf_8376_8b2800f4e18c2f7c7df6eb413095715e.webp 400w,
+               /post/ml-sec-5/images/hist-seaborn_hu356446148f69ce529ce2535277b489cf_8376_da8dae53e4b7f8363361ed9253f3ba8a.webp 400w,
                /post/ml-sec-5/images/hist-seaborn_hu356446148f69ce529ce2535277b489cf_8376_069707efcf83d7c4523ba58d25e3000e.webp 760w,
                /post/ml-sec-5/images/hist-seaborn_hu356446148f69ce529ce2535277b489cf_8376_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/hist-seaborn_hu356446148f69ce529ce2535277b489cf_8376_8b2800f4e18c2f7c7df6eb413095715e.webp&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/hist-seaborn_hu356446148f69ce529ce2535277b489cf_8376_da8dae53e4b7f8363361ed9253f3ba8a.webp&#34;
                width=&#34;574&#34;
                height=&#34;409&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -435,10 +957,10 @@
 &lt;figure  id=&#34;figure-scatterplot&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;scatter&#34; srcset=&#34;
-               /post/ml-sec-5/images/scatter_hua5576b39c995159f1324f18b73da9b63_19838_8a3669c5af3ac2aa7cd29040a234062e.webp 400w,
+               /post/ml-sec-5/images/scatter_hua5576b39c995159f1324f18b73da9b63_19838_c3214e02062cead8f542986a52be1632.webp 400w,
                /post/ml-sec-5/images/scatter_hua5576b39c995159f1324f18b73da9b63_19838_c7e3830b2a93ad90553842c8a68a8bfb.webp 760w,
                /post/ml-sec-5/images/scatter_hua5576b39c995159f1324f18b73da9b63_19838_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/scatter_hua5576b39c995159f1324f18b73da9b63_19838_8a3669c5af3ac2aa7cd29040a234062e.webp&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/scatter_hua5576b39c995159f1324f18b73da9b63_19838_c3214e02062cead8f542986a52be1632.webp&#34;
                width=&#34;574&#34;
                height=&#34;419&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -470,10 +992,10 @@
 &lt;figure  id=&#34;figure-seaborn-scatterplot&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;scatter2&#34; srcset=&#34;
-               /post/ml-sec-5/images/scater-seaborn_huf291be7c996041b496f38bb42992455d_17267_8d889c28e2e8a1ace45c9272034ca352.webp 400w,
+               /post/ml-sec-5/images/scater-seaborn_huf291be7c996041b496f38bb42992455d_17267_c1d270d52e6c733cc516d79932daf6de.webp 400w,
                /post/ml-sec-5/images/scater-seaborn_huf291be7c996041b496f38bb42992455d_17267_662b2e69654dfc3394b8934d56df00ea.webp 760w,
                /post/ml-sec-5/images/scater-seaborn_huf291be7c996041b496f38bb42992455d_17267_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/scater-seaborn_huf291be7c996041b496f38bb42992455d_17267_8d889c28e2e8a1ace45c9272034ca352.webp&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/scater-seaborn_huf291be7c996041b496f38bb42992455d_17267_c1d270d52e6c733cc516d79932daf6de.webp&#34;
                width=&#34;554&#34;
                height=&#34;397&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -511,10 +1033,10 @@
 &lt;figure  id=&#34;figure-boxplot&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;box&#34; srcset=&#34;
-               /post/ml-sec-5/images/box_hu58893253771402eb2fc8a0bb7bd5eded_13155_6dd2612446ee09a2011da5cc70a3ac6d.webp 400w,
+               /post/ml-sec-5/images/box_hu58893253771402eb2fc8a0bb7bd5eded_13155_833abd93b0753f732eed3326f998ae7d.webp 400w,
                /post/ml-sec-5/images/box_hu58893253771402eb2fc8a0bb7bd5eded_13155_6df355c09f4680d49a6b3da4d9d44f2f.webp 760w,
                /post/ml-sec-5/images/box_hu58893253771402eb2fc8a0bb7bd5eded_13155_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/box_hu58893253771402eb2fc8a0bb7bd5eded_13155_6dd2612446ee09a2011da5cc70a3ac6d.webp&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/box_hu58893253771402eb2fc8a0bb7bd5eded_13155_833abd93b0753f732eed3326f998ae7d.webp&#34;
                width=&#34;572&#34;
                height=&#34;417&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -567,10 +1089,10 @@ We plotted the relationship between packet length and interarrivals for our Mira
 &lt;figure  id=&#34;figure-barplot&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;bar&#34; srcset=&#34;
-               /post/ml-sec-5/images/barplot_hu23d0a68f4631e143b1ad72c1eada3150_11246_9b31916175370f896e58d2d6a8dd3a89.webp 400w,
+               /post/ml-sec-5/images/barplot_hu23d0a68f4631e143b1ad72c1eada3150_11246_415b8b430696bafca04b783168fb364f.webp 400w,
                /post/ml-sec-5/images/barplot_hu23d0a68f4631e143b1ad72c1eada3150_11246_6569afb7be60f17bdd3173822292e816.webp 760w,
                /post/ml-sec-5/images/barplot_hu23d0a68f4631e143b1ad72c1eada3150_11246_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/barplot_hu23d0a68f4631e143b1ad72c1eada3150_11246_9b31916175370f896e58d2d6a8dd3a89.webp&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/barplot_hu23d0a68f4631e143b1ad72c1eada3150_11246_415b8b430696bafca04b783168fb364f.webp&#34;
                width=&#34;634&#34;
                height=&#34;395&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -619,10 +1141,10 @@ This is a great way to find the most popular IP, port, etc. Note another powerfu
 &lt;figure  id=&#34;figure-word-plot&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;word&#34; srcset=&#34;
-               /post/ml-sec-5/images/wordplot_hu6898551146002f5f715f7ca81841bba8_114357_e4d89004160efdbfffe3e5f29dbe68a9.webp 400w,
+               /post/ml-sec-5/images/wordplot_hu6898551146002f5f715f7ca81841bba8_114357_139e241da26e401ba30290fd0d490c74.webp 400w,
                /post/ml-sec-5/images/wordplot_hu6898551146002f5f715f7ca81841bba8_114357_7051455c83228fcac99fd04604556dd2.webp 760w,
                /post/ml-sec-5/images/wordplot_hu6898551146002f5f715f7ca81841bba8_114357_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/wordplot_hu6898551146002f5f715f7ca81841bba8_114357_e4d89004160efdbfffe3e5f29dbe68a9.webp&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/wordplot_hu6898551146002f5f715f7ca81841bba8_114357_139e241da26e401ba30290fd0d490c74.webp&#34;
                width=&#34;589&#34;
                height=&#34;548&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -669,10 +1191,10 @@ This is a great way to find the most popular IP, port, etc. Note another powerfu
 &lt;figure  id=&#34;figure-tree-plot&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;tree&#34; srcset=&#34;
-               /post/ml-sec-5/images/treeplot_hu67fec465575920d84bc31753f6a5c42a_17617_9954402a483cc11b45eabe196e8088b9.webp 400w,
+               /post/ml-sec-5/images/treeplot_hu67fec465575920d84bc31753f6a5c42a_17617_257cf7a52bdda9066bbe51fdb2321d0d.webp 400w,
                /post/ml-sec-5/images/treeplot_hu67fec465575920d84bc31753f6a5c42a_17617_d79efdd86ed76fe66224aa8b00fa2885.webp 760w,
                /post/ml-sec-5/images/treeplot_hu67fec465575920d84bc31753f6a5c42a_17617_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/treeplot_hu67fec465575920d84bc31753f6a5c42a_17617_9954402a483cc11b45eabe196e8088b9.webp&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-5/images/treeplot_hu67fec465575920d84bc31753f6a5c42a_17617_257cf7a52bdda9066bbe51fdb2321d0d.webp&#34;
                width=&#34;501&#34;
                height=&#34;375&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -690,7 +1212,7 @@ This is a great way to find the most popular IP, port, etc. Note another powerfu
 &lt;p&gt;We have reviewed visual methods to explore quantitative and qualitative data. The possibilities are endless when it comes to plotting your data and it is worth spending time to use them because the benefits will be demonstrated in your feature selection and modeling.&lt;/p&gt;
 &lt;p&gt;&amp;ndash; Xenia&lt;/p&gt;
 &lt;h2 id=&#34;going-even-deeper&#34;&gt;Going Even Deeper&lt;/h2&gt;
-&lt;p&gt;Code examples for this blog can be found in &lt;a href=&#34;https://github.com/mundruid/cyber-ml&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;cyber-ml&lt;/a&gt; repo.&lt;/p&gt;
+&lt;p&gt;Code examples for this blog can be found in &lt;a href=&#34;https://github.com/mundruid/cyber-ml/cyber_ml/blog_eda_1.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_eda_1&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;python-graphing&#34;&gt;Python graphing&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.python-graph-gallery.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Python graph gallery&lt;/a&gt;: great collection of graphs and coding examples using matplotlib, seaborn, and plotly.&lt;/li&gt;
@@ -767,10 +1289,10 @@ The columns  of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.
 &lt;figure  id=&#34;figure-mirai-pcap-in-pandas-dataframe&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;mirai&#34; srcset=&#34;
-               /post/ml-sec-4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_2579c1e776400fb36486b9c28f05b294.webp 400w,
+               /post/ml-sec-4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_f9a1fccf1864bb78bbf9831284c8f851.webp 400w,
                /post/ml-sec-4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_a612b24375925da0a180a55913510df8.webp 760w,
                /post/ml-sec-4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/ml-sec-4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_2579c1e776400fb36486b9c28f05b294.webp&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_f9a1fccf1864bb78bbf9831284c8f851.webp&#34;
                width=&#34;760&#34;
                height=&#34;220&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -813,10 +1335,10 @@ The columns  of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.
 &lt;figure  id=&#34;figure-tlds&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;tlds&#34; srcset=&#34;
-               /post/ml-sec-4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_c38b3929296801b6b4a13de1438c1436.webp 400w,
+               /post/ml-sec-4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_6856b35b16ad4608ded378c310d9f6a0.webp 400w,
                /post/ml-sec-4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_7095e5b8bfd446ef6b45700b8486c140.webp 760w,
                /post/ml-sec-4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/ml-sec-4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_c38b3929296801b6b4a13de1438c1436.webp&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_6856b35b16ad4608ded378c310d9f6a0.webp&#34;
                width=&#34;325&#34;
                height=&#34;341&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1812,7 +2334,7 @@ data.head()
 
 
 
-&lt;div id=&#34;chart-936785214&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
+&lt;div id=&#34;chart-245936817&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
 &lt;script&gt;
   (function() {
     let a = setInterval( function() {
@@ -1822,7 +2344,7 @@ data.head()
       clearInterval( a );
 
       Plotly.d3.json(&#34;./line-chart.json&#34;, function(chart) {
-        Plotly.plot(&#39;chart-936785214&#39;, chart.data, chart.layout, {responsive: true});
+        Plotly.plot(&#39;chart-245936817&#39;, chart.data, chart.layout, {responsive: true});
       });
     }, 500 );
   })();

@@ -2,6 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://mundruid.github.io/post/ml-sec-6/</loc>
+    <lastmod>2023-05-03T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://mundruid.github.io/post/</loc>
+    <lastmod>2023-05-03T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://mundruid.github.io/</loc>
+    <lastmod>2023-05-03T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://mundruid.github.io/post/ml-sec-5/</loc>
+    <lastmod>2023-03-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://mundruid.github.io/post/ml-sec-4/</loc>
+    <lastmod>2023-03-03T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://mundruid.github.io/post/ml-sec-3/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://mundruid.github.io/post/ml-sec-2/</loc>
+    <lastmod>2023-01-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://mundruid.github.io/post/ml-sec-1/</loc>
+    <lastmod>2023-01-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
     <loc>https://mundruid.github.io/not_index/</loc>
     <lastmod>2022-10-24T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -11,10 +43,6 @@
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://mundruid.github.io/event/</loc>
-    <lastmod>2022-08-27T13:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://mundruid.github.io/</loc>
     <lastmod>2022-08-27T13:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
@@ -39,10 +67,6 @@
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://mundruid.github.io/tag/pandas/</loc>
-    <lastmod>2022-07-19T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://mundruid.github.io/post/</loc>
     <lastmod>2022-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>

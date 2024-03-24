@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Homes | Xenia Mountrouidou (DrX)</title>
+    <link>http://localhost:1313/home/</link>
+      <atom:link href="http://localhost:1313/home/index.xml" rel="self" type="application/rss+xml" />
+    <description>Homes</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language>
+    <image>
+      <url>http://localhost:1313/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
+      <title>Homes</title>
+      <link>http://localhost:1313/home/</link>
+    </image>
+    
+  </channel>
+</rss>

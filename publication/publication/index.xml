@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Publications | Academic</title>
+    <link>http://localhost:1313/publication/publication/</link>
+      <atom:link href="http://localhost:1313/publication/publication/index.xml" rel="self" type="application/rss+xml" />
+    <description>Publications</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://localhost:1313/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Publications</title>
+      <link>http://localhost:1313/publication/publication/</link>
+    </image>
+    
+    <item>
+      <title>IoT Metrics and Automation for Security Evaluation</title>
+      <link>http://localhost:1313/publication/publication/iot_security_metrics/</link>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/publication/iot_security_metrics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Worth the wait? Time window feature optimization for intrusion detection</title>
+      <link>http://localhost:1313/publication/publication/cyberhunt2019/</link>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/publication/cyberhunt2019/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

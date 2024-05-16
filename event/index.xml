@@ -5,12 +5,20 @@
     <link>http://localhost:1313/event/</link>
       <atom:link href="http://localhost:1313/event/index.xml" rel="self" type="application/rss+xml" />
     <description>Recent &amp; Upcoming Talks</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Thu, 14 Mar 2024 17:30:00 +0000</lastBuildDate>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Fri, 17 May 2024 17:30:00 +0000</lastBuildDate>
     <image>
       <url>http://localhost:1313/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Recent &amp; Upcoming Talks</title>
       <link>http://localhost:1313/event/</link>
     </image>
+    
+    <item>
+      <title>Decoding Cybersecurity Data: A Journey through ML and AI Innovations</title>
+      <link>http://localhost:1313/talk/decoding-cybersecurity-data-a-journey-through-ml-and-ai-innovations/</link>
+      <pubDate>Fri, 17 May 2024 17:30:00 +0000</pubDate>
+      <guid>http://localhost:1313/talk/decoding-cybersecurity-data-a-journey-through-ml-and-ai-innovations/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Feature engineering art and science</title>

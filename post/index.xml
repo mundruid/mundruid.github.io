@@ -2,61 +2,186 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts | Xenia Mountrouidou (DrX)</title>
-    <link>http://localhost:1313/post/</link>
-      <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://mundruid.github.io/post/</link>
+      <atom:link href="https://mundruid.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 19 Jul 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 18 Jun 2024 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://localhost:1313/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
+      <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
-      <link>http://localhost:1313/post/</link>
+      <link>https://mundruid.github.io/post/</link>
     </image>
     
     <item>
+      <title>Machine Learning Meets Cybersecurity</title>
+      <link>https://mundruid.github.io/post/ml-sec-1/</link>
+      <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>https://mundruid.github.io/post/ml-sec-1/</guid>
+      <description>&lt;p&gt;Machine Learning (ML) and Cybersecurity, is this a match made in heaven or yet another tech hype? Indeed, this is an interesting combination worth exploring for the security professional who wants to solve their problems in a non-traditional manner or for the data scientist who wants to be involved in a significant impact area. Where does one start, though? This series of blogs aims to give you a roadmap, tools, inspiration, and technical knowledge to combine these two areas.&lt;/p&gt;
+&lt;p&gt;Nowadays, there is a lot of hype about Large Language Models (LLMs). However, fundamentals such as statistics and traditional ML concepts, such as embeddings, are the foundations on which these models have been based. Learning about those fundamentals leads to a better understanding of today&amp;rsquo;s technologies.&lt;/p&gt;
+&lt;p&gt;This is a blog series that has been inspired by my personal background as a researcher. I enjoy both the ML and Cybersecurity areas and find it difficult to choose one over the other. I am passionate about conveying knowledge, especially theory and math, in an intuitive manner.&lt;/p&gt;
+&lt;h2 id=&#34;why-ml--cybersecurity&#34;&gt;Why ML &amp;amp; Cybersecurity?&lt;/h2&gt;
+&lt;p&gt;What reasons do you have to dive into ML and Cybersecurity, other than these being hot technical areas? First, as technical professionals, we unavoidably all become, at some point, data analysts because we have to handle data and make sense of it. In the security area, thanks to advances in observability, efficient time series databases, and cheap storage, we have lots of data that is accumulating and remains unexplored. These data are a treasure trove of information for potential vulnerabilities in our systems, as long as we can decipher the patterns. In addition to all the text data, there is network data, since a network is a large data producer. The network produces packet captures that we only study closely when there is a problem. However, it is better to be proactive and have the ML tools to decipher network behavior. Finally, how about the unknowns? Unknown malware, unknown exploits, and zero days are discovered with ML.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-intersection-between-cybersecurity--ml&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Cyber-ML intersection&#34; srcset=&#34;
+               /post/ml-sec-1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_d9f846d99cb6149eeb88b5a942f8b8ec.webp 400w,
+               /post/ml-sec-1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_02f79fa6331bb7bcae8e54c2579e1489.webp 760w,
+               /post/ml-sec-1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/ml-sec-1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_d9f846d99cb6149eeb88b5a942f8b8ec.webp&#34;
+               width=&#34;657&#34;
+               height=&#34;382&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Intersection between Cybersecurity &amp;amp; ML
+    &lt;/figcaption&gt;&lt;/figure&gt;
+
+There is some intersection between Cybersecurity and ML that helps make the learning curve smoother. The figure above is by no means an exhaustive list of topics. What other topics do you think overlap (or not) between Cybersecurity and ML?&lt;/p&gt;
+&lt;h2 id=&#34;what-this-blog-series-is&#34;&gt;What this blog series is&lt;/h2&gt;
+&lt;p&gt;The prevalent theme in the blogs is the data approach to solving problems for cybersecurity as you can observe in the diagram below. We will be taking this journey from the perspective of the security analyst with examples, concepts, and problems inspired by the field.&lt;/p&gt;
+&lt;div class=&#34;markmap&#34; style=&#34;height: 500px;&#34;&gt;
+
+&lt;pre&gt;- ML &amp; Cybersecurity
+  - The basics
+    - Dev environment zero to hero
+    - Show me the data!
+    - Let&#39;s explore: Exploratory Data Analysis (EDA)
+      - Graphs
+      - The maths
+      - AI
+  &lt;!-- - Do you have a problem? Problem formulation
+    - The data way
+    - The cyber way
+    - A hybrid approach --&gt;
+  - Feature Engineering
+    - Numerical
+    - Categorical
+    - Embeddings
+    - Selection 
+  - ML Algorithms for Cybersecurity
+    - Classification
+    - Evaluation&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&#34;what-this-blog-series-is-not&#34;&gt;What this blog series is not&lt;/h2&gt;
+&lt;p&gt;This is not an online class or a solution to all security problems using ML. There are a lot of good quality, free classes for ML. I would personally recommend the &lt;a href=&#34;https://learn.deeplearning.ai/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Deep Learning AI courses&lt;/a&gt;, &lt;a href=&#34;https://developers.google.com/machine-learning&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google Foundational ML courses&lt;/a&gt;, and &lt;a href=&#34;https://youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Andrew Ng&amp;rsquo;s classes&lt;/a&gt;. There is also a plethora of great, free courses for security, such as the &lt;a href=&#34;https://ocw.mit.edu/courses/6-858-computer-systems-security-fall-2014/pages/syllabus/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MIT Computer Systems Security&lt;/a&gt;, &lt;a href=&#34;https://portswigger.net/web-security&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Web Security&lt;/a&gt;, and &lt;a href=&#34;https://taggartinstitute.org/p/responsible-red-teaming&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Responsible Red Teaming&lt;/a&gt; to name a few.&lt;/p&gt;
+&lt;p&gt;What I did not find in these courses was the application of ML to solving Cybersecurity problems from the perspective of a security analyst. That is why I decided to create a blog series as a guide to get started combining these two areas.&lt;/p&gt;
+&lt;h2 id=&#34;structure-of-the-blogs&#34;&gt;Structure of the blogs&lt;/h2&gt;
+&lt;p&gt;These blog posts will include the following parts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;1,000-foot view&lt;/em&gt;: the what, how, and why of the blog. If you do not have time to read the whole blog or prefer to use your own research, this will be the point to start.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Technical details&lt;/em&gt;: This will be the main part of the blogs, with plentiful code examples and intuitive explanations.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Cybersecurity perspective&lt;/em&gt;: This part will include applications of what was discussed in the blog in cybersecurity. I will share my experiences and hurdles with using ML in the day-to-day flow.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Going even deeper&lt;/em&gt;: code, tools, and other resources, such as academic papers and books, will be provided at the end so that you can go deeper into the topics.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;In this series of blogs, I assume the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You have used Python and have basic knowledge of the language&amp;rsquo;s keywords and structure.&lt;/li&gt;
+&lt;li&gt;You have installed at least one Python package using &lt;code&gt;pip&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;You have basic knowledge of the Linux command line.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you have never used Python before, here are a couple of free courses that I recommend:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.udemy.com/course/python-from-beginner-to-expert-starter-free/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Udemy: Python from beginer to Intermediate&lt;/a&gt; - 30 mins&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://youtu.be/eWRfhZUzrAc&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;FreeCodeCamp: Python for Beginners – Full Course&lt;/a&gt; - 4 hours&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;where-do-we-go-from-here&#34;&gt;Where do we go from here?&lt;/h2&gt;
+&lt;p&gt;I hope you are as excited as I am about starting this journey. First things first, though, we need a development environment that fits each one of us. We will discuss this in detail in the next post.&lt;/p&gt;
+&lt;p&gt;&amp;ndash; Xenia&lt;/p&gt;
+&lt;h2 id=&#34;going-even-deeper&#34;&gt;Going even deeper&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;ML Courses
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://developers.google.com/machine-learning&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google Foundational ML courses&lt;/a&gt;: I have taken most of these courses, always something to learn even if you are advanced data scientist.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Andrew Ng&amp;rsquo;s classes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/luspr/awesome-ml-courses&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Awesome ML Courses&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cybersecurity Courses:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://ocw.mit.edu/courses/6-858-computer-systems-security-fall-2014/pages/syllabus/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MIT Computer Systems Security&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://portswigger.net/web-security&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Web Security&lt;/a&gt;: great tool (Burp) and tutorials&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.classcentral.com/course/software-security-1728&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;University of Maryland Software Security&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://taggartinstitute.org/p/responsible-red-teaming&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Responsible Red Teaming&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.splunk.com/en_us/training/free-courses/overview.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Splunk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/brootware/awesome-cyber-security-university&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Awesome cybersecurity university&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://mobisec.reyammer.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MOBISEC&lt;/a&gt;: one of my favorite researchers, has lots of great papers as well including my personal favorite &lt;a href=&#34;https://cloak-and-dagger.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Cloack and Dagger&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;More awesome lists:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jivoi/awesome-ml-for-cybersecurity&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Awesome ML for Cybersecurity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/khuyentran1401/awesome-Python-data-science-books&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Awesome Python Data Science Books&lt;/a&gt;: definitely look at Khuyen Tran&amp;rsquo;s book and material for data science from this repo.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/sindresorhus/awesome&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Awesome list of awesome lists&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;did-you-find-this-page-helpful-consider-sharing-it-&#34;&gt;Did you find this page helpful? Consider sharing it 🙌&lt;/h3&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Introduction to a Telemetry Stack - Part 3</title>
-      <link>http://localhost:1313/post/alerting/</link>
+      <link>https://mundruid.github.io/post/alerting/</link>
       <pubDate>Tue, 19 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/alerting/</guid>
+      <guid>https://mundruid.github.io/post/alerting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Forecasting the Network</title>
-      <link>http://localhost:1313/post/pandas3/</link>
+      <link>https://mundruid.github.io/post/pandas3/</link>
       <pubDate>Sun, 13 Mar 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/pandas3/</guid>
+      <guid>https://mundruid.github.io/post/pandas3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Exploratory Data Analysis for Network Traffic</title>
-      <link>http://localhost:1313/post/pandas2/</link>
+      <link>https://mundruid.github.io/post/pandas2/</link>
       <pubDate>Thu, 13 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/pandas2/</guid>
+      <guid>https://mundruid.github.io/post/pandas2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jupyter Notebooks for Development</title>
-      <link>http://localhost:1313/post/jupyter/</link>
+      <link>https://mundruid.github.io/post/jupyter/</link>
       <pubDate>Sat, 13 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/jupyter/</guid>
+      <guid>https://mundruid.github.io/post/jupyter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to Pandas for Network Development</title>
-      <link>http://localhost:1313/post/pandas1/</link>
+      <link>https://mundruid.github.io/post/pandas1/</link>
       <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/pandas1/</guid>
+      <guid>https://mundruid.github.io/post/pandas1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to PromQL</title>
-      <link>http://localhost:1313/post/promql/</link>
+      <link>https://mundruid.github.io/post/promql/</link>
       <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/promql/</guid>
+      <guid>https://mundruid.github.io/post/promql/</guid>
       <description></description>
     </item>
     

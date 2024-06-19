@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Xenia Mountrouidou (DrX)</title>
-    <link>https://mundruid.github.io/</link>
-      <atom:link href="https://mundruid.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:1313/</link>
+      <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <description>Xenia Mountrouidou (DrX)</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Mon, 24 Oct 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
+      <url>http://localhost:1313/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Xenia Mountrouidou (DrX)</title>
-      <link>https://mundruid.github.io/</link>
+      <link>http://localhost:1313/</link>
     </image>
     
     <item>
       <title>Machine Learning Meets Cybersecurity</title>
-      <link>https://mundruid.github.io/post/ml-sec-1/</link>
+      <link>http://localhost:1313/post/ml-sec-1/</link>
       <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/ml-sec-1/</guid>
+      <guid>http://localhost:1313/post/ml-sec-1/</guid>
       <description>&lt;p&gt;Machine Learning (ML) and Cybersecurity, is this a match made in heaven or yet another tech hype? Indeed, this is an interesting combination worth exploring for the security professional who wants to solve their problems in a non-traditional manner or for the data scientist who wants to be involved in a significant impact area. Where does one start, though? This series of blogs aims to give you a roadmap, tools, inspiration, and technical knowledge to combine these two areas.&lt;/p&gt;
 &lt;p&gt;Nowadays, there is a lot of hype about Large Language Models (LLMs). However, fundamentals such as statistics and traditional ML concepts, such as embeddings, are the foundations on which these models have been based. Learning about those fundamentals leads to a better understanding of today&amp;rsquo;s technologies.&lt;/p&gt;
 &lt;p&gt;This is a blog series that has been inspired by my personal background as a researcher. I enjoy both the ML and Cybersecurity areas and find it difficult to choose one over the other. I am passionate about conveying knowledge, especially theory and math, in an intuitive manner.&lt;/p&gt;
@@ -44,7 +44,7 @@
                /post/ml-sec-1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_d9f846d99cb6149eeb88b5a942f8b8ec.webp 400w,
                /post/ml-sec-1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_02f79fa6331bb7bcae8e54c2579e1489.webp 760w,
                /post/ml-sec-1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/ml-sec-1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_d9f846d99cb6149eeb88b5a942f8b8ec.webp&#34;
+               src=&#34;http://localhost:1313/post/ml-sec-1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_d9f846d99cb6149eeb88b5a942f8b8ec.webp&#34;
                width=&#34;657&#34;
                height=&#34;382&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -139,155 +139,155 @@ There is some intersection between Cybersecurity and ML that helps make the lear
     
     <item>
       <title>Decoding Cybersecurity Data: A Journey through ML and AI Innovations</title>
-      <link>https://mundruid.github.io/talk/decoding-cybersecurity-data-a-journey-through-ml-and-ai-innovations/</link>
+      <link>http://localhost:1313/talk/decoding-cybersecurity-data-a-journey-through-ml-and-ai-innovations/</link>
       <pubDate>Fri, 17 May 2024 17:30:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/decoding-cybersecurity-data-a-journey-through-ml-and-ai-innovations/</guid>
+      <guid>http://localhost:1313/talk/decoding-cybersecurity-data-a-journey-through-ml-and-ai-innovations/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Feature engineering art and science</title>
-      <link>https://mundruid.github.io/talk/feature-engineering-art-and-science/</link>
+      <link>http://localhost:1313/talk/feature-engineering-art-and-science/</link>
       <pubDate>Thu, 14 Mar 2024 17:30:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/feature-engineering-art-and-science/</guid>
+      <guid>http://localhost:1313/talk/feature-engineering-art-and-science/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Harnessing ML and AI for Next-Gen Security Engineering</title>
-      <link>https://mundruid.github.io/talk/harnessing-ml-and-ai-for-next-gen-security-engineering/</link>
+      <link>http://localhost:1313/talk/harnessing-ml-and-ai-for-next-gen-security-engineering/</link>
       <pubDate>Sat, 07 Oct 2023 12:30:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/harnessing-ml-and-ai-for-next-gen-security-engineering/</guid>
+      <guid>http://localhost:1313/talk/harnessing-ml-and-ai-for-next-gen-security-engineering/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Decoding cybersecurity data with ML and AI</title>
-      <link>https://mundruid.github.io/project/cyber-ml/</link>
+      <link>http://localhost:1313/project/cyber-ml/</link>
       <pubDate>Wed, 27 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/project/cyber-ml/</guid>
+      <guid>http://localhost:1313/project/cyber-ml/</guid>
       <description>&lt;p&gt;The next generation of cybersecurity engineers will be data engineers who happen to specialize in cybersecurity. This talk aims at showing how cybersecurity engineers can benefit from today’s technology to make sense of the sea of data that they are gathering. Currently, we are constantly bombarded with information about GPT, ML, AI, and a variety of abbreviations. The question is, though, how can we as cybersecurity engineers capitalize on these tools? I will answer this question with a concrete example of the usage of ML and AI from the perspective of a cybersecurity researcher. The goal of this project is to invent creative ways of deciphering cybersecurity data with ML and AI.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Level up your Data Science workflows with VS Code, Jupyter and ChatGPT</title>
-      <link>https://mundruid.github.io/talk/level-up-your-data-science-workflows-with-vs-code-jupyter-and-chatgpt/</link>
+      <link>http://localhost:1313/talk/level-up-your-data-science-workflows-with-vs-code-jupyter-and-chatgpt/</link>
       <pubDate>Thu, 23 Feb 2023 18:30:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/level-up-your-data-science-workflows-with-vs-code-jupyter-and-chatgpt/</guid>
+      <guid>http://localhost:1313/talk/level-up-your-data-science-workflows-with-vs-code-jupyter-and-chatgpt/</guid>
       <description></description>
     </item>
     
     <item>
       <title>IoT Spy: Observability and Alerting for Internet of Things (IoT) Security</title>
-      <link>https://mundruid.github.io/talk/iot-spy-observability-and-alerting-for-internet-of-things-iot-security/</link>
+      <link>http://localhost:1313/talk/iot-spy-observability-and-alerting-for-internet-of-things-iot-security/</link>
       <pubDate>Sat, 27 Aug 2022 13:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/iot-spy-observability-and-alerting-for-internet-of-things-iot-security/</guid>
+      <guid>http://localhost:1313/talk/iot-spy-observability-and-alerting-for-internet-of-things-iot-security/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to a Telemetry Stack - Part 3</title>
-      <link>https://mundruid.github.io/post/alerting/</link>
+      <link>http://localhost:1313/post/alerting/</link>
       <pubDate>Tue, 19 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/alerting/</guid>
+      <guid>http://localhost:1313/post/alerting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Forecasting the Network</title>
-      <link>https://mundruid.github.io/post/pandas3/</link>
+      <link>http://localhost:1313/post/pandas3/</link>
       <pubDate>Sun, 13 Mar 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas3/</guid>
+      <guid>http://localhost:1313/post/pandas3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Exploratory Data Analysis for Network Traffic</title>
-      <link>https://mundruid.github.io/post/pandas2/</link>
+      <link>http://localhost:1313/post/pandas2/</link>
       <pubDate>Thu, 13 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas2/</guid>
+      <guid>http://localhost:1313/post/pandas2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jupyter Notebooks for Development</title>
-      <link>https://mundruid.github.io/post/jupyter/</link>
+      <link>http://localhost:1313/post/jupyter/</link>
       <pubDate>Sat, 13 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/jupyter/</guid>
+      <guid>http://localhost:1313/post/jupyter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>IoT Security Metrics</title>
-      <link>https://mundruid.github.io/project/iot-metrics/</link>
+      <link>http://localhost:1313/project/iot-metrics/</link>
       <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/project/iot-metrics/</guid>
+      <guid>http://localhost:1313/project/iot-metrics/</guid>
       <description>&lt;p&gt;We cannot improve what we cannot measure (Kelvin). How does one quantify the absence of an adversary, a fault, or a weakness in a system? How can we define objective, repeatable, and reproducible metrics that evaluate the security of a network? This task is more complex at a time that the face of networking is changing by interconnecting devices such as webcameras, locks, and lights. These exciting and difficult questions are part of my work in quantitative security evaluation. I analyze data, create predictive models, and stream telemetry with modern open source tools.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>IoT spy: Security metrics for smart devices with Telegraf, InfluxDB, and Grafana</title>
-      <link>https://mundruid.github.io/talk/iot-spy-security-metrics-for-smart-devices-with-telegraf-influxdb-and-grafana/</link>
+      <link>http://localhost:1313/talk/iot-spy-security-metrics-for-smart-devices-with-telegraf-influxdb-and-grafana/</link>
       <pubDate>Tue, 01 Jun 2021 13:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/iot-spy-security-metrics-for-smart-devices-with-telegraf-influxdb-and-grafana/</guid>
+      <guid>http://localhost:1313/talk/iot-spy-security-metrics-for-smart-devices-with-telegraf-influxdb-and-grafana/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to Pandas for Network Development</title>
-      <link>https://mundruid.github.io/post/pandas1/</link>
+      <link>http://localhost:1313/post/pandas1/</link>
       <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas1/</guid>
+      <guid>http://localhost:1313/post/pandas1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to PromQL</title>
-      <link>https://mundruid.github.io/post/promql/</link>
+      <link>http://localhost:1313/post/promql/</link>
       <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/promql/</guid>
+      <guid>http://localhost:1313/post/promql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>IoT Metrics and Automation for Security Evaluation</title>
-      <link>https://mundruid.github.io/publication/iot_security_metrics/</link>
+      <link>http://localhost:1313/publication/iot_security_metrics/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/publication/iot_security_metrics/</guid>
+      <guid>http://localhost:1313/publication/iot_security_metrics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Worth the wait? Time window feature optimization for intrusion detection</title>
-      <link>https://mundruid.github.io/publication/cyberhunt2019/</link>
+      <link>http://localhost:1313/publication/cyberhunt2019/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/publication/cyberhunt2019/</guid>
+      <guid>http://localhost:1313/publication/cyberhunt2019/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Testing your Python Code</title>
-      <link>https://mundruid.github.io/talk/testing-your-python-code/</link>
+      <link>http://localhost:1313/talk/testing-your-python-code/</link>
       <pubDate>Sun, 01 Nov 2020 13:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/testing-your-python-code/</guid>
+      <guid>http://localhost:1313/talk/testing-your-python-code/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Security Metrics: Is this even possible?</title>
-      <link>https://mundruid.github.io/talk/security-metrics-is-this-even-possible/</link>
+      <link>http://localhost:1313/talk/security-metrics-is-this-even-possible/</link>
       <pubDate>Fri, 01 Nov 2019 13:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/security-metrics-is-this-even-possible/</guid>
+      <guid>http://localhost:1313/talk/security-metrics-is-this-even-possible/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Slides</title>
-      <link>https://mundruid.github.io/slides/example/</link>
+      <link>http://localhost:1313/slides/example/</link>
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/slides/example/</guid>
+      <guid>http://localhost:1313/slides/example/</guid>
       <description>&lt;h1 id=&#34;create-slides-in-markdown-with-hugo-blox-builder&#34;&gt;Create slides in Markdown with Hugo Blox Builder&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://hugoblox.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hugo Blox Builder&lt;/a&gt; | &lt;a href=&#34;https://docs.hugoblox.com/content/slides/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;

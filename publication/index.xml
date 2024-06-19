@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Publications | Xenia Mountrouidou (DrX)</title>
-    <link>http://localhost:1313/publication/</link>
-      <atom:link href="http://localhost:1313/publication/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://mundruid.github.io/publication/</link>
+      <atom:link href="https://mundruid.github.io/publication/index.xml" rel="self" type="application/rss+xml" />
     <description>Publications</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://localhost:1313/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
+      <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Publications</title>
-      <link>http://localhost:1313/publication/</link>
+      <link>https://mundruid.github.io/publication/</link>
     </image>
     
     <item>
       <title>IoT Metrics and Automation for Security Evaluation</title>
-      <link>http://localhost:1313/publication/iot_security_metrics/</link>
+      <link>https://mundruid.github.io/publication/iot_security_metrics/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/publication/iot_security_metrics/</guid>
+      <guid>https://mundruid.github.io/publication/iot_security_metrics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Worth the wait? Time window feature optimization for intrusion detection</title>
-      <link>http://localhost:1313/publication/cyberhunt2019/</link>
+      <link>https://mundruid.github.io/publication/cyberhunt2019/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/publication/cyberhunt2019/</guid>
+      <guid>https://mundruid.github.io/publication/cyberhunt2019/</guid>
       <description></description>
     </item>
     

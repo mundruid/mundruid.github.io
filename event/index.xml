@@ -2,77 +2,77 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Recent &amp; Upcoming Talks | Xenia Mountrouidou (DrX)</title>
-    <link>https://mundruid.github.io/event/</link>
-      <atom:link href="https://mundruid.github.io/event/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:1313/event/</link>
+      <atom:link href="http://localhost:1313/event/index.xml" rel="self" type="application/rss+xml" />
     <description>Recent &amp; Upcoming Talks</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Fri, 17 May 2024 17:30:00 +0000</lastBuildDate>
     <image>
-      <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
+      <url>http://localhost:1313/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Recent &amp; Upcoming Talks</title>
-      <link>https://mundruid.github.io/event/</link>
+      <link>http://localhost:1313/event/</link>
     </image>
     
     <item>
       <title>Decoding Cybersecurity Data: A Journey through ML and AI Innovations</title>
-      <link>https://mundruid.github.io/talk/decoding-cybersecurity-data-a-journey-through-ml-and-ai-innovations/</link>
+      <link>http://localhost:1313/talk/decoding-cybersecurity-data-a-journey-through-ml-and-ai-innovations/</link>
       <pubDate>Fri, 17 May 2024 17:30:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/decoding-cybersecurity-data-a-journey-through-ml-and-ai-innovations/</guid>
+      <guid>http://localhost:1313/talk/decoding-cybersecurity-data-a-journey-through-ml-and-ai-innovations/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Feature engineering art and science</title>
-      <link>https://mundruid.github.io/talk/feature-engineering-art-and-science/</link>
+      <link>http://localhost:1313/talk/feature-engineering-art-and-science/</link>
       <pubDate>Thu, 14 Mar 2024 17:30:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/feature-engineering-art-and-science/</guid>
+      <guid>http://localhost:1313/talk/feature-engineering-art-and-science/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Harnessing ML and AI for Next-Gen Security Engineering</title>
-      <link>https://mundruid.github.io/talk/harnessing-ml-and-ai-for-next-gen-security-engineering/</link>
+      <link>http://localhost:1313/talk/harnessing-ml-and-ai-for-next-gen-security-engineering/</link>
       <pubDate>Sat, 07 Oct 2023 12:30:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/harnessing-ml-and-ai-for-next-gen-security-engineering/</guid>
+      <guid>http://localhost:1313/talk/harnessing-ml-and-ai-for-next-gen-security-engineering/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Level up your Data Science workflows with VS Code, Jupyter and ChatGPT</title>
-      <link>https://mundruid.github.io/talk/level-up-your-data-science-workflows-with-vs-code-jupyter-and-chatgpt/</link>
+      <link>http://localhost:1313/talk/level-up-your-data-science-workflows-with-vs-code-jupyter-and-chatgpt/</link>
       <pubDate>Thu, 23 Feb 2023 18:30:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/level-up-your-data-science-workflows-with-vs-code-jupyter-and-chatgpt/</guid>
+      <guid>http://localhost:1313/talk/level-up-your-data-science-workflows-with-vs-code-jupyter-and-chatgpt/</guid>
       <description></description>
     </item>
     
     <item>
       <title>IoT Spy: Observability and Alerting for Internet of Things (IoT) Security</title>
-      <link>https://mundruid.github.io/talk/iot-spy-observability-and-alerting-for-internet-of-things-iot-security/</link>
+      <link>http://localhost:1313/talk/iot-spy-observability-and-alerting-for-internet-of-things-iot-security/</link>
       <pubDate>Sat, 27 Aug 2022 13:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/iot-spy-observability-and-alerting-for-internet-of-things-iot-security/</guid>
+      <guid>http://localhost:1313/talk/iot-spy-observability-and-alerting-for-internet-of-things-iot-security/</guid>
       <description></description>
     </item>
     
     <item>
       <title>IoT spy: Security metrics for smart devices with Telegraf, InfluxDB, and Grafana</title>
-      <link>https://mundruid.github.io/talk/iot-spy-security-metrics-for-smart-devices-with-telegraf-influxdb-and-grafana/</link>
+      <link>http://localhost:1313/talk/iot-spy-security-metrics-for-smart-devices-with-telegraf-influxdb-and-grafana/</link>
       <pubDate>Tue, 01 Jun 2021 13:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/iot-spy-security-metrics-for-smart-devices-with-telegraf-influxdb-and-grafana/</guid>
+      <guid>http://localhost:1313/talk/iot-spy-security-metrics-for-smart-devices-with-telegraf-influxdb-and-grafana/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Testing your Python Code</title>
-      <link>https://mundruid.github.io/talk/testing-your-python-code/</link>
+      <link>http://localhost:1313/talk/testing-your-python-code/</link>
       <pubDate>Sun, 01 Nov 2020 13:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/testing-your-python-code/</guid>
+      <guid>http://localhost:1313/talk/testing-your-python-code/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Security Metrics: Is this even possible?</title>
-      <link>https://mundruid.github.io/talk/security-metrics-is-this-even-possible/</link>
+      <link>http://localhost:1313/talk/security-metrics-is-this-even-possible/</link>
       <pubDate>Fri, 01 Nov 2019 13:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/talk/security-metrics-is-this-even-possible/</guid>
+      <guid>http://localhost:1313/talk/security-metrics-is-this-even-possible/</guid>
       <description></description>
     </item>
     

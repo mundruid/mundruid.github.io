@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Telemetry | Xenia Mountrouidou (DrX)</title>
-    <link>https://mundruid.github.io/tag/telemetry/</link>
-      <atom:link href="https://mundruid.github.io/tag/telemetry/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:1313/tag/telemetry/</link>
+      <atom:link href="http://localhost:1313/tag/telemetry/index.xml" rel="self" type="application/rss+xml" />
     <description>Telemetry</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Mon, 27 Sep 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
+      <url>http://localhost:1313/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Telemetry</title>
-      <link>https://mundruid.github.io/tag/telemetry/</link>
+      <link>http://localhost:1313/tag/telemetry/</link>
     </image>
     
     <item>
       <title>IoT Security Metrics</title>
-      <link>https://mundruid.github.io/project/iot-metrics/</link>
+      <link>http://localhost:1313/project/iot-metrics/</link>
       <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/project/iot-metrics/</guid>
+      <guid>http://localhost:1313/project/iot-metrics/</guid>
       <description>&lt;p&gt;We cannot improve what we cannot measure (Kelvin). How does one quantify the absence of an adversary, a fault, or a weakness in a system? How can we define objective, repeatable, and reproducible metrics that evaluate the security of a network? This task is more complex at a time that the face of networking is changing by interconnecting devices such as webcameras, locks, and lights. These exciting and difficult questions are part of my work in quantitative security evaluation. I analyze data, create predictive models, and stream telemetry with modern open source tools.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Introduction to PromQL</title>
-      <link>https://mundruid.github.io/post/promql/</link>
+      <link>http://localhost:1313/post/promql/</link>
       <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/promql/</guid>
+      <guid>http://localhost:1313/post/promql/</guid>
       <description></description>
     </item>
     

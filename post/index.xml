@@ -5,12 +5,481 @@
     <link>https://mundruid.github.io/post/</link>
       <atom:link href="https://mundruid.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 18 Jun 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 25 Jun 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
       <link>https://mundruid.github.io/post/</link>
     </image>
+    
+    <item>
+      <title>Building a bridge between ML and Cyber with a development environment</title>
+      <link>https://mundruid.github.io/post/mlsec2/</link>
+      <pubDate>Tue, 25 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>https://mundruid.github.io/post/mlsec2/</guid>
+      <description>&lt;p&gt;At the beginning of our journey to ML and cybersecurity, we need to lay the foundations for a good development environment that fits our needs. This is the tale of three different environments: Google Colaboratory (Colab), Jupyter Server launched from your terminal, and VS Code. In addition, we will discuss essential topics for development environments, such as handling secrets securely with Jupyter and &lt;code&gt;pyenv&lt;/code&gt; to manage multiple Python versions.&lt;/p&gt;
+&lt;h2 id=&#34;table-of-contents----omit-in-toc---&#34;&gt;Table of Contents &lt;!-- omit in toc --&gt;&lt;/h2&gt;
+&lt;p&gt;This blog is longer than the rest of the series. You do not have to read all parts since you can pick one development environment and can drill into that. The ToC below will help you read only what you need.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1000-ft-view&#34;&gt;1,000 ft View&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#why&#34;&gt;Why?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#what&#34;&gt;What?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#how&#34;&gt;How?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#a-tale-of-three-development-environments&#34;&gt;A Tale of Three Development Environments&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#google-colaboratory-colab&#34;&gt;Google Colaboratory (Colab)&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#install-packages-in-colab&#34;&gt;Install packages in Colab&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#colab-options&#34;&gt;Colab options&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#the-good-the-bad-and-the-ugly&#34;&gt;The good, the bad, and the ugly&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#your-favorite-editor--terminal--jupyter&#34;&gt;Your favorite editor + terminal + Jupyter&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#virtual-environments&#34;&gt;Virtual Environments&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ipython&#34;&gt;IPython&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#jupyter-notebooks&#34;&gt;Jupyter notebooks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#vs-code&#34;&gt;VS Code&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#troubleshooting&#34;&gt;Troubleshooting&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#advanced-topics&#34;&gt;Advanced Topics&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#storing-your-secrets-securely&#34;&gt;Storing your secrets securely&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#pyenv&#34;&gt;Pyenv&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#recap&#34;&gt;Recap&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#going-even-deeper&#34;&gt;Going Even Deeper&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#did-you-find-this-page-helpful-consider-sharing-it-&#34;&gt;Did you find this page helpful? Consider sharing it 🙌&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft View&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s quickly review the development environments where we will be writing ML software that solves cybersecurity problems.&lt;/p&gt;
+&lt;h3 id=&#34;why&#34;&gt;Why?&lt;/h3&gt;
+&lt;p&gt;Even though there are several tools and platforms that embed ML, such as Elastic, Datadog, and Splunk, they still have a lot of limitations in how you can handle your data. Nothing is more adaptable and versatile than the code you created based on your requirements.&lt;/p&gt;
+&lt;p&gt;I personally use my development environment for experimentation whenever I can. Specifically, I use local development for data exploration, modeling, and feature engineering. Then I deploy a known platform for scaling and ML operations. It pays off in the long run to have your own custom scripts, and they are reusable in multiple projects.&lt;/p&gt;
+&lt;p&gt;The ML development environment is different from what most security professionals use. It centers around Jupyter notebooks, a quick way to run code, look at the numbers, and visualize with graphs all in the same window.&lt;/p&gt;
+&lt;h3 id=&#34;what&#34;&gt;What?&lt;/h3&gt;
+&lt;p&gt;I suggest three options, depending on your time and the effort you want to put in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://colab.research.google.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google colab&lt;/a&gt;: takes the least amount of time to set up and is the least flexible.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gnome-terminator.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Terminal&lt;/a&gt;, favorite &lt;a href=&#34;https://www.vim.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;editor&lt;/a&gt;, and &lt;a href=&#34;https://jupyter.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jupyter Server&lt;/a&gt;: medium amount of time, flexible, not a significant productivity boost. The links reference my favorite terminal, Terminator, and editor, Vim (and now, let the editor wars begin&amp;hellip; Vim vs. Emacs).&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.visualstudio.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;VS Code&lt;/a&gt;: takes the most amount of time to set up, offers unlimited flexibility and a productivity boost with plugins for remote work and collaboration (ssh plugin, Live Share), and even code generation (CodeGPT).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;how&#34;&gt;How?&lt;/h3&gt;
+&lt;p&gt;The diagram shows you the roadmap for each environment, with links on how to set it up. If you want to hear about my experience setting up, keep reading! I have added links to the diagram so that you can get to the part that you would like and skip the rest if you do not want to read pros and cons and have already made your decision.&lt;/p&gt;
+&lt;div class=&#34;markmap&#34; style=&#34;height: 500px;&#34;&gt;
+
+&lt;pre&gt;- Development Environment
+  - [Google Colab](https://colab.research.google.com/)
+    - Create account
+    - [Install packages in Colab](#install-packages-in-colab)
+    - [Colab options](#colab-options)
+  - Terminal + Editor + Jupyter
+    - [Virtual Environments](#virtual-environments)
+    - [IPython](https://ipython.org/)
+    - [Jupyter](https://jupyter.org/install)
+  - VS Code
+    - Extensions
+        - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+        - [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) 
+    - [Setup Jupyter virtual env](#troubleshooting)&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&#34;a-tale-of-three-development-environments&#34;&gt;A Tale of Three Development Environments&lt;/h2&gt;
+&lt;p&gt;This is an interesting story for me. I most recently started using Google Colab to share code from my talks. My actual first development environment was a terminal and editor. After I moved to VS Code, I never looked back.&lt;/p&gt;
+&lt;h3 id=&#34;google-colaboratory-colab&#34;&gt;Google Colaboratory (Colab)&lt;/h3&gt;
+&lt;p&gt;Colab is straightforward to set up and use. You need to have a Google account, and that is just about it. There is a set of &lt;a href=&#34;https://towardsdatascience.com/getting-started-with-google-colab-f2fff97f594c&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;resources&lt;/a&gt; to get you started.&lt;/p&gt;
+&lt;p&gt;I have created an example, &lt;a href=&#34;https://colab.research.google.com/drive/15oDVuK62GEVFR1sQix9Mfic9f2_Rd7Bf?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;hello_colab.ipynb&lt;/a&gt;. The example imports the necessary library, then creates and manipulates dataframe, an artifact that looks like a spreadsheet, from one of the most popular ML libraries, &lt;a href=&#34;https://pandas.pydata.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Pandas&lt;/a&gt;. We will talk a lot about Pandas in future posts. All you have to do is hover on top of a cell and add new code cells with your code. You can also add markdown text. The functionalities of Colab Notebooks are the same as &lt;a href=&#34;https://jupyter.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jupyter Notebooks&lt;/a&gt;. See the image below on how to add Code, Text (Markdown), and how to run your cell.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-colab-basics&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;add code colab&#34; srcset=&#34;
+               /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_360a27ed56f67c8fbc8c40bd4b35a979.webp 400w,
+               /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_eef976265e842e15cc2e919c11fb335e.webp 760w,
+               /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_360a27ed56f67c8fbc8c40bd4b35a979.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;473&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Colab Basics.
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;install-packages-in-colab&#34;&gt;Install packages in Colab&lt;/h4&gt;
+&lt;p&gt;How do you install a package? Here is an example in my notebook:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;! pip install scapy
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As you can see, the syntax is the same as when you install Python packages on your system; just add a &amp;ldquo;!&amp;rdquo; at the beginning of your command. Make sure to perform the necessary &lt;code&gt;pip&lt;/code&gt; installations before your imports.&lt;/p&gt;
+&lt;h4 id=&#34;colab-options&#34;&gt;Colab options&lt;/h4&gt;
+&lt;p&gt;A few more basic things that will be important for a data project are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;You can &lt;em&gt;upload files&lt;/em&gt; for analysis by clicking on the file icon on the left. There is a limit to the file size (13 MB) if you do not have a paid account. This is a big limitation with Colab: files are lost after you stop the runtime. So you have different options:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Mount your Google Drive with data&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Download your data from external sites (Github, Kaggle).
+Here is an &lt;a href=&#34;https://colab.research.google.com/drive/1PDA74vDZ_rPZmySNoojlhB-Gk0DafP_O?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;example colab notebook&lt;/a&gt; where you have both options to mount the Google Drive or download from a public Github repository.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;Runtime options&lt;/em&gt;:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Sometimes you need to restart your script; use &amp;ldquo;Runtime Restart.&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use &amp;ldquo;Interrupt Execution&amp;rdquo; if the script runs too long (infinite loop?).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You can change your runtime to use some GPUs with &amp;ldquo;Change Runtime Type.&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;Tools&lt;/em&gt;:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The &amp;ldquo;Command Palette&amp;rdquo; has useful options, such as &amp;ldquo;Ask a question on stack overflow.&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use the settings if you want to connect your account to GitHub.
+The rest of the menus are pretty self-explanatory, like sharing files on Drive and all that jazz.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That&amp;rsquo;s it. You are now ready to do some data science experiments quickly and without much setup.&lt;/p&gt;
+&lt;h3 id=&#34;the-good-the-bad-and-the-ugly&#34;&gt;The good, the bad, and the ugly&lt;/h3&gt;
+&lt;p&gt;The benefits of using Colab are that you do not have to manage the basic ML Python packages (you still have to install some packages), you do not have to manage a virtual environment for Python, it has GPU setup, and live collaboration as well as sharing is seamless. As you noticed, Colab is quick to setup, and the learning curve to use it is not steep. In my opinion, these are the biggest advantages.&lt;/p&gt;
+&lt;p&gt;There are caveats, though:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You need an internet connection to work on Colab. I like to work on the plane, and that is not optimal.&lt;/li&gt;
+&lt;li&gt;It is not as easy to use datasets, such as files; you cannot just save them locally. You either have to mount your Google Drive or use external APIs and SDKs to get your data. I have shared an &lt;a href=&#34;https://colab.research.google.com/drive/1PDA74vDZ_rPZmySNoojlhB-Gk0DafP_O?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;example colab notebook&lt;/a&gt; with methods to get data from Github and mount your Google Drive.&lt;/li&gt;
+&lt;li&gt;It does not integrate with Git; at least as far as I have used it, I have not found a way to work with repos and version control. There is a Colab Pro version that I have not used, so this may do the trick.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Personally, I prefer having the option to develop locally and, even more importantly, customize everything. That is why I do not use Colaboratory much. Needless to say, if you do not have time to set up anything else for your ML, Colab is an excellent solution.&lt;/p&gt;
+&lt;h3 id=&#34;your-favorite-editor--terminal--jupyter&#34;&gt;Your favorite editor + terminal + Jupyter&lt;/h3&gt;
+&lt;p&gt;As I mentioned, this was my first development environment. A Vim editor and a terminal. This may be your existing environment, and therefore the only thing I can add are two recommendations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use a Python virtual environment.&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;IPython&lt;/code&gt; when you need to run small script parts, as I will provide lots of those in my blogs.&lt;/li&gt;
+&lt;li&gt;Use Jupyter for ML experimentation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&amp;rsquo;s see how to improve your terminal and editor environments.&lt;/p&gt;
+&lt;h4 id=&#34;virtual-environments&#34;&gt;Virtual Environments&lt;/h4&gt;
+&lt;p&gt;A virtual environment is a sandbox where all your installed Python packages live. But why not just use &lt;code&gt;pip install my_fav_package&lt;/code&gt; in your host environment? Besides making me really sad, you need to think carefully about what you are doing when installing all these packages on your main system. What if there is a version conflict? What if you actually need to use an older version of a package or even a different version of Python in a project? This is particularly common with ML packages. When you use virtual environments, you have nice, organized boxes with your packages and their versions. So let&amp;rsquo;s make the world a better place and use virtual environments.&lt;/p&gt;
+&lt;p&gt;All you need to do is execute the following command in the directory where your project will be:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; my_project
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ python -m venv .venv
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The above will create a virtual environment named &lt;code&gt;.venv&lt;/code&gt;. I add this to my &lt;code&gt;.gitignore&lt;/code&gt;. Then activate your environment:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;source&lt;/span&gt; .venv/bin/activate
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;.venv&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;$
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&amp;rsquo;s it. You have saved yourself a lot of pain and suffering. Then install your packages in this environment:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ pip install pandas
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;One optional step is to save your packages in a file called &lt;code&gt;requirements.txt&lt;/code&gt;, then use them on any computer:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ pip freeze &amp;gt; requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then, if you change computers, go to your project, activate the virtual environment and reinstall:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; my_project
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ python -m venv .venv
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;source&lt;/span&gt; .venv/bin/activate
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;.venv&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;$ pip install -r requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;These are &amp;ldquo;Cliff&amp;rsquo;s notes&amp;rdquo; on Python virtual environments. I strongly recommend &lt;a href=&#34;https://realpython.com/python-virtual-environments-a-primer/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Python Virtual Environments: A Primer&lt;/a&gt;. It is a comprehensive guide to the beauty of virtual environments.&lt;/p&gt;
+&lt;h3 id=&#34;ipython&#34;&gt;IPython&lt;/h3&gt;
+&lt;p&gt;You will need to run code snippets for data analysis. I recommend &lt;code&gt;IPython&lt;/code&gt; because it has great features such as tab completion:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# go to your project directory&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; my_project
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# activate your virtual environment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;source&lt;/span&gt; .venv/bin/activate
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# install IPython&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;.venv&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;$ pip install -r ipython
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# get into the interpreter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;.venv&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;$ ipython
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Python 3.10.6 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;main, Oct  &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; 2022, 18:56:28&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;GCC 11.2.0&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Type &lt;span class=&#34;s1&#34;&gt;&amp;#39;copyright&amp;#39;&lt;/span&gt;, &lt;span class=&#34;s1&#34;&gt;&amp;#39;credits&amp;#39;&lt;/span&gt; or &lt;span class=&#34;s1&#34;&gt;&amp;#39;license&amp;#39;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; more information
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IPython 8.5.0 -- An enhanced Interactive Python. Type &lt;span class=&#34;s1&#34;&gt;&amp;#39;?&amp;#39;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; help.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;In &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;1&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Did you know &lt;code&gt;IPython&lt;/code&gt; is a kernel for Jupyter Notebooks?&lt;/p&gt;
+&lt;h3 id=&#34;jupyter-notebooks&#34;&gt;Jupyter notebooks&lt;/h3&gt;
+&lt;p&gt;Now that you have proper virtual environments for your packages, you can install Jupyter Notebooks and use them in combination with an editor. A Jupyter notebook is the Swiss army tool for a data researcher. It can give the opportunity for quick demonstrations, run small parts of your code to experiment, and visualize with graphs all in the same window. Here is how you install and launch JupyterLab:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# install&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install jupyterlab
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# launch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;jupyter lab
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The JupyterLab will automatically recognize your preferred browser and launch. Similarly, you can install just notebooks:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# install&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install notebook
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# launch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;jupyter notebook
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this case, you will see the classic Jupyter notebook launch in your browser.&lt;/p&gt;
+&lt;h3 id=&#34;vs-code&#34;&gt;VS Code&lt;/h3&gt;
+&lt;p&gt;VS Code is a versatile IDE. I strongly recommend it because of the plugin ecosystem that it provides. I also recommend installing trusted plugins, since, as with any software, there may be &lt;a href=&#34;https://www.bleepingcomputer.com/news/security/malicious-vscode-extensions-with-millions-of-installs-discovered/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;malicious ones&lt;/a&gt; that can ruin your day. There are plugins for git, intelligent code completion, remote collaboration, appearance customization, and, of course, &lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=DanielSanMedium.dscodegpt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ChatGPT&lt;/a&gt;. All these enhance your productivity and improve the programming experience. Using VS Code does have a learning curve at first, but in my opinion, the benefits are worth it.&lt;/p&gt;
+&lt;p&gt;Download and &lt;a href=&#34;https://code.visualstudio.com/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;install VS Code&lt;/a&gt;, then install the &lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=ms-python.python&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Python&lt;/a&gt; and &lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jupyter&lt;/a&gt; extensions.&lt;/p&gt;
+&lt;p&gt;After you install these two extensions, create a new project and notebook. Let&amp;rsquo;s name it &lt;code&gt;hello_jupyter.ipynb&lt;/code&gt;. Then, you know the drill, open a terminal, and get your virtual environment setup:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ python -m venv .venv
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;source&lt;/span&gt; .venv/bin/activate
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;.venv&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;$ pip install pandas
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# don&amp;#39;t forget to save the packages&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;.venv&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;$ pip freeze &amp;gt; requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s create a cell and test if our Jupyter notebook can see the virtual environment based on the animation below.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-jupyter-basics&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;hello jupyter&#34;
+           src=&#34;https://mundruid.github.io/post/mlsec2/images/helo_jupyter.gif&#34;
+           loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Jupyter Basics.
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;You may need to select the virtual environment manually. The figure below highlights how to select the environment in your Jupyter notebook:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-jupyter-environment-manual-selection&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;jupyter enb&#34; srcset=&#34;
+               /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_e352855f9a89f6e59b6fb145d620fcb6.webp 400w,
+               /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_026f65c6ce6375fc9b3b7fb03aeed541.webp 760w,
+               /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_e352855f9a89f6e59b6fb145d620fcb6.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;184&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Jupyter Environment manual selection.
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;troubleshooting&#34;&gt;Troubleshooting&lt;/h4&gt;
+&lt;p&gt;VS Code may not recognize your virtual environment immediately. Here is how to actually install the kernel for it manually:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Activate the virtualenv&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;source&lt;/span&gt; .venv/bin/activate
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Install jupyter in the virtualenv&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;.venv&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;$ pip install jupyter
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Add the virtualenv as a jupyter kernel&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;.venv&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;$ ipython kernel install --name &lt;span class=&#34;s2&#34;&gt;&amp;#34;local-venv&amp;#34;&lt;/span&gt; --user
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After all this, you may need to restart VS Code and/or your Jupyter kernel using the restart button at the top menu of your notebook:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-top-menu-restart&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;restart jupyter&#34; srcset=&#34;
+               /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_049401b78b7a319d9c38c9cec79c738a.webp 400w,
+               /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_e72d45c08fad3276085ba8babfafe79a.webp 760w,
+               /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_049401b78b7a319d9c38c9cec79c738a.webp&#34;
+               width=&#34;698&#34;
+               height=&#34;169&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Top Menu Restart.
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Your &lt;code&gt;local-venv&lt;/code&gt; name is &lt;code&gt;.venv&lt;/code&gt; or whichever name you used when you created your Python virtual environment.&lt;/p&gt;
+&lt;!-- ```bash
+jupyter kernelspec list
+Available kernels:
+  python3    /home/drx/.pyenv/versions/3.10.6/share/jupyter/kernels/python3
+```
+
+The local environment name is the `display_name` in `kernel.json`:
+```json
+{
+ &#34;argv&#34;: [
+  &#34;python&#34;,
+  &#34;-m&#34;,
+  &#34;ipykernel_launcher&#34;,
+  &#34;-f&#34;,
+  &#34;{connection_file}&#34;
+ ],
+ &#34;display_name&#34;: &#34;Python 3 (ipykernel)&#34;,
+ &#34;language&#34;: &#34;python&#34;,
+ &#34;metadata&#34;: {
+  &#34;debugger&#34;: true
+ }
+}
+``` --&gt;
+&lt;h2 id=&#34;advanced-topics&#34;&gt;Advanced Topics&lt;/h2&gt;
+&lt;p&gt;You will find more resources in the end; however, I wanted to discuss a couple of important other topics here.&lt;/p&gt;
+&lt;h3 id=&#34;storing-your-secrets-securely&#34;&gt;Storing your secrets securely&lt;/h3&gt;
+&lt;p&gt;If you are a security professional, you want to write secure code. One of the biggest &amp;ldquo;no-nos&amp;rdquo; is to store hard-coded secrets in your code. You can bypass this problem with environment variables and the Python library &lt;code&gt;python-dotenv&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;First, you need to install the package:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# activate your virtual env&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;source&lt;/span&gt; .venv/bin/activate
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install python-dotenv
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# save the new package&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip freeze &amp;gt; requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then use it to load secrets in your notebook:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;dotenv&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;load_dotenv&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# finds .env file and loads the vars&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;load_dotenv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;openai_api_key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getenv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;OPENAI_API_KEY&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Key not found&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The variable &lt;code&gt;openai_api_key&lt;/code&gt; stores the secret key. The key is found in a &lt;code&gt;.env&lt;/code&gt; file with the following syntax:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OPENAI_API_KEY=&amp;#39;xyz&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Do not forget to add &lt;code&gt;.env&lt;/code&gt; to your &lt;code&gt;.gitignore&lt;/code&gt; file so that you do not upload your secrets to any public server.&lt;/p&gt;
+&lt;!-- , but Jupyter notebooks have their own type of &#34;environment&#34; that is **not** your host environment. Do not worry, I&#39;ve got you covered! First, find your `kernel.json` as we did in the previous section: --&gt;
+&lt;!-- ```bash
+jupyter kernelspec list
+Available kernels:
+  python3    /home/drx/.pyenv/versions/3.10.6/share/jupyter/kernels/python3
+```
+
+Then create a new directory in the kernelspec, name it something cheesy like: `/home/drx/.pyenv/versions/3.10.6/share/jupyter/kernels/python3_drx` and copy the `kernel.json` as is. Then make the following changes:
+
+```json
+{
+ &#34;argv&#34;: [
+  &#34;python&#34;,
+  &#34;-m&#34;,
+  &#34;ipykernel_launcher&#34;,
+  &#34;-f&#34;,
+  &#34;{connection_file}&#34;
+ ],
+ &#34;display_name&#34;: &#34;python3_drx&#34;,
+ &#34;env&#34;: {
+    &#34;SUPER_SECRET1&#34;: &#34;keep_this_secret&#34;,
+    &#34;SUPER_SECRET2&#34;: &#34;shhhhh&#34;,
+ }
+ &#34;language&#34;: &#34;python&#34;,
+ &#34;metadata&#34;: {
+  &#34;debugger&#34;: true
+ }
+}
+```
+
+Now you have two secrets stored in your new kernel. You will need to reload the kernel:
+
+```bash
+# Activate the virtualenv
+$ source .venv/bin/activate
+# Install jupyter in the virtualenv
+(.venv)$ pip install jupyter
+# Add the virtualenv as a jupyter kernel
+(.venv)$ ipython kernel install --name &#34;.venv&#34; --user
+```
+
+Restart VS Code and create a code cell with the following:
+
+```python
+import os
+secret = os.getenv(&#34;SUPER_SECRET1&#34;)
+secret
+```
+
+If you loaded the correct kernel `python3_drx` you will see your &#34;not so secret&#34; secret being printed. --&gt;
+&lt;h3 id=&#34;pyenv&#34;&gt;Pyenv&lt;/h3&gt;
+&lt;p&gt;Sometimes you may need to use code from old projects that use Python 2.x or some other version of Python that is not your global installation. This is where &lt;code&gt;pyenv&lt;/code&gt; comes in handy. You can have local Python versions for your project and a global Python version, all managed neatly by &lt;code&gt;pyenv&lt;/code&gt;. This &lt;a href=&#34;https://realpython.com/intro-to-pyenv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;RealPython article&lt;/a&gt; walks you through the installation and how to use it.&lt;/p&gt;
+&lt;h2 id=&#34;recap&#34;&gt;Recap&lt;/h2&gt;
+&lt;p&gt;Now you have a development environment that fits your needs. I am sure that you cannot wait to use it. In the next post, we will do exactly that: retrieve security data, then use our favorite development environment to analyze it.&lt;/p&gt;
+&lt;p&gt;&amp;ndash; Xenia&lt;/p&gt;
+&lt;h2 id=&#34;going-even-deeper&#34;&gt;Going Even Deeper&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Comprehensive blog for VS Code setup: &lt;a href=&#34;https://blog.networktocode.com/post/getting-started-with-vscode/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Getting Started with VS Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Moare recommended plugins from my favorites:
+&lt;ul&gt;
+&lt;li&gt;Smart coding &amp;amp; productivity
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pylance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;intellicode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=DanielSanMedium.dscodegpt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CodeGPT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;autodocstring&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;SSH&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Live Share&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Markdown
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Markdown all in one&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Marp &lt;/a&gt; presentations with markdown&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=ms-toolsai.vscode-jupyter-slideshow&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jupyter Slide Show&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Make your VS Code pretty
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Peacock&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=liviuschera.noctis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Noctis&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://python-poetry.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Poetry&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://realpython.com/dependency-management-python-poetry/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Dependency Management With Python Poetry&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.networktocode.com/post/jupyter-notebooks-for-development/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Poetry used with Jupyter Notebooks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://jupyter.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jupyter&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;did-you-find-this-page-helpful-consider-sharing-it-&#34;&gt;Did you find this page helpful? Consider sharing it 🙌&lt;/h3&gt;
+</description>
+    </item>
     
     <item>
       <title>Machine Learning Meets Cybersecurity</title>
@@ -65,10 +534,6 @@ There is some intersection between Cybersecurity and ML that helps make the lear
       - Graphs
       - The maths
       - AI
-  &lt;!-- - Do you have a problem? Problem formulation
-    - The data way
-    - The cyber way
-    - A hybrid approach --&gt;
   - Feature Engineering
     - Numerical
     - Categorical

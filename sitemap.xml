@@ -2,11 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://mundruid.github.io/post/mlsec1/</loc>
-    <lastmod>2024-06-18T00:00:00+00:00</lastmod>
+    <loc>https://mundruid.github.io/post/mlsec2/</loc>
+    <lastmod>2024-06-25T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://mundruid.github.io/post/</loc>
+    <lastmod>2024-06-25T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://mundruid.github.io/post/mlsec1/</loc>
     <lastmod>2024-06-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>

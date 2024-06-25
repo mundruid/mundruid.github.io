@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<!-- This site was created with Hugo Blox. https://hugoblox.com -->
+<!-- Last Published: June 25, 2024 --><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Hugo Blox Builder 5.9.7" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.26c458e6907dc03073573976b7f4044e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css" integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.css" integrity="" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.f6689966c0a10712f95f034011917db0.css" />
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/github-light.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+  <meta name="author" content="Xenia Mountrouidou" />
+
+
+
+
+
+  
+
+<meta name="description" content="At the beginning of our journey to ML and cybersecurity, we need to lay the foundations for a good development environment that fits our needs. This is the tale of three different environments: Google Colaboratory (Colab), Jupyter Server launched from your terminal, and VS Code." />
+
+
+
+<link rel="alternate" hreflang="en-us" href="https://mundruid.github.io/post/mlsec2/" />
+<link rel="canonical" href="https://mundruid.github.io/post/mlsec2/" />
+
+
+
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+
+
+<link rel="icon" type="image/png" href="/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_32x32_fill_lanczos_center_3.png" />
+<link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_180x180_fill_lanczos_center_3.png" />
+
+<meta name="theme-color" content="#1565c0" />
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<meta property="twitter:card" content="summary_large_image" />
+
+  <meta property="twitter:site" content="@GetResearchDev" />
+  <meta property="twitter:creator" content="@GetResearchDev" />
+<meta property="twitter:image" content="https://mundruid.github.io/post/mlsec2/featured.png" />
+
+
+
+  
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Xenia Mountrouidou (DrX)" />
+<meta property="og:url" content="https://mundruid.github.io/post/mlsec2/" />
+<meta property="og:title" content="Building a bridge between ML and Cyber with a development environment | Xenia Mountrouidou (DrX)" />
+<meta property="og:description" content="At the beginning of our journey to ML and cybersecurity, we need to lay the foundations for a good development environment that fits our needs. This is the tale of three different environments: Google Colaboratory (Colab), Jupyter Server launched from your terminal, and VS Code." /><meta property="og:image" content="https://mundruid.github.io/post/mlsec2/featured.png" /><meta property="og:locale" content="en-us" />
+
+  
+    <meta
+      property="article:published_time"
+      content="2024-06-25T00:00:00&#43;00:00"
+    />
+  
+  
+    <meta property="article:modified_time" content="2024-06-25T00:00:00&#43;00:00">
+  
+
+
+
+
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://mundruid.github.io/post/mlsec2/"
+  },
+  "headline": "Building a bridge between ML and Cyber with a development environment",
+  
+  "image": [
+    "https://mundruid.github.io/post/mlsec2/featured.png"
+  ],
+  
+  "datePublished": "2024-06-25T00:00:00Z",
+  "dateModified": "2024-06-25T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Xenia Mountrouidou"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Xenia Mountrouidou (DrX)",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "At the beginning of our journey to ML and cybersecurity, we need to lay the foundations for a good development environment that fits our needs. This is the tale of three different environments: Google Colaboratory (Colab), Jupyter Server launched from your terminal, and VS Code."
+}
+</script>
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+
+
+  
+  <title>Building a bridge between ML and Cyber with a development environment | Xenia Mountrouidou (DrX)</title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="5241d43b8e407b6684c6217042635a8a" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.9e4214442a7711d35691acd58f6f6361.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header header--fixed">
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">Xenia Mountrouidou (DrX)</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">Xenia Mountrouidou (DrX)</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Posts</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Projects</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#talks"><span>Talks</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#featured"><span>Publications</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+        
+
+        
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+<div class="article-container pt-3">
+  <h1>Building a bridge between ML and Cyber with a development environment</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jun 25, 2024
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    12 min read
+  </span>
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 590px; max-height: 590px;">
+  <div style="position: relative">
+    <img src="/post/mlsec2/featured_hu5c4ef9861ae5c2ac9529914697e1124c_651285_cacfebe38a9acbd0cbc10ed433214725.webp" width="590" height="590" alt="" class="featured-image">
+    <span class="article-header-caption">Image credit: DALL-E openai</span>
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>At the beginning of our journey to ML and cybersecurity, we need to lay the foundations for a good development environment that fits our needs. This is the tale of three different environments: Google Colaboratory (Colab), Jupyter Server launched from your terminal, and VS Code. In addition, we will discuss essential topics for development environments, such as handling secrets securely with Jupyter and <code>pyenv</code> to manage multiple Python versions.</p>
+<h2 id="table-of-contents----omit-in-toc---">Table of Contents <!-- omit in toc --></h2>
+<p>This blog is longer than the rest of the series. You do not have to read all parts since you can pick one development environment and can drill into that. The ToC below will help you read only what you need.</p>
+<ul>
+<li><a href="#1000-ft-view">1,000 ft View</a>
+<ul>
+<li><a href="#why">Why?</a></li>
+<li><a href="#what">What?</a></li>
+<li><a href="#how">How?</a></li>
+</ul>
+</li>
+<li><a href="#a-tale-of-three-development-environments">A Tale of Three Development Environments</a>
+<ul>
+<li><a href="#google-colaboratory-colab">Google Colaboratory (Colab)</a>
+<ul>
+<li><a href="#install-packages-in-colab">Install packages in Colab</a></li>
+<li><a href="#colab-options">Colab options</a></li>
+</ul>
+</li>
+<li><a href="#the-good-the-bad-and-the-ugly">The good, the bad, and the ugly</a></li>
+<li><a href="#your-favorite-editor--terminal--jupyter">Your favorite editor + terminal + Jupyter</a>
+<ul>
+<li><a href="#virtual-environments">Virtual Environments</a></li>
+</ul>
+</li>
+<li><a href="#ipython">IPython</a></li>
+<li><a href="#jupyter-notebooks">Jupyter notebooks</a></li>
+<li><a href="#vs-code">VS Code</a>
+<ul>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#advanced-topics">Advanced Topics</a>
+<ul>
+<li><a href="#storing-your-secrets-securely">Storing your secrets securely</a></li>
+<li><a href="#pyenv">Pyenv</a></li>
+</ul>
+</li>
+<li><a href="#recap">Recap</a></li>
+<li><a href="#going-even-deeper">Going Even Deeper</a>
+<ul>
+<li><a href="#did-you-find-this-page-helpful-consider-sharing-it-">Did you find this page helpful? Consider sharing it 🙌</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="1000-ft-view">1,000 ft View</h2>
+<p>Let&rsquo;s quickly review the development environments where we will be writing ML software that solves cybersecurity problems.</p>
+<h3 id="why">Why?</h3>
+<p>Even though there are several tools and platforms that embed ML, such as Elastic, Datadog, and Splunk, they still have a lot of limitations in how you can handle your data. Nothing is more adaptable and versatile than the code you created based on your requirements.</p>
+<p>I personally use my development environment for experimentation whenever I can. Specifically, I use local development for data exploration, modeling, and feature engineering. Then I deploy a known platform for scaling and ML operations. It pays off in the long run to have your own custom scripts, and they are reusable in multiple projects.</p>
+<p>The ML development environment is different from what most security professionals use. It centers around Jupyter notebooks, a quick way to run code, look at the numbers, and visualize with graphs all in the same window.</p>
+<h3 id="what">What?</h3>
+<p>I suggest three options, depending on your time and the effort you want to put in:</p>
+<ul>
+<li><a href="https://colab.research.google.com/" target="_blank" rel="noopener">Google colab</a>: takes the least amount of time to set up and is the least flexible.</li>
+<li><a href="https://gnome-terminator.org/" target="_blank" rel="noopener">Terminal</a>, favorite <a href="https://www.vim.org/" target="_blank" rel="noopener">editor</a>, and <a href="https://jupyter.org/" target="_blank" rel="noopener">Jupyter Server</a>: medium amount of time, flexible, not a significant productivity boost. The links reference my favorite terminal, Terminator, and editor, Vim (and now, let the editor wars begin&hellip; Vim vs. Emacs).</li>
+<li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS Code</a>: takes the most amount of time to set up, offers unlimited flexibility and a productivity boost with plugins for remote work and collaboration (ssh plugin, Live Share), and even code generation (CodeGPT).</li>
+</ul>
+<h3 id="how">How?</h3>
+<p>The diagram shows you the roadmap for each environment, with links on how to set it up. If you want to hear about my experience setting up, keep reading! I have added links to the diagram so that you can get to the part that you would like and skip the rest if you do not want to read pros and cons and have already made your decision.</p>
+<div class="markmap" style="height: 500px;">
+
+<pre>- Development Environment
+  - [Google Colab](https://colab.research.google.com/)
+    - Create account
+    - [Install packages in Colab](#install-packages-in-colab)
+    - [Colab options](#colab-options)
+  - Terminal + Editor + Jupyter
+    - [Virtual Environments](#virtual-environments)
+    - [IPython](https://ipython.org/)
+    - [Jupyter](https://jupyter.org/install)
+  - VS Code
+    - Extensions
+        - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+        - [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) 
+    - [Setup Jupyter virtual env](#troubleshooting)</pre>
+</div>
+
+<h2 id="a-tale-of-three-development-environments">A Tale of Three Development Environments</h2>
+<p>This is an interesting story for me. I most recently started using Google Colab to share code from my talks. My actual first development environment was a terminal and editor. After I moved to VS Code, I never looked back.</p>
+<h3 id="google-colaboratory-colab">Google Colaboratory (Colab)</h3>
+<p>Colab is straightforward to set up and use. You need to have a Google account, and that is just about it. There is a set of <a href="https://towardsdatascience.com/getting-started-with-google-colab-f2fff97f594c" target="_blank" rel="noopener">resources</a> to get you started.</p>
+<p>I have created an example, <a href="https://colab.research.google.com/drive/15oDVuK62GEVFR1sQix9Mfic9f2_Rd7Bf?usp=sharing" target="_blank" rel="noopener">hello_colab.ipynb</a>. The example imports the necessary library, then creates and manipulates dataframe, an artifact that looks like a spreadsheet, from one of the most popular ML libraries, <a href="https://pandas.pydata.org/" target="_blank" rel="noopener">Pandas</a>. We will talk a lot about Pandas in future posts. All you have to do is hover on top of a cell and add new code cells with your code. You can also add markdown text. The functionalities of Colab Notebooks are the same as <a href="https://jupyter.org/" target="_blank" rel="noopener">Jupyter Notebooks</a>. See the image below on how to add Code, Text (Markdown), and how to run your cell.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-colab-basics">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="add code colab" srcset="
+               /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_360a27ed56f67c8fbc8c40bd4b35a979.webp 400w,
+               /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_eef976265e842e15cc2e919c11fb335e.webp 760w,
+               /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_360a27ed56f67c8fbc8c40bd4b35a979.webp"
+               width="760"
+               height="473"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Colab Basics.
+    </figcaption></figure>
+</p>
+<h4 id="install-packages-in-colab">Install packages in Colab</h4>
+<p>How do you install a package? Here is an example in my notebook:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">! pip install scapy
+</span></span></code></pre></div><p>As you can see, the syntax is the same as when you install Python packages on your system; just add a &ldquo;!&rdquo; at the beginning of your command. Make sure to perform the necessary <code>pip</code> installations before your imports.</p>
+<h4 id="colab-options">Colab options</h4>
+<p>A few more basic things that will be important for a data project are:</p>
+<ul>
+<li>
+<p>You can <em>upload files</em> for analysis by clicking on the file icon on the left. There is a limit to the file size (13 MB) if you do not have a paid account. This is a big limitation with Colab: files are lost after you stop the runtime. So you have different options:</p>
+</li>
+<li>
+<p>Mount your Google Drive with data</p>
+</li>
+<li>
+<p>Download your data from external sites (Github, Kaggle).
+Here is an <a href="https://colab.research.google.com/drive/1PDA74vDZ_rPZmySNoojlhB-Gk0DafP_O?usp=sharing" target="_blank" rel="noopener">example colab notebook</a> where you have both options to mount the Google Drive or download from a public Github repository.</p>
+</li>
+<li>
+<p><em>Runtime options</em>:</p>
+</li>
+<li>
+<p>Sometimes you need to restart your script; use &ldquo;Runtime Restart.&rdquo;</p>
+</li>
+<li>
+<p>Use &ldquo;Interrupt Execution&rdquo; if the script runs too long (infinite loop?).</p>
+</li>
+<li>
+<p>You can change your runtime to use some GPUs with &ldquo;Change Runtime Type.&rdquo;</p>
+</li>
+<li>
+<p><em>Tools</em>:</p>
+</li>
+<li>
+<p>The &ldquo;Command Palette&rdquo; has useful options, such as &ldquo;Ask a question on stack overflow.&rdquo;</p>
+</li>
+<li>
+<p>Use the settings if you want to connect your account to GitHub.
+The rest of the menus are pretty self-explanatory, like sharing files on Drive and all that jazz.</p>
+</li>
+</ul>
+<p>That&rsquo;s it. You are now ready to do some data science experiments quickly and without much setup.</p>
+<h3 id="the-good-the-bad-and-the-ugly">The good, the bad, and the ugly</h3>
+<p>The benefits of using Colab are that you do not have to manage the basic ML Python packages (you still have to install some packages), you do not have to manage a virtual environment for Python, it has GPU setup, and live collaboration as well as sharing is seamless. As you noticed, Colab is quick to setup, and the learning curve to use it is not steep. In my opinion, these are the biggest advantages.</p>
+<p>There are caveats, though:</p>
+<ul>
+<li>You need an internet connection to work on Colab. I like to work on the plane, and that is not optimal.</li>
+<li>It is not as easy to use datasets, such as files; you cannot just save them locally. You either have to mount your Google Drive or use external APIs and SDKs to get your data. I have shared an <a href="https://colab.research.google.com/drive/1PDA74vDZ_rPZmySNoojlhB-Gk0DafP_O?usp=sharing" target="_blank" rel="noopener">example colab notebook</a> with methods to get data from Github and mount your Google Drive.</li>
+<li>It does not integrate with Git; at least as far as I have used it, I have not found a way to work with repos and version control. There is a Colab Pro version that I have not used, so this may do the trick.</li>
+</ul>
+<p>Personally, I prefer having the option to develop locally and, even more importantly, customize everything. That is why I do not use Colaboratory much. Needless to say, if you do not have time to set up anything else for your ML, Colab is an excellent solution.</p>
+<h3 id="your-favorite-editor--terminal--jupyter">Your favorite editor + terminal + Jupyter</h3>
+<p>As I mentioned, this was my first development environment. A Vim editor and a terminal. This may be your existing environment, and therefore the only thing I can add are two recommendations:</p>
+<ul>
+<li>Use a Python virtual environment.</li>
+<li>Use <code>IPython</code> when you need to run small script parts, as I will provide lots of those in my blogs.</li>
+<li>Use Jupyter for ML experimentation.</li>
+</ul>
+<p>Let&rsquo;s see how to improve your terminal and editor environments.</p>
+<h4 id="virtual-environments">Virtual Environments</h4>
+<p>A virtual environment is a sandbox where all your installed Python packages live. But why not just use <code>pip install my_fav_package</code> in your host environment? Besides making me really sad, you need to think carefully about what you are doing when installing all these packages on your main system. What if there is a version conflict? What if you actually need to use an older version of a package or even a different version of Python in a project? This is particularly common with ML packages. When you use virtual environments, you have nice, organized boxes with your packages and their versions. So let&rsquo;s make the world a better place and use virtual environments.</p>
+<p>All you need to do is execute the following command in the directory where your project will be:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> my_project
+</span></span><span class="line"><span class="cl">$ python -m venv .venv
+</span></span></code></pre></div><p>The above will create a virtual environment named <code>.venv</code>. I add this to my <code>.gitignore</code>. Then activate your environment:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">source</span> .venv/bin/activate
+</span></span><span class="line"><span class="cl"><span class="o">(</span>.venv<span class="o">)</span>$
+</span></span></code></pre></div><p>That&rsquo;s it. You have saved yourself a lot of pain and suffering. Then install your packages in this environment:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ pip install pandas
+</span></span></code></pre></div><p>One optional step is to save your packages in a file called <code>requirements.txt</code>, then use them on any computer:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ pip freeze &gt; requirements.txt
+</span></span></code></pre></div><p>Then, if you change computers, go to your project, activate the virtual environment and reinstall:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> my_project
+</span></span><span class="line"><span class="cl">$ python -m venv .venv
+</span></span><span class="line"><span class="cl">$ <span class="nb">source</span> .venv/bin/activate
+</span></span><span class="line"><span class="cl"><span class="o">(</span>.venv<span class="o">)</span>$ pip install -r requirements.txt
+</span></span></code></pre></div><p>These are &ldquo;Cliff&rsquo;s notes&rdquo; on Python virtual environments. I strongly recommend <a href="https://realpython.com/python-virtual-environments-a-primer/" target="_blank" rel="noopener">Python Virtual Environments: A Primer</a>. It is a comprehensive guide to the beauty of virtual environments.</p>
+<h3 id="ipython">IPython</h3>
+<p>You will need to run code snippets for data analysis. I recommend <code>IPython</code> because it has great features such as tab completion:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># go to your project directory</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> my_project
+</span></span><span class="line"><span class="cl"><span class="c1"># activate your virtual environment</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">source</span> .venv/bin/activate
+</span></span><span class="line"><span class="cl"><span class="c1"># install IPython</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>.venv<span class="o">)</span>$ pip install -r ipython
+</span></span><span class="line"><span class="cl"><span class="c1"># get into the interpreter</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>.venv<span class="o">)</span>$ ipython
+</span></span><span class="line"><span class="cl">Python 3.10.6 <span class="o">(</span>main, Oct  <span class="m">2</span> 2022, 18:56:28<span class="o">)</span> <span class="o">[</span>GCC 11.2.0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">Type <span class="s1">&#39;copyright&#39;</span>, <span class="s1">&#39;credits&#39;</span> or <span class="s1">&#39;license&#39;</span> <span class="k">for</span> more information
+</span></span><span class="line"><span class="cl">IPython 8.5.0 -- An enhanced Interactive Python. Type <span class="s1">&#39;?&#39;</span> <span class="k">for</span> help.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">In <span class="o">[</span>1<span class="o">]</span>: 
+</span></span></code></pre></div><p>Did you know <code>IPython</code> is a kernel for Jupyter Notebooks?</p>
+<h3 id="jupyter-notebooks">Jupyter notebooks</h3>
+<p>Now that you have proper virtual environments for your packages, you can install Jupyter Notebooks and use them in combination with an editor. A Jupyter notebook is the Swiss army tool for a data researcher. It can give the opportunity for quick demonstrations, run small parts of your code to experiment, and visualize with graphs all in the same window. Here is how you install and launch JupyterLab:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># install</span>
+</span></span><span class="line"><span class="cl">pip install jupyterlab
+</span></span><span class="line"><span class="cl"><span class="c1"># launch</span>
+</span></span><span class="line"><span class="cl">jupyter lab
+</span></span></code></pre></div><p>The JupyterLab will automatically recognize your preferred browser and launch. Similarly, you can install just notebooks:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># install</span>
+</span></span><span class="line"><span class="cl">pip install notebook
+</span></span><span class="line"><span class="cl"><span class="c1"># launch</span>
+</span></span><span class="line"><span class="cl">jupyter notebook
+</span></span></code></pre></div><p>In this case, you will see the classic Jupyter notebook launch in your browser.</p>
+<h3 id="vs-code">VS Code</h3>
+<p>VS Code is a versatile IDE. I strongly recommend it because of the plugin ecosystem that it provides. I also recommend installing trusted plugins, since, as with any software, there may be <a href="https://www.bleepingcomputer.com/news/security/malicious-vscode-extensions-with-millions-of-installs-discovered/" target="_blank" rel="noopener">malicious ones</a> that can ruin your day. There are plugins for git, intelligent code completion, remote collaboration, appearance customization, and, of course, <a href="https://marketplace.visualstudio.com/items?itemName=DanielSanMedium.dscodegpt" target="_blank" rel="noopener">ChatGPT</a>. All these enhance your productivity and improve the programming experience. Using VS Code does have a learning curve at first, but in my opinion, the benefits are worth it.</p>
+<p>Download and <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">install VS Code</a>, then install the <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python" target="_blank" rel="noopener">Python</a> and <a href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter" target="_blank" rel="noopener">Jupyter</a> extensions.</p>
+<p>After you install these two extensions, create a new project and notebook. Let&rsquo;s name it <code>hello_jupyter.ipynb</code>. Then, you know the drill, open a terminal, and get your virtual environment setup:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ python -m venv .venv
+</span></span><span class="line"><span class="cl">$ <span class="nb">source</span> .venv/bin/activate
+</span></span><span class="line"><span class="cl"><span class="o">(</span>.venv<span class="o">)</span>$ pip install pandas
+</span></span><span class="line"><span class="cl"><span class="c1"># don&#39;t forget to save the packages</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>.venv<span class="o">)</span>$ pip freeze &gt; requirements.txt
+</span></span></code></pre></div><p>Let&rsquo;s create a cell and test if our Jupyter notebook can see the virtual environment based on the animation below.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-jupyter-basics">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="hello jupyter"
+           src="/post/mlsec2/images/helo_jupyter.gif"
+           loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Jupyter Basics.
+    </figcaption></figure>
+</p>
+<p>You may need to select the virtual environment manually. The figure below highlights how to select the environment in your Jupyter notebook:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-jupyter-environment-manual-selection">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="jupyter enb" srcset="
+               /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_e352855f9a89f6e59b6fb145d620fcb6.webp 400w,
+               /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_026f65c6ce6375fc9b3b7fb03aeed541.webp 760w,
+               /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_e352855f9a89f6e59b6fb145d620fcb6.webp"
+               width="760"
+               height="184"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Jupyter Environment manual selection.
+    </figcaption></figure>
+</p>
+<h4 id="troubleshooting">Troubleshooting</h4>
+<p>VS Code may not recognize your virtual environment immediately. Here is how to actually install the kernel for it manually:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Activate the virtualenv</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">source</span> .venv/bin/activate
+</span></span><span class="line"><span class="cl"><span class="c1"># Install jupyter in the virtualenv</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>.venv<span class="o">)</span>$ pip install jupyter
+</span></span><span class="line"><span class="cl"><span class="c1"># Add the virtualenv as a jupyter kernel</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>.venv<span class="o">)</span>$ ipython kernel install --name <span class="s2">&#34;local-venv&#34;</span> --user
+</span></span></code></pre></div><p>After all this, you may need to restart VS Code and/or your Jupyter kernel using the restart button at the top menu of your notebook:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-top-menu-restart">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="restart jupyter" srcset="
+               /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_049401b78b7a319d9c38c9cec79c738a.webp 400w,
+               /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_e72d45c08fad3276085ba8babfafe79a.webp 760w,
+               /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_049401b78b7a319d9c38c9cec79c738a.webp"
+               width="698"
+               height="169"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Top Menu Restart.
+    </figcaption></figure>
+</p>
+<p>Your <code>local-venv</code> name is <code>.venv</code> or whichever name you used when you created your Python virtual environment.</p>
+<!-- ```bash
+jupyter kernelspec list
+Available kernels:
+  python3    /home/drx/.pyenv/versions/3.10.6/share/jupyter/kernels/python3
+```
+
+The local environment name is the `display_name` in `kernel.json`:
+```json
+{
+ "argv": [
+  "python",
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ],
+ "display_name": "Python 3 (ipykernel)",
+ "language": "python",
+ "metadata": {
+  "debugger": true
+ }
+}
+``` -->
+<h2 id="advanced-topics">Advanced Topics</h2>
+<p>You will find more resources in the end; however, I wanted to discuss a couple of important other topics here.</p>
+<h3 id="storing-your-secrets-securely">Storing your secrets securely</h3>
+<p>If you are a security professional, you want to write secure code. One of the biggest &ldquo;no-nos&rdquo; is to store hard-coded secrets in your code. You can bypass this problem with environment variables and the Python library <code>python-dotenv</code>.</p>
+<p>First, you need to install the package:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># activate your virtual env</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> .venv/bin/activate
+</span></span><span class="line"><span class="cl">pip install python-dotenv
+</span></span><span class="line"><span class="cl"><span class="c1"># save the new package</span>
+</span></span><span class="line"><span class="cl">pip freeze &gt; requirements.txt
+</span></span></code></pre></div><p>Then use it to load secrets in your notebook:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># finds .env file and loads the vars</span>
+</span></span><span class="line"><span class="cl"><span class="n">load_dotenv</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">openai_api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&#34;OPENAI_API_KEY&#34;</span><span class="p">,</span> <span class="s2">&#34;Key not found&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>The variable <code>openai_api_key</code> stores the secret key. The key is found in a <code>.env</code> file with the following syntax:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">OPENAI_API_KEY=&#39;xyz&#39;
+</span></span></code></pre></div><p>Do not forget to add <code>.env</code> to your <code>.gitignore</code> file so that you do not upload your secrets to any public server.</p>
+<!-- , but Jupyter notebooks have their own type of "environment" that is **not** your host environment. Do not worry, I've got you covered! First, find your `kernel.json` as we did in the previous section: -->
+<!-- ```bash
+jupyter kernelspec list
+Available kernels:
+  python3    /home/drx/.pyenv/versions/3.10.6/share/jupyter/kernels/python3
+```
+
+Then create a new directory in the kernelspec, name it something cheesy like: `/home/drx/.pyenv/versions/3.10.6/share/jupyter/kernels/python3_drx` and copy the `kernel.json` as is. Then make the following changes:
+
+```json
+{
+ "argv": [
+  "python",
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ],
+ "display_name": "python3_drx",
+ "env": {
+    "SUPER_SECRET1": "keep_this_secret",
+    "SUPER_SECRET2": "shhhhh",
+ }
+ "language": "python",
+ "metadata": {
+  "debugger": true
+ }
+}
+```
+
+Now you have two secrets stored in your new kernel. You will need to reload the kernel:
+
+```bash
+# Activate the virtualenv
+$ source .venv/bin/activate
+# Install jupyter in the virtualenv
+(.venv)$ pip install jupyter
+# Add the virtualenv as a jupyter kernel
+(.venv)$ ipython kernel install --name ".venv" --user
+```
+
+Restart VS Code and create a code cell with the following:
+
+```python
+import os
+secret = os.getenv("SUPER_SECRET1")
+secret
+```
+
+If you loaded the correct kernel `python3_drx` you will see your "not so secret" secret being printed. -->
+<h3 id="pyenv">Pyenv</h3>
+<p>Sometimes you may need to use code from old projects that use Python 2.x or some other version of Python that is not your global installation. This is where <code>pyenv</code> comes in handy. You can have local Python versions for your project and a global Python version, all managed neatly by <code>pyenv</code>. This <a href="https://realpython.com/intro-to-pyenv/" target="_blank" rel="noopener">RealPython article</a> walks you through the installation and how to use it.</p>
+<h2 id="recap">Recap</h2>
+<p>Now you have a development environment that fits your needs. I am sure that you cannot wait to use it. In the next post, we will do exactly that: retrieve security data, then use our favorite development environment to analyze it.</p>
+<p>&ndash; Xenia</p>
+<h2 id="going-even-deeper">Going Even Deeper</h2>
+<ul>
+<li>Comprehensive blog for VS Code setup: <a href="https://blog.networktocode.com/post/getting-started-with-vscode/" target="_blank" rel="noopener">Getting Started with VS Code</a></li>
+<li>Moare recommended plugins from my favorites:
+<ul>
+<li>Smart coding &amp; productivity
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance" target="_blank" rel="noopener">pylance</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode" target="_blank" rel="noopener">intellicode</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=DanielSanMedium.dscodegpt" target="_blank" rel="noopener">CodeGPT</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring" target="_blank" rel="noopener">autodocstring</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh" target="_blank" rel="noopener">SSH</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare" target="_blank" rel="noopener">Live Share</a></li>
+</ul>
+</li>
+<li>Markdown
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one" target="_blank" rel="noopener">Markdown all in one</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode" target="_blank" rel="noopener">Marp </a> presentations with markdown</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.vscode-jupyter-slideshow" target="_blank" rel="noopener">Jupyter Slide Show</a></li>
+</ul>
+</li>
+<li>Make your VS Code pretty
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock" target="_blank" rel="noopener">Peacock</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=liviuschera.noctis" target="_blank" rel="noopener">Noctis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://python-poetry.org/" target="_blank" rel="noopener">Poetry</a>
+<ul>
+<li><a href="https://realpython.com/dependency-management-python-poetry/" target="_blank" rel="noopener">Dependency Management With Python Poetry</a></li>
+<li><a href="https://blog.networktocode.com/post/jupyter-notebooks-for-development/" target="_blank" rel="noopener">Poetry used with Jupyter Notebooks</a></li>
+</ul>
+</li>
+<li><a href="https://jupyter.org/" target="_blank" rel="noopener">Jupyter</a></li>
+</ul>
+<h3 id="did-you-find-this-page-helpful-consider-sharing-it-">Did you find this page helpful? Consider sharing it 🙌</h3>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fmundruid.github.io%2Fpost%2Fmlsec2%2F&amp;text=Building&#43;a&#43;bridge&#43;between&#43;ML&#43;and&#43;Cyber&#43;with&#43;a&#43;development&#43;environment" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fmundruid.github.io%2Fpost%2Fmlsec2%2F&amp;t=Building&#43;a&#43;bridge&#43;between&#43;ML&#43;and&#43;Cyber&#43;with&#43;a&#43;development&#43;environment" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a href="mailto:?subject=Building%20a%20bridge%20between%20ML%20and%20Cyber%20with%20a%20development%20environment&amp;body=https%3A%2F%2Fmundruid.github.io%2Fpost%2Fmlsec2%2F" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fmundruid.github.io%2Fpost%2Fmlsec2%2F&amp;title=Building&#43;a&#43;bridge&#43;between&#43;ML&#43;and&#43;Cyber&#43;with&#43;a&#43;development&#43;environment" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Building&#43;a&#43;bridge&#43;between&#43;ML&#43;and&#43;Cyber&#43;with&#43;a&#43;development&#43;environment%20https%3A%2F%2Fmundruid.github.io%2Fpost%2Fmlsec2%2F" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fmundruid.github.io%2Fpost%2Fmlsec2%2F&amp;title=Building&#43;a&#43;bridge&#43;between&#43;ML&#43;and&#43;Cyber&#43;with&#43;a&#43;development&#43;environment" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://mundruid.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu4bc1ccc3581b470dbb9a71357c8e02eb_172934_270x270_fill_lanczos_center_3.png" alt="Xenia Mountrouidou"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://mundruid.github.io/">Xenia Mountrouidou</a></h5>
+      <h6 class="card-subtitle">Senior Security Researcher</h6>
+      <p class="card-text">Xenia Mountrouidou is a Senior Security Researcher at Cyber adAPT with versatile experience in academia and industry. She has over 10 years of research experience in network security, machine learning, and data analytics for computer networks. She enjoys writing Python scripts to automate boring things, finding interesting patterns with machine learning algorithms, and researching novel intrusion detection techniques. Her research interests revolve around network security, Internet of Things, intrusion detection, and machine learning.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=eDGTYRQAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/mundruid" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/xenia-mountrouidou-13bbb1b/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2024 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://hugoblox.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Hugo Blox Builder</a> — the free, <a href="https://github.com/HugoBlox/hugo-blox-builder" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.391d344a129df56f7ad674c2c2ed04e8.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.js" integrity="" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+  <script src="/js/wowchemy-headroom.db4755770454eb63685f8de785c0a172.js" type="module"></script>
+<style>
+    .markmap > svg {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script>
+    window.markmap = {
+      autoLoader: {
+        manual: false,
+        onReady() {
+          const { autoLoader, builtInPlugins } = window.markmap;
+          
+          autoLoader.transformPlugins = builtInPlugins.filter(plugin => plugin.name !== 'prism');
+        },
+      },
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader"></script>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.7f5ebaff62ae468cff8bb3dd1337bb9b.js"></script>
+
+
+
+  <script src="/js/wowchemy-map.a26e9d2f7238ba5b868384f1c5bc6477.js" type="module"></script>
+
+
+
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <pre><code></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="/js/wowchemy-publication.9c0e895144aef5a693008b5c5d450147.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

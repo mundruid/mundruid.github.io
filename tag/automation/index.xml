@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Automation | Xenia Mountrouidou (DrX)</title>
-    <link>http://localhost:1313/tag/automation/</link>
-      <atom:link href="http://localhost:1313/tag/automation/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://mundruid.github.io/tag/automation/</link>
+      <atom:link href="https://mundruid.github.io/tag/automation/index.xml" rel="self" type="application/rss+xml" />
     <description>Automation</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Sat, 13 Feb 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://localhost:1313/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
+      <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Automation</title>
-      <link>http://localhost:1313/tag/automation/</link>
+      <link>https://mundruid.github.io/tag/automation/</link>
     </image>
     
     <item>
       <title>Introduction to PromQL</title>
-      <link>http://localhost:1313/post/promql/</link>
+      <link>https://mundruid.github.io/post/promql/</link>
       <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/promql/</guid>
+      <guid>https://mundruid.github.io/post/promql/</guid>
       <description></description>
     </item>
     

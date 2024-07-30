@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jupyter | Xenia Mountrouidou (DrX)</title>
-    <link>http://localhost:1313/tag/jupyter/</link>
-      <atom:link href="http://localhost:1313/tag/jupyter/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://mundruid.github.io/tag/jupyter/</link>
+      <atom:link href="https://mundruid.github.io/tag/jupyter/index.xml" rel="self" type="application/rss+xml" />
     <description>Jupyter</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Sat, 13 Nov 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://localhost:1313/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
+      <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Jupyter</title>
-      <link>http://localhost:1313/tag/jupyter/</link>
+      <link>https://mundruid.github.io/tag/jupyter/</link>
     </image>
     
     <item>
       <title>Jupyter Notebooks for Development</title>
-      <link>http://localhost:1313/post/jupyter/</link>
+      <link>https://mundruid.github.io/post/jupyter/</link>
       <pubDate>Sat, 13 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/jupyter/</guid>
+      <guid>https://mundruid.github.io/post/jupyter/</guid>
       <description></description>
     </item>
     

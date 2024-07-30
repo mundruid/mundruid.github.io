@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<!-- This site was created with Hugo Blox. https://hugoblox.com -->
+<!-- Last Published: July 30, 2024 --><html lang="en-us" >
+
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Hugo Blox Builder 5.9.7" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css" integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.css" integrity="" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.css" />
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/github-light.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+  <meta name="author" content="Xenia Mountrouidou" />
+
+
+
+
+
+  
+
+<meta name="description" content="You have probably heard this saying many times before: &ldquo;Garbage in, garbage out&rdquo;. This is a big deal in machine learning projects and even more in ML cybersecurity projects because the model can only be as good as the data you input to it." />
+
+
+
+<link rel="alternate" hreflang="en-us" href="http://localhost:1313/post/mlsec3/" />
+<link rel="canonical" href="http://localhost:1313/post/mlsec3/" />
+
+
+
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+
+
+<link rel="icon" type="image/png" href="/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_32x32_fill_lanczos_center_3.png" />
+<link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_180x180_fill_lanczos_center_3.png" />
+
+<meta name="theme-color" content="#1565c0" />
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<meta property="twitter:card" content="summary_large_image" />
+
+  <meta property="twitter:site" content="@GetResearchDev" />
+  <meta property="twitter:creator" content="@GetResearchDev" />
+<meta property="twitter:image" content="http://localhost:1313/post/mlsec3/featured.png" />
+
+
+
+  
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Xenia Mountrouidou (DrX)" />
+<meta property="og:url" content="http://localhost:1313/post/mlsec3/" />
+<meta property="og:title" content="Show me the data (part 1) | Xenia Mountrouidou (DrX)" />
+<meta property="og:description" content="You have probably heard this saying many times before: &ldquo;Garbage in, garbage out&rdquo;. This is a big deal in machine learning projects and even more in ML cybersecurity projects because the model can only be as good as the data you input to it." /><meta property="og:image" content="http://localhost:1313/post/mlsec3/featured.png" /><meta property="og:locale" content="en-us" />
+
+  
+    <meta
+      property="article:published_time"
+      content="2024-07-29T00:00:00&#43;00:00"
+    />
+  
+  
+    <meta property="article:modified_time" content="2024-07-29T00:00:00&#43;00:00">
+  
+
+
+
+
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/post/mlsec3/"
+  },
+  "headline": "Show me the data (part 1)",
+  
+  "image": [
+    "http://localhost:1313/post/mlsec3/featured.png"
+  ],
+  
+  "datePublished": "2024-07-29T00:00:00Z",
+  "dateModified": "2024-07-29T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Xenia Mountrouidou"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Xenia Mountrouidou (DrX)",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "You have probably heard this saying many times before: \u0026ldquo;Garbage in, garbage out\u0026rdquo;. This is a big deal in machine learning projects and even more in ML cybersecurity projects because the model can only be as good as the data you input to it."
+}
+</script>
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+
+
+  
+  <title>Show me the data (part 1) | Xenia Mountrouidou (DrX)</title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="5e432c39d8590520e7b5133f450b4213" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header header--fixed">
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">Xenia Mountrouidou (DrX)</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">Xenia Mountrouidou (DrX)</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Posts</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Projects</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#talks"><span>Talks</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#featured"><span>Publications</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+        
+
+        
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+<div class="article-container pt-3">
+  <h1>Show me the data (part 1)</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jul 29, 2024
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    8 min read
+  </span>
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 404px;">
+  <div style="position: relative">
+    <img src="/post/mlsec3/featured_hub447c7a567ce5fed82cd8a1a6fe61db8_2000428_d57a7bd0f9211cabce91d74b8be516b8.webp" width="720" height="404" alt="" class="featured-image">
+    <span class="article-header-caption">Image credit: <a href="https://hackersbyrez0.com/" target="_blank" rel="noopener">https://hackersbyrez0.com/</a></span>
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>You have probably heard this saying many times before: &ldquo;Garbage in, garbage out&rdquo;. This is a big deal in machine learning projects and even more in ML cybersecurity projects because the model can only be as good as the data you input to it. That is why the first pillar of this ML cybersecurity series is about data. Data collection, preparation, and cleanup are important parts of an ML project, and we will dedicate three blogs to these topics.</p>
+<p>You will find the code from this blog in the notebook <a href="https://github.com/mundruid/cyber-ml/blog_show_data_1.ipynb" target="_blank" rel="noopener">blog_show_data_1.ipynb</a>.</p>
+<h2 id="1000-ft-view">1,000 ft view</h2>
+<h3 id="why">Why?</h3>
+<p>First, we need to have a good dataset to build ML models around it. What makes a good dataset?</p>
+<ul>
+<li><em>Correctness</em>: I cannot stress that enough! If you have the wrong IP address, such as <code>278.12345.213.545</code>, it just does not make sense; however, your model will still work.</li>
+<li><em>No gaps</em>: missing values can be a menace in your cybersecurity ML project. When we start preparing data, we will see how to fill these gaps using sleek Python libraries.</li>
+<li><em>No duplicates</em>: because we do not want to reprocess the same stuff over and over, let alone that this can bias our results.</li>
+<li><em>Structure</em>: unstructured data is tough (but not impossible) to process. Performance also takes a big hit with unstructured data. Data may be organized in Elastic Docs, spreadsheets, SQL databases, etc.</li>
+<li><em>Balance</em>: highly imbalanced datasets are unfortunately common in cybersecurity. We have a lot of benign data in a client environment, and we have a lot of malicious data in a red team engagement. We need to balance our data creatively and not bias it while doing so.</li>
+</ul>
+<h3 id="what">What?</h3>
+<p>The diagram below gives you the types of cyberdata with links to the current blog. Note that some of these will be analyzed in parts 2 and 3:</p>
+<div class="markmap" style="height: 500px;">
+
+<pre>- Cybersecurity Data
+    - Logs/Events (we are here)
+        - syslog
+        - server log
+        - host event logs
+    - Pandas (part 2)
+    - Unstructured text
+        - domains
+        - urls
+    - Binaries
+    - Traces (part 3)
+        - pcaps
+        - netflow</pre>
+</div>
+
+<h3 id="how">How?</h3>
+<p>The actions for data revolve around collection, storage, and processing.</p>
+<div class="markmap" style="height: 500px;">
+
+<pre>- Collect
+  - Monitoring
+  - Observability
+  - Metadata
+  - Public datasets
+- Store
+  - Time series
+  - Structured
+  - Unstructured
+- Load for processing</pre>
+</div>
+
+<h2 id="collect--store">Collect &amp; Store</h2>
+<p>In this section, I will explain the collection and storage techniques and technologies. As you will see, you are probably already collecting data with your SIEM and observability tools, and most organizations store their data in a database.</p>
+<h3 id="collect">Collect</h3>
+<h4 id="definitions-monitoring-vs-observability">Definitions: monitoring vs observability</h4>
+<p>First, let’s clarify that monitoring and observability are not the same thing. These terms are often confused. Monitoring is the process of <em>collecting, analyzing, and using information</em> to track events and make educated decisions. Observability is the ability to collect a <em>system’s internal state</em> through logs, traces, and metrics.</p>
+<h4 id="examples-of-monitoring--observability">Examples of monitoring &amp; observability</h4>
+<p>A Security Information and Event Management System (SIEM), such as <a href="https://www.splunk.com/" target="_blank" rel="noopener">Splunk</a> and <a href="https://www.elastic.co/security" target="_blank" rel="noopener">Elastic Security</a>, performs monitoring and collects, analyzes, and uses security data for you. An Intrusion Detection System (IDS) produces observability data for the internal states of your system. <a href="https://suricata.io/" target="_blank" rel="noopener">Suricata</a>, <a href="https://zeek.org/" target="_blank" rel="noopener">Zeek</a>, and <a href="https://snort.org/" target="_blank" rel="noopener">Snort</a> are good examples of IDSs that produce logs about the state of the system. Syslogs are another example of an observable system state. These are ways you are collecting data, and you can use them in ML projects.</p>
+<p>You can setup your own observability stack using this repository <a href="https://github.com/mundruid/tig" target="_blank" rel="noopener">Telegraf, Influx, Grafana (TIG)</a> using Docker containers. <a href="https://www.influxdata.com/time-series-platform/telegraf/" target="_blank" rel="noopener">Telegraf</a> gives several plugins for network and log observability, <a href="https://www.influxdata.com/" target="_blank" rel="noopener">Influx</a> is a time series database optimized for handling data in a time period, and <a href="https://grafana.com/" target="_blank" rel="noopener">Grafana</a> offers some sleek graphing techniques.</p>
+<h4 id="metadata">Metadata</h4>
+<p>Metadata describes your data. A malware sandbox produces metadata, such as static analysis data, strings, processes, etc., and dynamic analysis data for the malware under analysis. Some tools for security metadata that are open source and that I recommend checking out are: <a href="https://cuckoosandbox.org/" target="_blank" rel="noopener">Cuckoo</a>, <a href="https://github.com/danieluhricek/LiSa" target="_blank" rel="noopener">LiSa</a> for IoT, and <a href="https://github.com/MobSF/Mobile-Security-Framework-MobSF" target="_blank" rel="noopener">MobSF</a> for Android apps.</p>
+<h4 id="public-datasets">Public datasets</h4>
+<p>Finally, there is a wealth of public repositories that you can use in your ML projects to train them, i.e., teach them to recognize patterns. A few that I recommend (and more in the resources at the end of the blog):</p>
+<ul>
+<li><a href="https://github.com/shramos/Awesome-Cybersecurity-Datasets" target="_blank" rel="noopener">Awesome cybersecurity datasets</a>: a curated list of different types of datasets grouped in categories such as malware, passwords, etc.</li>
+<li><a href="http://www.secrepo.com/" target="_blank" rel="noopener">SecRepo</a>: grouped data in categories such as network.</li>
+<li><a href="https://www.caida.org/catalog/datasets/overview/" target="_blank" rel="noopener">CAIDA</a>: not security data and specific to networks, but the largest network telescope data collection that you can use to train your models. This data can be good for research; however, it is not labeled, and you do not have a lot of information about what you are observing except noise on the Internet.</li>
+</ul>
+<h3 id="store">Store</h3>
+<p>There are a few different types of databases for your monitoring and observability data:</p>
+<ul>
+<li><strong>Time Series</strong>: these revolve around real-time data, and they use as their &ldquo;primary key&rdquo; a timestamp that marks when the data was recorded. These types of databases are preferred for monitoring and the observability of data.</li>
+<li><strong>SQL</strong>: Structured Query Language-type databases are often parallelized to Excel spreadsheets, and they offer standardized querying, performance, and atomicity.</li>
+<li><strong>Non-SQL</strong>: unstructured databases may also be a choice for monitoring data because of the speed of retrieval when it comes to real-time data streams.</li>
+<li><strong>Vector</strong>: Vector databases are great if you have text data, such as logs, that you convert to a single row of numbers (vector) and want to retrieve it fast and efficiently. They are the latest and greatest for Large Language Models (LLMs) that you want to feed with your custom data and enhance using Retrieval Augmented Generation (RAG).</li>
+</ul>
+<h2 id="load-cybersecurity-data">Load cybersecurity data</h2>
+<p>In this section, I will discuss cybersecurity data, with a focus on how to load it for processing. If you want tips on how to setup your development environment to use these examples, check out my <a href="https://mundruid.github.io/post/ml-sec-2/" target="_blank" rel="noopener">previous post</a>. The next several blogs will be dedicated to processing the data and providing insights about it.</p>
+<h3 id="logsevents">Logs/Events</h3>
+<p>There are simple ways to load log data, such as by simply reading files:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;my_log.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_read</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">file_read</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span></code></pre></div><p>This is the basic code to read a txt file. I strongly recommend the <a href="https://realpython.com/working-with-files-in-python/" target="_blank" rel="noopener">Working with Files in Python</a> post from Real Python if you have never worked with files or you just need a brush up your knowledge.</p>
+<h4 id="syslog">Syslog</h4>
+<p>One of the most common log files is syslog and of course it should have its own Python libraries for parsing. I have personally used <a href="https://pypi.org/project/syslogmp/" target="_blank" rel="noopener">syslogmp</a>. Here is a code example of using it and transforming your data to a dictionary for further processing.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">syslogmp</span> <span class="kn">import</span> <span class="n">parse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">load_syslog</span><span class="p">(</span><span class="n">log_message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">message</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">log_message</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">message</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;hostname&#39;</span><span class="p">:</span> <span class="n">message</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">message</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Example usage:</span>
+</span></span><span class="line"><span class="cl"><span class="n">log_message</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="s1">&#39;&lt;133&gt;Feb 25 14:09:07 webserver syslogd: restart&#39;</span><span class="p">,</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">log_data</span> <span class="o">=</span> <span class="n">load_syslog</span><span class="p">(</span><span class="n">log_message</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">log_data</span><span class="p">)</span>
+</span></span></code></pre></div><p>In this example, the function is parsing a message in <a href="https://www.rfc-editor.org/rfc/rfc3164" target="_blank" rel="noopener">BSD RFC 3164</a> format and returning a structured dictionary that includes a timestamp, hostname, and message. Of course, not all syslogs are in BSD format. If you want to parse them into a structured outcome, you may need to use regular expressions. The code below takes as input a generic log line and uses a regular expression to break it into a structured dictionary.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">process_syslog</span><span class="p">(</span><span class="n">log_message</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log_regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^(\w</span><span class="si">{3}</span><span class="s1">\s\d{1,2}\s\d</span><span class="si">{2}</span><span class="s1">:\d</span><span class="si">{2}</span><span class="s1">:\d</span><span class="si">{2}</span><span class="s1">)\s(\S+)\s(\S+):\s\[(\d+)\]\s(.*)$&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># The above regex pattern captures the following groups:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 1. Timestamp</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 2. Hostname</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 3. Application</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 4. PID</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 5. Message</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="n">log_regex</span><span class="p">,</span> <span class="n">log_message</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="k">match</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">timestamp</span> <span class="o">=</span> <span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># (\w{3}\s\d{1,2}\s\d{2}:\d{2}:\d{2})</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hostname</span> <span class="o">=</span> <span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># (\S+)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">application</span> <span class="o">=</span> <span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># (\S+)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span> <span class="c1"># \[(\d+)\]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">message</span> <span class="o">=</span> <span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># (.*)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;hostname&#39;</span><span class="p">:</span> <span class="n">hostname</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;application&#39;</span><span class="p">:</span> <span class="n">application</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;pid&#39;</span><span class="p">:</span> <span class="n">pid</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">message</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Example usage:</span>
+</span></span><span class="line"><span class="cl"><span class="n">log_message</span> <span class="o">=</span> <span class="s1">&#39;Feb 28 14:21:30 example-hostname kernel: [12345] This is a log message&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">process_syslog</span><span class="p">(</span><span class="n">log_message</span><span class="p">)</span>
+</span></span></code></pre></div><p>Now, this example can cause you a headache. The regular expression on its own is a messy mess; however, if you know how to write regexes, you can process any syslog or plaintext file. I tried to simplify it by copying and pasting the regex next to each group in the comments. For example, the timestamp variable has its regular expression group next to it:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">timestamp</span> <span class="o">=</span> <span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># (\w{3}\s\d{1,2}\s\d{2}:\d{2}:\d{2})</span>
+</span></span></code></pre></div><p>If you want to understand the regular expression better, take each of these group regexes and put them in <a href="https://regex101.com/" target="_blank" rel="noopener">regex101</a> and test them with the text example provided.</p>
+<p>After we process the regular expression, we return a handy data structure, called a dictionary, that structures our data in an easily retrievable way.</p>
+<h2 id="recap">Recap</h2>
+<p>We have discussed the importance of data and how to get it. We have only scratched the surface of loading data for your security ML project and analyzed one category of data, text. In the next part, we will add packet captures and binaries. We will also learn about Pandas, the package that is prevalently used by data scientists for organizing data.</p>
+<p>&ndash; Xenia</p>
+<h2 id="going-even-deeper">Going Even Deeper</h2>
+<p><strong>Public datasets</strong></p>
+<ul>
+<li><a href="https://github.com/shramos/Awesome-Cybersecurity-Datasets" target="_blank" rel="noopener">Awesome Cybersecurity Datasets</a></li>
+<li><a href="https://packettotal.com/" target="_blank" rel="noopener">Packet total</a></li>
+<li><a href="https://research.unsw.edu.au/projects/unsw-nb15-dataset" target="_blank" rel="noopener">UNSW-NB15 IoT Bot Dataset</a></li>
+<li><a href="http://www.secrepo.com/" target="_blank" rel="noopener">Sec Repo</a></li>
+<li><a href="https://www.westpoint.edu/centers-and-research/cyber-research-center/data-sets" target="_blank" rel="noopener">Westpoint Data Sets</a></li>
+<li><a href="https://www.stratosphereips.org/datasets-overview" target="_blank" rel="noopener">Stratosphere</a></li>
+<li><a href="http://www.covert.io/data-links/" target="_blank" rel="noopener">Collection of Security and Network Data Resources</a></li>
+<li><a href="https://csr.lanl.gov/data/2017/" target="_blank" rel="noopener">Host event logs</a></li>
+<li><a href="https://www.caida.org/catalog/datasets/overview/" target="_blank" rel="noopener">CAIDA</a></li>
+</ul>
+<h3 id="did-you-find-this-page-helpful-consider-sharing-it-">Did you find this page helpful? Consider sharing it 🙌</h3>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fmlsec3%2F&amp;text=Show&#43;me&#43;the&#43;data&#43;%28part&#43;1%29" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fmlsec3%2F&amp;t=Show&#43;me&#43;the&#43;data&#43;%28part&#43;1%29" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a href="mailto:?subject=Show%20me%20the%20data%20%28part%201%29&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fmlsec3%2F" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fmlsec3%2F&amp;title=Show&#43;me&#43;the&#43;data&#43;%28part&#43;1%29" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Show&#43;me&#43;the&#43;data&#43;%28part&#43;1%29%20http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fmlsec3%2F" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fmlsec3%2F&amp;title=Show&#43;me&#43;the&#43;data&#43;%28part&#43;1%29" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="http://localhost:1313/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu4bc1ccc3581b470dbb9a71357c8e02eb_172934_270x270_fill_lanczos_center_3.png" alt="Xenia Mountrouidou"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="http://localhost:1313/">Xenia Mountrouidou</a></h5>
+      <h6 class="card-subtitle">Senior Security Researcher</h6>
+      <p class="card-text">Xenia Mountrouidou is a Senior Security Researcher at Cyber adAPT with versatile experience in academia and industry. She has over 10 years of research experience in network security, machine learning, and data analytics for computer networks. She enjoys writing Python scripts to automate boring things, finding interesting patterns with machine learning algorithms, and researching novel intrusion detection techniques. Her research interests revolve around network security, Internet of Things, intrusion detection, and machine learning.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=eDGTYRQAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/mundruid" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/xenia-mountrouidou-phd-13bbb1b/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2024 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://hugoblox.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Hugo Blox Builder</a> — the free, <a href="https://github.com/HugoBlox/hugo-blox-builder" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.js" integrity="" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+  <script src="/js/wowchemy-headroom.js" type="module"></script>
+<style>
+    .markmap > svg {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script>
+    window.markmap = {
+      autoLoader: {
+        manual: false,
+        onReady() {
+          const { autoLoader, builtInPlugins } = window.markmap;
+          
+          autoLoader.transformPlugins = builtInPlugins.filter(plugin => plugin.name !== 'prism');
+        },
+      },
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader"></script>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.js"></script>
+
+
+
+  <script src="/js/wowchemy-map.js" type="module"></script>
+
+
+
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <pre><code></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="/js/wowchemy-publication.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

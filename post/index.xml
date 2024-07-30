@@ -2,21 +2,179 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts | Xenia Mountrouidou (DrX)</title>
-    <link>https://mundruid.github.io/post/</link>
-      <atom:link href="https://mundruid.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:1313/post/</link>
+      <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Wed, 26 Jun 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Mon, 29 Jul 2024 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
+      <url>http://localhost:1313/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
-      <link>https://mundruid.github.io/post/</link>
+      <link>http://localhost:1313/post/</link>
     </image>
     
     <item>
+      <title>Show me the data (part 1)</title>
+      <link>http://localhost:1313/post/mlsec3/</link>
+      <pubDate>Mon, 29 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/mlsec3/</guid>
+      <description>&lt;p&gt;You have probably heard this saying many times before: &amp;ldquo;Garbage in, garbage out&amp;rdquo;. This is a big deal in machine learning projects and even more in ML cybersecurity projects because the model can only be as good as the data you input to it. That is why the first pillar of this ML cybersecurity series is about data. Data collection, preparation, and cleanup are important parts of an ML project, and we will dedicate three blogs to these topics.&lt;/p&gt;
+&lt;p&gt;You will find the code from this blog in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blog_show_data_1.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_show_data_1.ipynb&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
+&lt;h3 id=&#34;why&#34;&gt;Why?&lt;/h3&gt;
+&lt;p&gt;First, we need to have a good dataset to build ML models around it. What makes a good dataset?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Correctness&lt;/em&gt;: I cannot stress that enough! If you have the wrong IP address, such as &lt;code&gt;278.12345.213.545&lt;/code&gt;, it just does not make sense; however, your model will still work.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;No gaps&lt;/em&gt;: missing values can be a menace in your cybersecurity ML project. When we start preparing data, we will see how to fill these gaps using sleek Python libraries.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;No duplicates&lt;/em&gt;: because we do not want to reprocess the same stuff over and over, let alone that this can bias our results.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Structure&lt;/em&gt;: unstructured data is tough (but not impossible) to process. Performance also takes a big hit with unstructured data. Data may be organized in Elastic Docs, spreadsheets, SQL databases, etc.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Balance&lt;/em&gt;: highly imbalanced datasets are unfortunately common in cybersecurity. We have a lot of benign data in a client environment, and we have a lot of malicious data in a red team engagement. We need to balance our data creatively and not bias it while doing so.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;what&#34;&gt;What?&lt;/h3&gt;
+&lt;p&gt;The diagram below gives you the types of cyberdata with links to the current blog. Note that some of these will be analyzed in parts 2 and 3:&lt;/p&gt;
+&lt;div class=&#34;markmap&#34; style=&#34;height: 500px;&#34;&gt;
+
+&lt;pre&gt;- Cybersecurity Data
+    - Logs/Events (we are here)
+        - syslog
+        - server log
+        - host event logs
+    - Pandas (part 2)
+    - Unstructured text
+        - domains
+        - urls
+    - Binaries
+    - Traces (part 3)
+        - pcaps
+        - netflow&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;how&#34;&gt;How?&lt;/h3&gt;
+&lt;p&gt;The actions for data revolve around collection, storage, and processing.&lt;/p&gt;
+&lt;div class=&#34;markmap&#34; style=&#34;height: 500px;&#34;&gt;
+
+&lt;pre&gt;- Collect
+  - Monitoring
+  - Observability
+  - Metadata
+  - Public datasets
+- Store
+  - Time series
+  - Structured
+  - Unstructured
+- Load for processing&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&#34;collect--store&#34;&gt;Collect &amp;amp; Store&lt;/h2&gt;
+&lt;p&gt;In this section, I will explain the collection and storage techniques and technologies. As you will see, you are probably already collecting data with your SIEM and observability tools, and most organizations store their data in a database.&lt;/p&gt;
+&lt;h3 id=&#34;collect&#34;&gt;Collect&lt;/h3&gt;
+&lt;h4 id=&#34;definitions-monitoring-vs-observability&#34;&gt;Definitions: monitoring vs observability&lt;/h4&gt;
+&lt;p&gt;First, let’s clarify that monitoring and observability are not the same thing. These terms are often confused. Monitoring is the process of &lt;em&gt;collecting, analyzing, and using information&lt;/em&gt; to track events and make educated decisions. Observability is the ability to collect a &lt;em&gt;system’s internal state&lt;/em&gt; through logs, traces, and metrics.&lt;/p&gt;
+&lt;h4 id=&#34;examples-of-monitoring--observability&#34;&gt;Examples of monitoring &amp;amp; observability&lt;/h4&gt;
+&lt;p&gt;A Security Information and Event Management System (SIEM), such as &lt;a href=&#34;https://www.splunk.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Splunk&lt;/a&gt; and &lt;a href=&#34;https://www.elastic.co/security&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Elastic Security&lt;/a&gt;, performs monitoring and collects, analyzes, and uses security data for you. An Intrusion Detection System (IDS) produces observability data for the internal states of your system. &lt;a href=&#34;https://suricata.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Suricata&lt;/a&gt;, &lt;a href=&#34;https://zeek.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Zeek&lt;/a&gt;, and &lt;a href=&#34;https://snort.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Snort&lt;/a&gt; are good examples of IDSs that produce logs about the state of the system. Syslogs are another example of an observable system state. These are ways you are collecting data, and you can use them in ML projects.&lt;/p&gt;
+&lt;p&gt;You can setup your own observability stack using this repository &lt;a href=&#34;https://github.com/mundruid/tig&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Telegraf, Influx, Grafana (TIG)&lt;/a&gt; using Docker containers. &lt;a href=&#34;https://www.influxdata.com/time-series-platform/telegraf/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Telegraf&lt;/a&gt; gives several plugins for network and log observability, &lt;a href=&#34;https://www.influxdata.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Influx&lt;/a&gt; is a time series database optimized for handling data in a time period, and &lt;a href=&#34;https://grafana.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Grafana&lt;/a&gt; offers some sleek graphing techniques.&lt;/p&gt;
+&lt;h4 id=&#34;metadata&#34;&gt;Metadata&lt;/h4&gt;
+&lt;p&gt;Metadata describes your data. A malware sandbox produces metadata, such as static analysis data, strings, processes, etc., and dynamic analysis data for the malware under analysis. Some tools for security metadata that are open source and that I recommend checking out are: &lt;a href=&#34;https://cuckoosandbox.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Cuckoo&lt;/a&gt;, &lt;a href=&#34;https://github.com/danieluhricek/LiSa&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;LiSa&lt;/a&gt; for IoT, and &lt;a href=&#34;https://github.com/MobSF/Mobile-Security-Framework-MobSF&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MobSF&lt;/a&gt; for Android apps.&lt;/p&gt;
+&lt;h4 id=&#34;public-datasets&#34;&gt;Public datasets&lt;/h4&gt;
+&lt;p&gt;Finally, there is a wealth of public repositories that you can use in your ML projects to train them, i.e., teach them to recognize patterns. A few that I recommend (and more in the resources at the end of the blog):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/shramos/Awesome-Cybersecurity-Datasets&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Awesome cybersecurity datasets&lt;/a&gt;: a curated list of different types of datasets grouped in categories such as malware, passwords, etc.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.secrepo.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;SecRepo&lt;/a&gt;: grouped data in categories such as network.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.caida.org/catalog/datasets/overview/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CAIDA&lt;/a&gt;: not security data and specific to networks, but the largest network telescope data collection that you can use to train your models. This data can be good for research; however, it is not labeled, and you do not have a lot of information about what you are observing except noise on the Internet.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;store&#34;&gt;Store&lt;/h3&gt;
+&lt;p&gt;There are a few different types of databases for your monitoring and observability data:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Time Series&lt;/strong&gt;: these revolve around real-time data, and they use as their &amp;ldquo;primary key&amp;rdquo; a timestamp that marks when the data was recorded. These types of databases are preferred for monitoring and the observability of data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SQL&lt;/strong&gt;: Structured Query Language-type databases are often parallelized to Excel spreadsheets, and they offer standardized querying, performance, and atomicity.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Non-SQL&lt;/strong&gt;: unstructured databases may also be a choice for monitoring data because of the speed of retrieval when it comes to real-time data streams.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vector&lt;/strong&gt;: Vector databases are great if you have text data, such as logs, that you convert to a single row of numbers (vector) and want to retrieve it fast and efficiently. They are the latest and greatest for Large Language Models (LLMs) that you want to feed with your custom data and enhance using Retrieval Augmented Generation (RAG).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;load-cybersecurity-data&#34;&gt;Load cybersecurity data&lt;/h2&gt;
+&lt;p&gt;In this section, I will discuss cybersecurity data, with a focus on how to load it for processing. If you want tips on how to setup your development environment to use these examples, check out my &lt;a href=&#34;https://mundruid.github.io/post/ml-sec-2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;previous post&lt;/a&gt;. The next several blogs will be dedicated to processing the data and providing insights about it.&lt;/p&gt;
+&lt;h3 id=&#34;logsevents&#34;&gt;Logs/Events&lt;/h3&gt;
+&lt;p&gt;There are simple ways to load log data, such as by simply reading files:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;my_log.txt&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;r&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;file_read&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;file_read&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is the basic code to read a txt file. I strongly recommend the &lt;a href=&#34;https://realpython.com/working-with-files-in-python/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Working with Files in Python&lt;/a&gt; post from Real Python if you have never worked with files or you just need a brush up your knowledge.&lt;/p&gt;
+&lt;h4 id=&#34;syslog&#34;&gt;Syslog&lt;/h4&gt;
+&lt;p&gt;One of the most common log files is syslog and of course it should have its own Python libraries for parsing. I have personally used &lt;a href=&#34;https://pypi.org/project/syslogmp/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;syslogmp&lt;/a&gt;. Here is a code example of using it and transforming your data to a dictionary for further processing.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;syslogmp&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;parse&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;load_syslog&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;log_message&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;dict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;message&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;parse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;log_message&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s1&#34;&gt;&amp;#39;timestamp&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;timestamp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s1&#34;&gt;&amp;#39;hostname&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hostname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s1&#34;&gt;&amp;#39;message&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Example usage:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;log_message&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;bytes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;lt;133&amp;gt;Feb 25 14:09:07 webserver syslogd: restart&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;log_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;load_syslog&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;log_message&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;log_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this example, the function is parsing a message in &lt;a href=&#34;https://www.rfc-editor.org/rfc/rfc3164&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BSD RFC 3164&lt;/a&gt; format and returning a structured dictionary that includes a timestamp, hostname, and message. Of course, not all syslogs are in BSD format. If you want to parse them into a structured outcome, you may need to use regular expressions. The code below takes as input a generic log line and uses a regular expression to break it into a structured dictionary.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;re&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;process_syslog&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;log_message&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;log_regex&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;^(\w&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{3}&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;\s\d{1,2}\s\d&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{2}&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;:\d&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{2}&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;:\d&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{2}&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;)\s(\S+)\s(\S+):\s\[(\d+)\]\s(.*)$&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# The above regex pattern captures the following groups:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 1. Timestamp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 2. Hostname&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 3. Application&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 4. PID&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 5. Message&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;match&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;re&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;match&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;log_regex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;log_message&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;match&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;timestamp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;match&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# (\w{3}\s\d{1,2}\s\d{2}:\d{2}:\d{2})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;hostname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;match&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# (\S+)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;application&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;match&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# (\S+)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;pid&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;match&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# \[(\d+)\]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;message&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;match&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# (.*)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s1&#34;&gt;&amp;#39;timestamp&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;timestamp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s1&#34;&gt;&amp;#39;hostname&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;hostname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s1&#34;&gt;&amp;#39;application&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;application&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s1&#34;&gt;&amp;#39;pid&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s1&#34;&gt;&amp;#39;message&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Example usage:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;log_message&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;Feb 28 14:21:30 example-hostname kernel: [12345] This is a log message&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;process_syslog&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;log_message&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now, this example can cause you a headache. The regular expression on its own is a messy mess; however, if you know how to write regexes, you can process any syslog or plaintext file. I tried to simplify it by copying and pasting the regex next to each group in the comments. For example, the timestamp variable has its regular expression group next to it:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;timestamp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;match&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;group&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# (\w{3}\s\d{1,2}\s\d{2}:\d{2}:\d{2})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you want to understand the regular expression better, take each of these group regexes and put them in &lt;a href=&#34;https://regex101.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;regex101&lt;/a&gt; and test them with the text example provided.&lt;/p&gt;
+&lt;p&gt;After we process the regular expression, we return a handy data structure, called a dictionary, that structures our data in an easily retrievable way.&lt;/p&gt;
+&lt;h2 id=&#34;recap&#34;&gt;Recap&lt;/h2&gt;
+&lt;p&gt;We have discussed the importance of data and how to get it. We have only scratched the surface of loading data for your security ML project and analyzed one category of data, text. In the next part, we will add packet captures and binaries. We will also learn about Pandas, the package that is prevalently used by data scientists for organizing data.&lt;/p&gt;
+&lt;p&gt;&amp;ndash; Xenia&lt;/p&gt;
+&lt;h2 id=&#34;going-even-deeper&#34;&gt;Going Even Deeper&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Public datasets&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/shramos/Awesome-Cybersecurity-Datasets&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Awesome Cybersecurity Datasets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://packettotal.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Packet total&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://research.unsw.edu.au/projects/unsw-nb15-dataset&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;UNSW-NB15 IoT Bot Dataset&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.secrepo.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sec Repo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.westpoint.edu/centers-and-research/cyber-research-center/data-sets&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Westpoint Data Sets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.stratosphereips.org/datasets-overview&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Stratosphere&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.covert.io/data-links/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Collection of Security and Network Data Resources&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://csr.lanl.gov/data/2017/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Host event logs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.caida.org/catalog/datasets/overview/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CAIDA&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;did-you-find-this-page-helpful-consider-sharing-it-&#34;&gt;Did you find this page helpful? Consider sharing it 🙌&lt;/h3&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Building a bridge between ML and Cyber with a development environment</title>
-      <link>https://mundruid.github.io/post/mlsec2/</link>
+      <link>http://localhost:1313/post/mlsec2/</link>
       <pubDate>Wed, 26 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/mlsec2/</guid>
+      <guid>http://localhost:1313/post/mlsec2/</guid>
       <description>&lt;p&gt;At the beginning of our journey to ML and cybersecurity, we need to lay the foundations for a good development environment that fits our needs. This is the tale of three different environments: Google Colaboratory (Colab), Jupyter Server launched from your terminal, and VS Code. In addition, we will discuss essential topics for development environments, such as handling secrets securely with Jupyter and &lt;code&gt;pyenv&lt;/code&gt; to manage multiple Python versions.&lt;/p&gt;
 &lt;h2 id=&#34;table-of-contents----omit-in-toc---&#34;&gt;Table of Contents &lt;!-- omit in toc --&gt;&lt;/h2&gt;
 &lt;p&gt;This blog is longer than the rest of the series. You do not have to read all parts since you can pick one development environment and can drill into that. The ToC below will help you read only what you need.&lt;/p&gt;
@@ -124,7 +282,7 @@
                /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_360a27ed56f67c8fbc8c40bd4b35a979.webp 400w,
                /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_eef976265e842e15cc2e919c11fb335e.webp 760w,
                /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_360a27ed56f67c8fbc8c40bd4b35a979.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_360a27ed56f67c8fbc8c40bd4b35a979.webp&#34;
                width=&#34;760&#34;
                height=&#34;473&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -255,7 +413,7 @@ The rest of the menus are pretty self-explanatory, like sharing files on Drive a
 &lt;figure  id=&#34;figure-jupyter-basics&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;hello jupyter&#34;
-           src=&#34;https://mundruid.github.io/post/mlsec2/images/helo_jupyter.gif&#34;
+           src=&#34;http://localhost:1313/post/mlsec2/images/helo_jupyter.gif&#34;
            loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;figcaption&gt;
       Jupyter Basics.
@@ -284,7 +442,7 @@ The rest of the menus are pretty self-explanatory, like sharing files on Drive a
                /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_e352855f9a89f6e59b6fb145d620fcb6.webp 400w,
                /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_026f65c6ce6375fc9b3b7fb03aeed541.webp 760w,
                /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_e352855f9a89f6e59b6fb145d620fcb6.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_e352855f9a89f6e59b6fb145d620fcb6.webp&#34;
                width=&#34;760&#34;
                height=&#34;184&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -323,7 +481,7 @@ The rest of the menus are pretty self-explanatory, like sharing files on Drive a
                /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_049401b78b7a319d9c38c9cec79c738a.webp 400w,
                /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_e72d45c08fad3276085ba8babfafe79a.webp 760w,
                /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_049401b78b7a319d9c38c9cec79c738a.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_049401b78b7a319d9c38c9cec79c738a.webp&#34;
                width=&#34;698&#34;
                height=&#34;169&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -473,9 +631,9 @@ If you loaded the correct kernel `python3_drx` you will see your &#34;not so sec
     
     <item>
       <title>Machine Learning Meets Cybersecurity</title>
-      <link>https://mundruid.github.io/post/mlsec1/</link>
+      <link>http://localhost:1313/post/mlsec1/</link>
       <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/mlsec1/</guid>
+      <guid>http://localhost:1313/post/mlsec1/</guid>
       <description>&lt;p&gt;Machine Learning (ML) and Cybersecurity, is this a match made in heaven or yet another tech hype? Indeed, this is an interesting combination worth exploring for the security professional who wants to solve their problems in a non-traditional manner or for the data scientist who wants to be involved in a significant impact area. Where does one start, though? This series of blogs aims to give you a roadmap, tools, inspiration, and technical knowledge to combine these two areas.&lt;/p&gt;
 &lt;p&gt;Nowadays, there is a lot of hype about Large Language Models (LLMs). However, fundamentals such as statistics and traditional ML concepts, such as embeddings, are the foundations on which these models have been based. Learning about those fundamentals leads to a better understanding of today&amp;rsquo;s technologies.&lt;/p&gt;
 &lt;p&gt;This is a blog series that has been inspired by my personal background as a researcher. I enjoy both the ML and Cybersecurity areas and find it difficult to choose one over the other. I am passionate about conveying knowledge, especially theory and math, in an intuitive manner.&lt;/p&gt;
@@ -503,7 +661,7 @@ If you loaded the correct kernel `python3_drx` you will see your &#34;not so sec
                /post/mlsec1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_d9f846d99cb6149eeb88b5a942f8b8ec.webp 400w,
                /post/mlsec1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_02f79fa6331bb7bcae8e54c2579e1489.webp 760w,
                /post/mlsec1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_d9f846d99cb6149eeb88b5a942f8b8ec.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_d9f846d99cb6149eeb88b5a942f8b8ec.webp&#34;
                width=&#34;657&#34;
                height=&#34;382&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -594,49 +752,49 @@ There is some intersection between Cybersecurity and ML that helps make the lear
     
     <item>
       <title>Introduction to a Telemetry Stack - Part 3</title>
-      <link>https://mundruid.github.io/post/alerting/</link>
+      <link>http://localhost:1313/post/alerting/</link>
       <pubDate>Tue, 19 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/alerting/</guid>
+      <guid>http://localhost:1313/post/alerting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Forecasting the Network</title>
-      <link>https://mundruid.github.io/post/pandas3/</link>
+      <link>http://localhost:1313/post/pandas3/</link>
       <pubDate>Sun, 13 Mar 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas3/</guid>
+      <guid>http://localhost:1313/post/pandas3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Exploratory Data Analysis for Network Traffic</title>
-      <link>https://mundruid.github.io/post/pandas2/</link>
+      <link>http://localhost:1313/post/pandas2/</link>
       <pubDate>Thu, 13 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas2/</guid>
+      <guid>http://localhost:1313/post/pandas2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jupyter Notebooks for Development</title>
-      <link>https://mundruid.github.io/post/jupyter/</link>
+      <link>http://localhost:1313/post/jupyter/</link>
       <pubDate>Sat, 13 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/jupyter/</guid>
+      <guid>http://localhost:1313/post/jupyter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to Pandas for Network Development</title>
-      <link>https://mundruid.github.io/post/pandas1/</link>
+      <link>http://localhost:1313/post/pandas1/</link>
       <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas1/</guid>
+      <guid>http://localhost:1313/post/pandas1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to PromQL</title>
-      <link>https://mundruid.github.io/post/promql/</link>
+      <link>http://localhost:1313/post/promql/</link>
       <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/promql/</guid>
+      <guid>http://localhost:1313/post/promql/</guid>
       <description></description>
     </item>
     

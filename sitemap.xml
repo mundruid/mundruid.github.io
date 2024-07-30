@@ -2,191 +2,195 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://mundruid.github.io/post/mlsec2/</loc>
+    <loc>http://localhost:1313/post/</loc>
+    <lastmod>2024-07-29T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>http://localhost:1313/post/mlsec3/</loc>
+    <lastmod>2024-07-29T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>http://localhost:1313/post/mlsec2/</loc>
     <lastmod>2024-06-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/post/</loc>
-    <lastmod>2024-06-26T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://mundruid.github.io/post/mlsec1/</loc>
+    <loc>http://localhost:1313/post/mlsec1/</loc>
     <lastmod>2024-06-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/talk/decoding-cybersecurity-data-a-journey-through-ml-and-ai-innovations/</loc>
+    <loc>http://localhost:1313/talk/decoding-cybersecurity-data-a-journey-through-ml-and-ai-innovations/</loc>
     <lastmod>2024-05-17T17:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/event/</loc>
+    <loc>http://localhost:1313/event/</loc>
     <lastmod>2024-05-17T17:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/talk/feature-engineering-art-and-science/</loc>
+    <loc>http://localhost:1313/talk/feature-engineering-art-and-science/</loc>
     <lastmod>2024-03-14T17:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/talk/harnessing-ml-and-ai-for-next-gen-security-engineering/</loc>
+    <loc>http://localhost:1313/talk/harnessing-ml-and-ai-for-next-gen-security-engineering/</loc>
     <lastmod>2023-10-07T12:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tag/cybersecurity/</loc>
+    <loc>http://localhost:1313/tag/cybersecurity/</loc>
     <lastmod>2023-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/project/cyber-ml/</loc>
+    <loc>http://localhost:1313/project/cyber-ml/</loc>
     <lastmod>2023-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tag/machine-learning/</loc>
+    <loc>http://localhost:1313/tag/machine-learning/</loc>
     <lastmod>2023-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tag/network-security/</loc>
+    <loc>http://localhost:1313/tag/network-security/</loc>
     <lastmod>2023-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/project/</loc>
+    <loc>http://localhost:1313/project/</loc>
     <lastmod>2023-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2023-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/talk/level-up-your-data-science-workflows-with-vs-code-jupyter-and-chatgpt/</loc>
+    <loc>http://localhost:1313/talk/level-up-your-data-science-workflows-with-vs-code-jupyter-and-chatgpt/</loc>
     <lastmod>2023-02-23T18:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2022-10-24T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/talk/iot-spy-observability-and-alerting-for-internet-of-things-iot-security/</loc>
+    <loc>http://localhost:1313/talk/iot-spy-observability-and-alerting-for-internet-of-things-iot-security/</loc>
     <lastmod>2022-08-27T13:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/category/blog/</loc>
+    <loc>http://localhost:1313/category/blog/</loc>
     <lastmod>2022-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
     <lastmod>2022-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tag/data-analytics/</loc>
+    <loc>http://localhost:1313/tag/data-analytics/</loc>
     <lastmod>2022-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/post/alerting/</loc>
+    <loc>http://localhost:1313/post/alerting/</loc>
     <lastmod>2022-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tag/network/</loc>
+    <loc>http://localhost:1313/tag/network/</loc>
     <lastmod>2022-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tag/pandas/</loc>
+    <loc>http://localhost:1313/tag/pandas/</loc>
     <lastmod>2022-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tag/traffic/</loc>
+    <loc>http://localhost:1313/tag/traffic/</loc>
     <lastmod>2022-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/post/pandas3/</loc>
+    <loc>http://localhost:1313/post/pandas3/</loc>
     <lastmod>2022-03-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/post/pandas2/</loc>
+    <loc>http://localhost:1313/post/pandas2/</loc>
     <lastmod>2022-01-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tag/jupyter/</loc>
+    <loc>http://localhost:1313/tag/jupyter/</loc>
     <lastmod>2021-11-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/post/jupyter/</loc>
+    <loc>http://localhost:1313/post/jupyter/</loc>
     <lastmod>2021-11-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tag/poetry/</loc>
+    <loc>http://localhost:1313/tag/poetry/</loc>
     <lastmod>2021-11-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/project/iot-metrics/</loc>
+    <loc>http://localhost:1313/project/iot-metrics/</loc>
     <lastmod>2021-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tag/security-metrics/</loc>
+    <loc>http://localhost:1313/tag/security-metrics/</loc>
     <lastmod>2021-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tag/telemetry/</loc>
+    <loc>http://localhost:1313/tag/telemetry/</loc>
     <lastmod>2021-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/talk/iot-spy-security-metrics-for-smart-devices-with-telegraf-influxdb-and-grafana/</loc>
+    <loc>http://localhost:1313/talk/iot-spy-security-metrics-for-smart-devices-with-telegraf-influxdb-and-grafana/</loc>
     <lastmod>2021-06-01T13:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/post/pandas1/</loc>
+    <loc>http://localhost:1313/post/pandas1/</loc>
     <lastmod>2021-05-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tag/automation/</loc>
+    <loc>http://localhost:1313/tag/automation/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/post/promql/</loc>
+    <loc>http://localhost:1313/post/promql/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tag/promql/</loc>
+    <loc>http://localhost:1313/tag/promql/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/tag/time-series-database/</loc>
+    <loc>http://localhost:1313/tag/time-series-database/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/publication-type/1/</loc>
+    <loc>http://localhost:1313/publication-type/1/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/publication/iot_security_metrics/</loc>
+    <loc>http://localhost:1313/publication/iot_security_metrics/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/publication_types/</loc>
+    <loc>http://localhost:1313/publication_types/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/publication/</loc>
+    <loc>http://localhost:1313/publication/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/publication/cyberhunt2019/</loc>
+    <loc>http://localhost:1313/publication/cyberhunt2019/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/talk/testing-your-python-code/</loc>
+    <loc>http://localhost:1313/talk/testing-your-python-code/</loc>
     <lastmod>2020-11-01T13:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/talk/security-metrics-is-this-even-possible/</loc>
+    <loc>http://localhost:1313/talk/security-metrics-is-this-even-possible/</loc>
     <lastmod>2019-11-01T13:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/slides/</loc>
+    <loc>http://localhost:1313/slides/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/slides/example/</loc>
+    <loc>http://localhost:1313/slides/example/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://mundruid.github.io/home/</loc>
+    <loc>http://localhost:1313/home/</loc>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>

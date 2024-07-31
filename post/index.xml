@@ -5,7 +5,7 @@
     <link>https://mundruid.github.io/post/</link>
       <atom:link href="https://mundruid.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Mon, 29 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Wed, 31 Jul 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
@@ -15,10 +15,10 @@
     <item>
       <title>Show me the data (part 1)</title>
       <link>https://mundruid.github.io/post/mlsec3/</link>
-      <pubDate>Mon, 29 Jul 2024 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 31 Jul 2024 00:00:00 +0000</pubDate>
       <guid>https://mundruid.github.io/post/mlsec3/</guid>
       <description>&lt;p&gt;You have probably heard this saying many times before: &amp;ldquo;Garbage in, garbage out&amp;rdquo;. This is a big deal in machine learning projects and even more in ML cybersecurity projects because the model can only be as good as the data you input to it. That is why the first pillar of this ML cybersecurity series is about data. Data collection, preparation, and cleanup are important parts of an ML project, and we will dedicate three blogs to these topics.&lt;/p&gt;
-&lt;p&gt;You will find the code from this blog in the notebook &lt;a href=&#34;hcyber_ml/blog_show_data_1.ipynb&#34;&gt;blog_show_data_1.ipynb&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You will find the code from this blog in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blob/main/cyber_ml/blog_show_data_1.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_show_data_1.ipynb&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
 &lt;h3 id=&#34;why&#34;&gt;Why?&lt;/h3&gt;
 &lt;p&gt;First, we need to have a good dataset to build ML models around it. What makes a good dataset?&lt;/p&gt;

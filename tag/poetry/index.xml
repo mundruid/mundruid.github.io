@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Poetry | Xenia Mountrouidou (DrX)</title>
-    <link>http://localhost:42921/tag/poetry/</link>
-      <atom:link href="http://localhost:42921/tag/poetry/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://mundruid.github.io/tag/poetry/</link>
+      <atom:link href="https://mundruid.github.io/tag/poetry/index.xml" rel="self" type="application/rss+xml" />
     <description>Poetry</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Sat, 13 Nov 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://localhost:42921/media/icon_hu2303159163448247487.png</url>
+      <url>https://mundruid.github.io/media/icon_hu2303159163448247487.png</url>
       <title>Poetry</title>
-      <link>http://localhost:42921/tag/poetry/</link>
+      <link>https://mundruid.github.io/tag/poetry/</link>
     </image>
     
     <item>
       <title>Jupyter Notebooks for Development</title>
-      <link>http://localhost:42921/post/jupyter/</link>
+      <link>https://mundruid.github.io/post/jupyter/</link>
       <pubDate>Sat, 13 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:42921/post/jupyter/</guid>
+      <guid>https://mundruid.github.io/post/jupyter/</guid>
       <description></description>
     </item>
     

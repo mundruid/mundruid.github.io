@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Homes | Xenia Mountrouidou (DrX)</title>
-    <link>http://localhost:42921/home/</link>
-      <atom:link href="http://localhost:42921/home/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://mundruid.github.io/home/</link>
+      <atom:link href="https://mundruid.github.io/home/index.xml" rel="self" type="application/rss+xml" />
     <description>Homes</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language>
     <image>
-      <url>http://localhost:42921/media/icon_hu2303159163448247487.png</url>
+      <url>https://mundruid.github.io/media/icon_hu2303159163448247487.png</url>
       <title>Homes</title>
-      <link>http://localhost:42921/home/</link>
+      <link>https://mundruid.github.io/home/</link>
     </image>
     
   </channel>

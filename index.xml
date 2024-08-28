@@ -15,7 +15,7 @@
     <item>
       <title>Show me the data (part 2)</title>
       <link>http://localhost:1313/post/mlsec4/</link>
-      <pubDate>Wed, 28 Aug 2024 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 27 Aug 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/post/mlsec4/</guid>
       <description>&lt;p&gt;Data collection, preparation, and cleaning take up to 80%–90% of time for an ML project. Therefore, it is not surprising that we need to cover it on multiple blogs.&lt;/p&gt;
 &lt;p&gt;In the first part, we talked mainly about theory: how we collect data from our systems and how we store it. We introduced data parsing using logs. In this second part, we will analyze more code examples useful for plain text parsing and packet capture. In addition, it is time to introduce the &lt;code&gt;pandas&lt;/code&gt; library for structuring our data. We start with the 1,000-foot view and then dive deep into it.&lt;/p&gt;

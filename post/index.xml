@@ -5,7 +5,7 @@
     <link>http://localhost:1313/post/</link>
       <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Wed, 28 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 27 Aug 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://localhost:1313/media/icon_hu2303159163448247487.png</url>
       <title>Posts</title>
@@ -15,11 +15,11 @@
     <item>
       <title>Show me the data (part 2)</title>
       <link>http://localhost:1313/post/mlsec4/</link>
-      <pubDate>Wed, 28 Aug 2024 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 27 Aug 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/post/mlsec4/</guid>
       <description>&lt;p&gt;Data collection, preparation, and cleaning take up to 80%–90% of time for an ML project. Therefore, it is not surprising that we need to cover it on multiple blogs.&lt;/p&gt;
 &lt;p&gt;In the first part, we talked mainly about theory: how we collect data from our systems and how we store it. We introduced data parsing using logs. In this second part, we will analyze more code examples useful for plain text parsing and packet capture. In addition, it is time to introduce the &lt;code&gt;pandas&lt;/code&gt; library for structuring our data. We start with the 1,000-foot view and then dive deep into it.&lt;/p&gt;
-&lt;p&gt;You will find the code from this blog in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blog_show_data_2.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_show_data_2.ipynb&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You will find the code from this blog in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blob/main/cyber_ml/blog_show_data_2.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_show_data_2.ipynb&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
 &lt;p&gt;Our roadmap of what is covered is listed below.&lt;/p&gt;
 &lt;div class=&#34;markmap&#34; style=&#34;height: 500px;&#34;&gt;

@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Projects | Xenia Mountrouidou (DrX)</title>
-    <link>https://mundruid.github.io/project/</link>
-      <atom:link href="https://mundruid.github.io/project/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:1313/project/</link>
+      <atom:link href="http://localhost:1313/project/index.xml" rel="self" type="application/rss+xml" />
     <description>Projects</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Wed, 27 Sep 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://mundruid.github.io/media/icon_hu2303159163448247487.png</url>
+      <url>http://localhost:1313/media/icon_hu2303159163448247487.png</url>
       <title>Projects</title>
-      <link>https://mundruid.github.io/project/</link>
+      <link>http://localhost:1313/project/</link>
     </image>
     
     <item>
       <title>Decoding cybersecurity data with ML and AI</title>
-      <link>https://mundruid.github.io/project/cyber-ml/</link>
+      <link>http://localhost:1313/project/cyber-ml/</link>
       <pubDate>Wed, 27 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/project/cyber-ml/</guid>
+      <guid>http://localhost:1313/project/cyber-ml/</guid>
       <description>&lt;p&gt;The next generation of cybersecurity engineers will be data engineers who happen to specialize in cybersecurity. This talk aims at showing how cybersecurity engineers can benefit from today’s technology to make sense of the sea of data that they are gathering. Currently, we are constantly bombarded with information about GPT, ML, AI, and a variety of abbreviations. The question is, though, how can we as cybersecurity engineers capitalize on these tools? I will answer this question with a concrete example of the usage of ML and AI from the perspective of a cybersecurity researcher. The goal of this project is to invent creative ways of deciphering cybersecurity data with ML and AI.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>IoT Security Metrics</title>
-      <link>https://mundruid.github.io/project/iot-metrics/</link>
+      <link>http://localhost:1313/project/iot-metrics/</link>
       <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/project/iot-metrics/</guid>
+      <guid>http://localhost:1313/project/iot-metrics/</guid>
       <description>&lt;p&gt;We cannot improve what we cannot measure (Kelvin). How does one quantify the absence of an adversary, a fault, or a weakness in a system? How can we define objective, repeatable, and reproducible metrics that evaluate the security of a network? This task is more complex at a time that the face of networking is changing by interconnecting devices such as webcameras, locks, and lights. These exciting and difficult questions are part of my work in quantitative security evaluation. I analyze data, create predictive models, and stream telemetry with modern open source tools.&lt;/p&gt;
 </description>
     </item>

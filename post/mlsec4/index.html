@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<!-- This site was created with Hugo Blox. https://hugoblox.com -->
+<!-- Last Published: August 28, 2024 --><html lang="en-us" >
+
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Hugo Blox Builder 5.9.7" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css" integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.css" integrity="" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.css" />
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/github-light.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+  <meta name="author" content="Xenia Mountrouidou" />
+
+
+
+
+
+  
+
+<meta name="description" content="Data collection, preparation, and cleaning take up to 80%–90% of time for an ML project. Therefore, it is not surprising that we need to cover it on multiple blogs.
+In the first part, we talked mainly about theory: how we collect data from our systems and how we store it." />
+
+
+
+<link rel="alternate" hreflang="en-us" href="http://localhost:1313/post/mlsec4/" />
+<link rel="canonical" href="http://localhost:1313/post/mlsec4/" />
+
+
+
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+
+
+<link rel="icon" type="image/png" href="/media/icon_hu5911528655848095612.png" />
+<link rel="apple-touch-icon" type="image/png" href="/media/icon_hu17812510060762311910.png" />
+
+<meta name="theme-color" content="#1565c0" />
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<meta property="twitter:card" content="summary_large_image" />
+
+  <meta property="twitter:site" content="@GetResearchDev" />
+  <meta property="twitter:creator" content="@GetResearchDev" />
+<meta property="twitter:image" content="http://localhost:1313/post/mlsec4/featured.png" />
+
+
+
+  
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Xenia Mountrouidou (DrX)" />
+<meta property="og:url" content="http://localhost:1313/post/mlsec4/" />
+<meta property="og:title" content="Show me the data (part 2) | Xenia Mountrouidou (DrX)" />
+<meta property="og:description" content="Data collection, preparation, and cleaning take up to 80%–90% of time for an ML project. Therefore, it is not surprising that we need to cover it on multiple blogs.
+In the first part, we talked mainly about theory: how we collect data from our systems and how we store it." /><meta property="og:image" content="http://localhost:1313/post/mlsec4/featured.png" /><meta property="og:locale" content="en-us" />
+
+  
+    <meta
+      property="article:published_time"
+      content="2024-08-28T00:00:00&#43;00:00"
+    />
+  
+  
+    <meta property="article:modified_time" content="2024-08-28T00:00:00&#43;00:00">
+  
+
+
+
+
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/post/mlsec4/"
+  },
+  "headline": "Show me the data (part 2)",
+  
+  "image": [
+    "http://localhost:1313/post/mlsec4/featured.png"
+  ],
+  
+  "datePublished": "2024-08-28T00:00:00Z",
+  "dateModified": "2024-08-28T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Xenia Mountrouidou"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Xenia Mountrouidou (DrX)",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/media/icon_hu8816255159246133925.png"
+    }
+  },
+  "description": "Data collection, preparation, and cleaning take up to 80%–90% of time for an ML project. Therefore, it is not surprising that we need to cover it on multiple blogs.\nIn the first part, we talked mainly about theory: how we collect data from our systems and how we store it."
+}
+</script>
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+
+
+  
+  <title>Show me the data (part 2) | Xenia Mountrouidou (DrX)</title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="ed43e7de8e54408165f8e7e8874834f4" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header header--fixed">
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">Xenia Mountrouidou (DrX)</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">Xenia Mountrouidou (DrX)</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Posts</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Projects</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#talks"><span>Talks</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#featured"><span>Publications</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+        
+
+        
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+<div class="article-container pt-3">
+  <h1>Show me the data (part 2)</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Aug 28, 2024
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    6 min read
+  </span>
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 720px;">
+  <div style="position: relative">
+    <img src="/post/mlsec4/featured_hu17119400876238876957.webp" width="720" height="720" alt="" class="featured-image">
+    <span class="article-header-caption">Image credit: <a href="https://hackersbyrez0.com/" target="_blank" rel="noopener">https://hackersbyrez0.com/</a></span>
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>Data collection, preparation, and cleaning take up to 80%–90% of time for an ML project. Therefore, it is not surprising that we need to cover it on multiple blogs.</p>
+<p>In the first part, we talked mainly about theory: how we collect data from our systems and how we store it. We introduced data parsing using logs. In this second part, we will analyze more code examples useful for plain text parsing and packet capture. In addition, it is time to introduce the <code>pandas</code> library for structuring our data. We start with the 1,000-foot view and then dive deep into it.</p>
+<p>You will find the code from this blog in the notebook <a href="https://github.com/mundruid/cyber-ml/blob/main/cyber_ml/blog_show_data_2.ipynb" target="_blank" rel="noopener">blog_show_data_2.ipynb</a>.</p>
+<h2 id="1000-ft-view">1,000 ft view</h2>
+<p>Our roadmap of what is covered is listed below.</p>
+<div class="markmap" style="height: 500px;">
+
+<pre>- Cybersecurity Data
+    - Logs/Events (part 1)
+        - syslog
+        - server log
+        - host event logs
+    - Pandas (we are here)
+    - Unstructured text
+        - domains
+        - urls
+    - Binaries
+    - Traces (part 3)
+        - pcaps
+        - netflow</pre>
+</div>
+
+<h2 id="pandas">Pandas</h2>
+<p>The most prevalent tool that data scientists use is the <a href="https://pandas.pydata.org/" target="_blank" rel="noopener">Pandas</a> library. The Pandas library implements a data structure called a &ldquo;<a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html" target="_blank" rel="noopener">DataFrame</a>&rdquo; that is used to organize data in Excel-style tables.
+The columns of the Dataframe are called <a href="https://pandas.pydata.org/docs/reference/series.html" target="_blank" rel="noopener">Series</a> and represent another data structure that is handy for organizing data in single-column, multi-row arrays. DataFrames are composed of concatenated Series.</p>
+<p>The first reason that Pandas is the go-to tool for ML is that it offers a clean way to organize large amounts of data in an efficient structure. The second reason is the Pandas <a href="https://pandas.pydata.org/docs/reference/index.html" target="_blank" rel="noopener">API</a>, i.e., their functions, which offer a versatile amount of operations to be done on the data. We will be using Pandas a lot; therefore, I will discuss some of their basic functions here.</p>
+<h3 id="pandas-basics">Pandas basics</h3>
+<p>Let&rsquo;s start with an example of how to read your csv with one line of code:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mirai</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;../data/blog_show_data/mirai.csv&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">mirai</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-mirai-pcap-in-pandas-dataframe">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="mirai" srcset="
+               /post/mlsec4/images/mirai_hu6603507532915231467.webp 400w,
+               /post/mlsec4/images/mirai_hu15694640737456743935.webp 760w,
+               /post/mlsec4/images/mirai_hu7293592180343727819.webp 1200w"
+               src="/post/mlsec4/images/mirai_hu6603507532915231467.webp"
+               width="760"
+               height="220"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Mirai pcap in Pandas DataFrame
+    </figcaption></figure>
+</p>
+<p>You can access individual columns of your Dataframe that as explained above are another type of data structure, <code>pandas.core.series.Series</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">mirai_series</span> <span class="o">=</span> <span class="n">mirai</span><span class="p">[</span><span class="s2">&#34;Source&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">type</span><span class="p">(</span><span class="n">mirai_series</span><span class="p">)</span>
+</span></span></code></pre></div><p>You may also access a subset of the rows of the dataframe with indexing, <code>[start_row:end_row]</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">mirai</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-first-three-rows-in-pandas-dataframe">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="three_rows" srcset="
+               /post/mlsec4/images/three_rows_hu3835206418734138048.webp 400w,
+               /post/mlsec4/images/three_rows_hu11180988470985749718.webp 760w,
+               /post/mlsec4/images/three_rows_hu3529052503048681052.webp 1200w"
+               src="/post/mlsec4/images/three_rows_hu3835206418734138048.webp"
+               width="760"
+               height="83"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      First three rows in Pandas DataFrame
+    </figcaption></figure>
+</p>
+<p>You can access a part of the rows and a subset of the columns of a Dataframe with the code below, where we access rows 10-20 and the second, seventh, third, and eighth columns:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">mirai</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]</span>
+</span></span></code></pre></div><!-- TODO: add pic -->
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-first-ten-rows-and-columns-2-7-3-8-in-pandas-dataframe">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="rows_columns" srcset="
+               /post/mlsec4/images/rows_columns_hu10379358319826704657.webp 400w,
+               /post/mlsec4/images/rows_columns_hu5908625773689013864.webp 760w,
+               /post/mlsec4/images/rows_columns_hu12574351031847856112.webp 1200w"
+               src="/post/mlsec4/images/rows_columns_hu10379358319826704657.webp"
+               width="404"
+               height="283"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      First ten rows and columns 2, 7, 3, 8 in Pandas DataFrame
+    </figcaption></figure>
+</p>
+<p>Finally, one of my favorite access functions is to use a condition to access specific rows, as in the code below where we access rows with packet length greater than 512:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">mirai_data</span><span class="p">[</span><span class="n">mirai_data</span><span class="p">[</span><span class="s2">&#34;Length&#34;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">512</span><span class="p">]</span>
+</span></span></code></pre></div><p>You can also perform some pretty neat aggregations. For example, sum all the packet lengths for specific Source IP and Destination Port pairs from rows 0-990:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">mirai_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;Source&#34;</span><span class="p">,</span> <span class="s2">&#34;Dest Port&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s2">&#34;Length&#34;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">990</span><span class="p">]</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-group-columns-source-ip-and-destination-port-then-add-packet-lengths">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="group_columns" srcset="
+               /post/mlsec4/images/group_columns_hu5827145033248828252.webp 400w,
+               /post/mlsec4/images/group_columns_hu17035286994042936820.webp 760w,
+               /post/mlsec4/images/group_columns_hu4405365811436287244.webp 1200w"
+               src="/post/mlsec4/images/group_columns_hu5827145033248828252.webp"
+               width="352"
+               height="263"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Group columns Source IP and Destination Port, then add packet lengths
+    </figcaption></figure>
+</p>
+<h3 id="tips">Tips</h3>
+<p>Here are my three tips for Pandas that I learned the hard way:</p>
+<ol>
+<li>Use the <a href="https://pandas.pydata.org/docs/reference/index.html" target="_blank" rel="noopener">API</a> documentation and functions when you can. Before you build something, check if there is a function for it.</li>
+<li>Use lambda functions instead of regular for loops. I will dedicate a part of my exploratory data analysis blogs to this and show you the way I approach lambdas.</li>
+<li>Be particularly cognizant when you are modifying the shape or index of your Pandas structures, particularly dataframes. More examples will come your way when we explore the data!</li>
+</ol>
+<p>One of my favorite tutorials for Pandas is <a href="https://betterprogramming.pub/pandas-illustrated-the-definitive-visual-guide-to-pandas-c31fa921a43" target="_blank" rel="noopener">Illustrated Pandas</a>.</p>
+<h2 id="text">Text</h2>
+<p>We just discussed syslog parsing; however, there are other forms of text. Here again, I take the approach: if there is a Python package, use it and do not reinvent the wheel.</p>
+<h3 id="domains">Domains</h3>
+<p>My go-to Python library for domains is <a href="https://pypi.org/project/tldextract/" target="_blank" rel="noopener">tldextract</a> because it is a simple way to parse your domain without having to use regular expressions.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tldextract</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">legit_domains</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;../data/blog_show_data/top-1m.csv&#34;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;domain&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">legit_domains</span><span class="p">[</span><span class="s2">&#34;tld&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">tldextract</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">domain</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">legit_domains</span><span class="p">[</span><span class="s2">&#34;domain&#34;</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">legit_domains</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-tlds">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="tlds" srcset="
+               /post/mlsec4/images/tlds_hu790029103896093845.webp 400w,
+               /post/mlsec4/images/tlds_hu15958999827119083424.webp 760w,
+               /post/mlsec4/images/tlds_hu9185760546577765967.webp 1200w"
+               src="/post/mlsec4/images/tlds_hu790029103896093845.webp"
+               width="325"
+               height="341"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      TLDs
+    </figcaption></figure>
+</p>
+<p>In this example, I am reading a file with 1 million domains and extracting the top-level domain and subdomain.</p>
+<h3 id="urls">URLs</h3>
+<p>If you have payloads with urls, a great package to use is <a href="https://github.com/lipoja/URLExtract" target="_blank" rel="noopener">urlextract</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">urlextract</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create an instance of URLExtract class</span>
+</span></span><span class="line"><span class="cl"><span class="n">url_extractor</span> <span class="o">=</span> <span class="n">urlextract</span><span class="o">.</span><span class="n">URLExtract</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Sample text containing URLs to be extracted</span>
+</span></span><span class="line"><span class="cl"><span class="n">dns_payload</span> <span class="o">=</span> <span class="s2">&#34;www.googleadservices.com: type A, class IN, addr 142.251.32.194&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Extract URLs from the given text</span>
+</span></span><span class="line"><span class="cl"><span class="n">extracted_urls</span> <span class="o">=</span> <span class="n">url_extractor</span><span class="o">.</span><span class="n">find_urls</span><span class="p">(</span><span class="n">dns_payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Extracted URLs: &#34;</span><span class="p">,</span> <span class="n">extracted_urls</span><span class="p">)</span>
+</span></span></code></pre></div><p>In this example, I extracted the url from a DNS payload.</p>
+<h2 id="binaries">Binaries</h2>
+<p>Most malware comes in binary form. There are a lot of libraries in Python used to load your binary data. However, I strongly recommend not reinventing the wheel, since there are sandboxes that can analyze these binaries and give you the metadata that you need. I personally have used the following to generate metadata that is structured and easy to process with ML:</p>
+<ul>
+<li><a href="https://cuckoosandbox.org/" target="_blank" rel="noopener">Cuckoo</a>: After you upload any binary file, Cuckoo generates a complete report that is structured in JSON and contains packet captures for further analysis. You can set it up locally or use their Cuckoo public server.</li>
+<li><a href="https://github.com/danieluhricek/LiSa" target="_blank" rel="noopener">LiSa</a>: Along the same lines, LiSa generates a JSON report and pcaps for analyzed elf files. However, you will either need to set up the containers locally or ask for an account from <a href="https://elfdigest.com/" target="_blank" rel="noopener">ELF Digest</a>). LiSa is great for IoT malware analysis, and it has an API, so if you setup the containers, you can use the API to automate your analysis process.</li>
+<li><a href="https://mobsf.github.io/docs/#/" target="_blank" rel="noopener">MobSF</a>:  The Mobile Security Framework is great for analyzing APKs. You can use the <a href="https://mobsf.live/" target="_blank" rel="noopener">MobSF server</a> or a local installation. It includes an API and generates metadata in the form of PDF reports that can be analyzed with Python.</li>
+</ul>
+<h2 id="recap">Recap</h2>
+<p>In this blog, we have reviewed Pandas, an important data structure for processing data. In addition, we explored two more categories of cybersecurity data: text and binary. I saved the best for last; we will review network data analysis tools in the last blog on cybersecurity data.</p>
+<p>&ndash; Xenia</p>
+<h2 id="going-even-deeper">Going Even Deeper</h2>
+<p>Code examples for this blog can be found in <a href="https://github.com/mundruid/cyber-ml" target="_blank" rel="noopener">cyber-ml</a> repo.</p>
+<p>Python libraries for binary analysis:</p>
+<ul>
+<li><a href="https://github.com/eliben/pyelftools" target="_blank" rel="noopener">pyelftools</a>: analysis for ELF files.</li>
+<li><a href="https://github.com/androguard/androguard" target="_blank" rel="noopener">Androguard</a>: reverses APKs.</li>
+<li><a href="https://github.com/radareorg/radare2" target="_blank" rel="noopener">radare2</a>: reverse engineering library.</li>
+<li><a href="https://github.com/VirusTotal/yara-python" target="_blank" rel="noopener">yara-python</a>: Python interface for YARA.</li>
+</ul>
+<p>Pandas favorites:</p>
+<ul>
+<li><a href="https://betterprogramming.pub/pandas-illustrated-the-definitive-visual-guide-to-pandas-c31fa921a43" target="_blank" rel="noopener">Illustrated Pandas</a></li>
+<li><a href="https://www.pandaszoo.com/" target="_blank" rel="noopener">Pandas tutorial</a></li>
+<li><a href="https://towardsdatascience.com/in-depth-pandas-tutorial-5d896483ba8a" target="_blank" rel="noopener">In depth Pandas tutorial</a></li>
+<li><a href="https://towardsdatascience.com/plotting-in-pandas-just-got-prettier-289d0e0fe5c0" target="_blank" rel="noopener">Plotting Pandas</a></li>
+</ul>
+<h3 id="did-you-find-this-page-helpful-consider-sharing-it-">Did you find this page helpful? Consider sharing it 🙌</h3>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fmlsec4%2F&amp;text=Show&#43;me&#43;the&#43;data&#43;%28part&#43;2%29" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fmlsec4%2F&amp;t=Show&#43;me&#43;the&#43;data&#43;%28part&#43;2%29" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a href="mailto:?subject=Show%20me%20the%20data%20%28part%202%29&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fmlsec4%2F" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fmlsec4%2F&amp;title=Show&#43;me&#43;the&#43;data&#43;%28part&#43;2%29" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Show&#43;me&#43;the&#43;data&#43;%28part&#43;2%29%20http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fmlsec4%2F" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fmlsec4%2F&amp;title=Show&#43;me&#43;the&#43;data&#43;%28part&#43;2%29" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="http://localhost:1313/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu1664448723929458404.png" alt="Xenia Mountrouidou"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="http://localhost:1313/">Xenia Mountrouidou</a></h5>
+      <h6 class="card-subtitle">Senior Security Researcher</h6>
+      <p class="card-text">Xenia Mountrouidou is a Senior Security Researcher at Cyber adAPT with versatile experience in academia and industry. She has over 10 years of research experience in network security, machine learning, and data analytics for computer networks. She enjoys researching novel intrusion detection techniques, finding interesting patterns with machine learning algorithms, and writing Python scripts to automate boring tasks. Her research interests revolve around network security, Internet of Things, intrusion detection, and machine learning.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=eDGTYRQAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/mundruid" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/xenia-mountrouidou-phd-13bbb1b/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2024 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://hugoblox.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Hugo Blox Builder</a> — the free, <a href="https://github.com/HugoBlox/hugo-blox-builder" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.js" integrity="" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+  <script src="/js/wowchemy-headroom.js" type="module"></script>
+<style>
+    .markmap > svg {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script>
+    window.markmap = {
+      autoLoader: {
+        manual: false,
+        onReady() {
+          const { autoLoader, builtInPlugins } = window.markmap;
+          
+          autoLoader.transformPlugins = builtInPlugins.filter(plugin => plugin.name !== 'prism');
+        },
+      },
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader"></script>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.js"></script>
+
+
+
+  <script src="/js/wowchemy-map.js" type="module"></script>
+
+
+
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <pre><code></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="/js/wowchemy-publication.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

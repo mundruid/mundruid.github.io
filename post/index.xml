@@ -2,21 +2,285 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts | Xenia Mountrouidou (DrX)</title>
-    <link>https://mundruid.github.io/post/</link>
-      <atom:link href="https://mundruid.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:1313/post/</link>
+      <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Wed, 31 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Wed, 28 Aug 2024 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://mundruid.github.io/media/icon_hu2303159163448247487.png</url>
+      <url>http://localhost:1313/media/icon_hu2303159163448247487.png</url>
       <title>Posts</title>
-      <link>https://mundruid.github.io/post/</link>
+      <link>http://localhost:1313/post/</link>
     </image>
     
     <item>
+      <title>Show me the data (part 2)</title>
+      <link>http://localhost:1313/post/mlsec4/</link>
+      <pubDate>Wed, 28 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/mlsec4/</guid>
+      <description>&lt;p&gt;Data collection, preparation, and cleaning take up to 80%–90% of time for an ML project. Therefore, it is not surprising that we need to cover it on multiple blogs.&lt;/p&gt;
+&lt;p&gt;In the first part, we talked mainly about theory: how we collect data from our systems and how we store it. We introduced data parsing using logs. In this second part, we will analyze more code examples useful for plain text parsing and packet capture. In addition, it is time to introduce the &lt;code&gt;pandas&lt;/code&gt; library for structuring our data. We start with the 1,000-foot view and then dive deep into it.&lt;/p&gt;
+&lt;p&gt;You will find the code from this blog in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blog_show_data_2.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_show_data_2.ipynb&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
+&lt;p&gt;Our roadmap of what is covered is listed below.&lt;/p&gt;
+&lt;div class=&#34;markmap&#34; style=&#34;height: 500px;&#34;&gt;
+
+&lt;pre&gt;- Cybersecurity Data
+    - Logs/Events (part 1)
+        - syslog
+        - server log
+        - host event logs
+    - Pandas (we are here)
+    - Unstructured text
+        - domains
+        - urls
+    - Binaries
+    - Traces (part 3)
+        - pcaps
+        - netflow&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&#34;pandas&#34;&gt;Pandas&lt;/h2&gt;
+&lt;p&gt;The most prevalent tool that data scientists use is the &lt;a href=&#34;https://pandas.pydata.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Pandas&lt;/a&gt; library. The Pandas library implements a data structure called a &amp;ldquo;&lt;a href=&#34;https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DataFrame&lt;/a&gt;&amp;rdquo; that is used to organize data in Excel-style tables.
+The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.org/docs/reference/series.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Series&lt;/a&gt; and represent another data structure that is handy for organizing data in single-column, multi-row arrays. DataFrames are composed of concatenated Series.&lt;/p&gt;
+&lt;p&gt;The first reason that Pandas is the go-to tool for ML is that it offers a clean way to organize large amounts of data in an efficient structure. The second reason is the Pandas &lt;a href=&#34;https://pandas.pydata.org/docs/reference/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;API&lt;/a&gt;, i.e., their functions, which offer a versatile amount of operations to be done on the data. We will be using Pandas a lot; therefore, I will discuss some of their basic functions here.&lt;/p&gt;
+&lt;h3 id=&#34;pandas-basics&#34;&gt;Pandas basics&lt;/h3&gt;
+&lt;p&gt;Let&amp;rsquo;s start with an example of how to read your csv with one line of code:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pandas&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pd&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read_csv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;../data/blog_show_data/mirai.csv&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-mirai-pcap-in-pandas-dataframe&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;mirai&#34; srcset=&#34;
+               /post/mlsec4/images/mirai_hu6603507532915231467.webp 400w,
+               /post/mlsec4/images/mirai_hu15694640737456743935.webp 760w,
+               /post/mlsec4/images/mirai_hu7293592180343727819.webp 1200w&#34;
+               src=&#34;http://localhost:1313/post/mlsec4/images/mirai_hu6603507532915231467.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;220&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Mirai pcap in Pandas DataFrame
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;You can access individual columns of your Dataframe that as explained above are another type of data structure, &lt;code&gt;pandas.core.series.Series&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai_series&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mirai&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Source&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mirai_series&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You may also access a subset of the rows of the dataframe with indexing, &lt;code&gt;[start_row:end_row]&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-first-three-rows-in-pandas-dataframe&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;three_rows&#34; srcset=&#34;
+               /post/mlsec4/images/three_rows_hu3835206418734138048.webp 400w,
+               /post/mlsec4/images/three_rows_hu11180988470985749718.webp 760w,
+               /post/mlsec4/images/three_rows_hu3529052503048681052.webp 1200w&#34;
+               src=&#34;http://localhost:1313/post/mlsec4/images/three_rows_hu3835206418734138048.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;83&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      First three rows in Pandas DataFrame
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;You can access a part of the rows and a subset of the columns of a Dataframe with the code below, where we access rows 10-20 and the second, seventh, third, and eighth columns:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;iloc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- TODO: add pic --&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-first-ten-rows-and-columns-2-7-3-8-in-pandas-dataframe&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;rows_columns&#34; srcset=&#34;
+               /post/mlsec4/images/rows_columns_hu10379358319826704657.webp 400w,
+               /post/mlsec4/images/rows_columns_hu5908625773689013864.webp 760w,
+               /post/mlsec4/images/rows_columns_hu12574351031847856112.webp 1200w&#34;
+               src=&#34;http://localhost:1313/post/mlsec4/images/rows_columns_hu10379358319826704657.webp&#34;
+               width=&#34;404&#34;
+               height=&#34;283&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      First ten rows and columns 2, 7, 3, 8 in Pandas DataFrame
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Finally, one of my favorite access functions is to use a condition to access specific rows, as in the code below where we access rows with packet length greater than 512:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mirai_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Length&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;512&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can also perform some pretty neat aggregations. For example, sum all the packet lengths for specific Source IP and Destination Port pairs from rows 0-990:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mirai_data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;groupby&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;([&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Source&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Dest Port&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Length&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;990&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-group-columns-source-ip-and-destination-port-then-add-packet-lengths&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;group_columns&#34; srcset=&#34;
+               /post/mlsec4/images/group_columns_hu5827145033248828252.webp 400w,
+               /post/mlsec4/images/group_columns_hu17035286994042936820.webp 760w,
+               /post/mlsec4/images/group_columns_hu4405365811436287244.webp 1200w&#34;
+               src=&#34;http://localhost:1313/post/mlsec4/images/group_columns_hu5827145033248828252.webp&#34;
+               width=&#34;352&#34;
+               height=&#34;263&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Group columns Source IP and Destination Port, then add packet lengths
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;tips&#34;&gt;Tips&lt;/h3&gt;
+&lt;p&gt;Here are my three tips for Pandas that I learned the hard way:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Use the &lt;a href=&#34;https://pandas.pydata.org/docs/reference/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;API&lt;/a&gt; documentation and functions when you can. Before you build something, check if there is a function for it.&lt;/li&gt;
+&lt;li&gt;Use lambda functions instead of regular for loops. I will dedicate a part of my exploratory data analysis blogs to this and show you the way I approach lambdas.&lt;/li&gt;
+&lt;li&gt;Be particularly cognizant when you are modifying the shape or index of your Pandas structures, particularly dataframes. More examples will come your way when we explore the data!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;One of my favorite tutorials for Pandas is &lt;a href=&#34;https://betterprogramming.pub/pandas-illustrated-the-definitive-visual-guide-to-pandas-c31fa921a43&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Illustrated Pandas&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;text&#34;&gt;Text&lt;/h2&gt;
+&lt;p&gt;We just discussed syslog parsing; however, there are other forms of text. Here again, I take the approach: if there is a Python package, use it and do not reinvent the wheel.&lt;/p&gt;
+&lt;h3 id=&#34;domains&#34;&gt;Domains&lt;/h3&gt;
+&lt;p&gt;My go-to Python library for domains is &lt;a href=&#34;https://pypi.org/project/tldextract/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tldextract&lt;/a&gt; because it is a simple way to parse your domain without having to use regular expressions.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;tldextract&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pandas&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pd&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;legit_domains&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read_csv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;../data/blog_show_data/top-1m.csv&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;names&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;domain&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;legit_domains&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;tld&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tldextract&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;extract&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;domain&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;d&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;legit_domains&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;domain&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;legit_domains&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-tlds&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;tlds&#34; srcset=&#34;
+               /post/mlsec4/images/tlds_hu790029103896093845.webp 400w,
+               /post/mlsec4/images/tlds_hu15958999827119083424.webp 760w,
+               /post/mlsec4/images/tlds_hu9185760546577765967.webp 1200w&#34;
+               src=&#34;http://localhost:1313/post/mlsec4/images/tlds_hu790029103896093845.webp&#34;
+               width=&#34;325&#34;
+               height=&#34;341&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      TLDs
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;In this example, I am reading a file with 1 million domains and extracting the top-level domain and subdomain.&lt;/p&gt;
+&lt;h3 id=&#34;urls&#34;&gt;URLs&lt;/h3&gt;
+&lt;p&gt;If you have payloads with urls, a great package to use is &lt;a href=&#34;https://github.com/lipoja/URLExtract&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;urlextract&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;urlextract&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Create an instance of URLExtract class&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;url_extractor&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;urlextract&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;URLExtract&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Sample text containing URLs to be extracted&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;dns_payload&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;www.googleadservices.com: type A, class IN, addr 142.251.32.194&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Extract URLs from the given text&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;extracted_urls&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;url_extractor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;find_urls&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dns_payload&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Extracted URLs: &amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;extracted_urls&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this example, I extracted the url from a DNS payload.&lt;/p&gt;
+&lt;h2 id=&#34;binaries&#34;&gt;Binaries&lt;/h2&gt;
+&lt;p&gt;Most malware comes in binary form. There are a lot of libraries in Python used to load your binary data. However, I strongly recommend not reinventing the wheel, since there are sandboxes that can analyze these binaries and give you the metadata that you need. I personally have used the following to generate metadata that is structured and easy to process with ML:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://cuckoosandbox.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Cuckoo&lt;/a&gt;: After you upload any binary file, Cuckoo generates a complete report that is structured in JSON and contains packet captures for further analysis. You can set it up locally or use their Cuckoo public server.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/danieluhricek/LiSa&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;LiSa&lt;/a&gt;: Along the same lines, LiSa generates a JSON report and pcaps for analyzed elf files. However, you will either need to set up the containers locally or ask for an account from &lt;a href=&#34;https://elfdigest.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ELF Digest&lt;/a&gt;). LiSa is great for IoT malware analysis, and it has an API, so if you setup the containers, you can use the API to automate your analysis process.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://mobsf.github.io/docs/#/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MobSF&lt;/a&gt;:  The Mobile Security Framework is great for analyzing APKs. You can use the &lt;a href=&#34;https://mobsf.live/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MobSF server&lt;/a&gt; or a local installation. It includes an API and generates metadata in the form of PDF reports that can be analyzed with Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;recap&#34;&gt;Recap&lt;/h2&gt;
+&lt;p&gt;In this blog, we have reviewed Pandas, an important data structure for processing data. In addition, we explored two more categories of cybersecurity data: text and binary. I saved the best for last; we will review network data analysis tools in the last blog on cybersecurity data.&lt;/p&gt;
+&lt;p&gt;&amp;ndash; Xenia&lt;/p&gt;
+&lt;h2 id=&#34;going-even-deeper&#34;&gt;Going Even Deeper&lt;/h2&gt;
+&lt;p&gt;Code examples for this blog can be found in &lt;a href=&#34;https://github.com/mundruid/cyber-ml&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;cyber-ml&lt;/a&gt; repo.&lt;/p&gt;
+&lt;p&gt;Python libraries for binary analysis:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/eliben/pyelftools&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pyelftools&lt;/a&gt;: analysis for ELF files.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/androguard/androguard&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Androguard&lt;/a&gt;: reverses APKs.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/radareorg/radare2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;radare2&lt;/a&gt;: reverse engineering library.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/VirusTotal/yara-python&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;yara-python&lt;/a&gt;: Python interface for YARA.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Pandas favorites:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://betterprogramming.pub/pandas-illustrated-the-definitive-visual-guide-to-pandas-c31fa921a43&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Illustrated Pandas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.pandaszoo.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Pandas tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://towardsdatascience.com/in-depth-pandas-tutorial-5d896483ba8a&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;In depth Pandas tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://towardsdatascience.com/plotting-in-pandas-just-got-prettier-289d0e0fe5c0&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Plotting Pandas&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;did-you-find-this-page-helpful-consider-sharing-it-&#34;&gt;Did you find this page helpful? Consider sharing it 🙌&lt;/h3&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Show me the data (part 1)</title>
-      <link>https://mundruid.github.io/post/mlsec3/</link>
+      <link>http://localhost:1313/post/mlsec3/</link>
       <pubDate>Wed, 31 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/mlsec3/</guid>
+      <guid>http://localhost:1313/post/mlsec3/</guid>
       <description>&lt;p&gt;You have probably heard this saying many times before: &amp;ldquo;Garbage in, garbage out&amp;rdquo;. This is a big deal in machine learning projects and even more in ML cybersecurity projects because the model can only be as good as the data you input to it. That is why the first pillar of this ML cybersecurity series is about data. Data collection, preparation, and cleanup are important parts of an ML project, and we will dedicate three blogs to these topics.&lt;/p&gt;
 &lt;p&gt;You will find the code from this blog in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blob/main/cyber_ml/blog_show_data_1.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_show_data_1.ipynb&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
@@ -172,9 +436,9 @@
     
     <item>
       <title>Building a bridge between ML and Cyber with a development environment</title>
-      <link>https://mundruid.github.io/post/mlsec2/</link>
+      <link>http://localhost:1313/post/mlsec2/</link>
       <pubDate>Wed, 26 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/mlsec2/</guid>
+      <guid>http://localhost:1313/post/mlsec2/</guid>
       <description>&lt;p&gt;At the beginning of our journey to ML and cybersecurity, we need to lay the foundations for a good development environment that fits our needs. This is the tale of three different environments: Google Colaboratory (Colab), Jupyter Server launched from your terminal, and VS Code. In addition, we will discuss essential topics for development environments, such as handling secrets securely with Jupyter and &lt;code&gt;pyenv&lt;/code&gt; to manage multiple Python versions.&lt;/p&gt;
 &lt;h2 id=&#34;table-of-contents----omit-in-toc---&#34;&gt;Table of Contents &lt;!-- omit in toc --&gt;&lt;/h2&gt;
 &lt;p&gt;This blog is longer than the rest of the series. You do not have to read all parts since you can pick one development environment and can drill into that. The ToC below will help you read only what you need.&lt;/p&gt;
@@ -282,7 +546,7 @@
                /post/mlsec2/images/hello_colab_hu14079509032743138904.webp 400w,
                /post/mlsec2/images/hello_colab_hu14077200871949603652.webp 760w,
                /post/mlsec2/images/hello_colab_hu14338933794883712126.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec2/images/hello_colab_hu14079509032743138904.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec2/images/hello_colab_hu14079509032743138904.webp&#34;
                width=&#34;760&#34;
                height=&#34;473&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -413,7 +677,7 @@ The rest of the menus are pretty self-explanatory, like sharing files on Drive a
 &lt;figure  id=&#34;figure-jupyter-basics&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;hello jupyter&#34;
-           src=&#34;https://mundruid.github.io/post/mlsec2/images/helo_jupyter.gif&#34;
+           src=&#34;http://localhost:1313/post/mlsec2/images/helo_jupyter.gif&#34;
            loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;figcaption&gt;
       Jupyter Basics.
@@ -442,7 +706,7 @@ The rest of the menus are pretty self-explanatory, like sharing files on Drive a
                /post/mlsec2/images/jupyter_env_hu15887431905156800928.webp 400w,
                /post/mlsec2/images/jupyter_env_hu17770051610722117802.webp 760w,
                /post/mlsec2/images/jupyter_env_hu15767195087121157447.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec2/images/jupyter_env_hu15887431905156800928.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec2/images/jupyter_env_hu15887431905156800928.webp&#34;
                width=&#34;760&#34;
                height=&#34;184&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -481,7 +745,7 @@ The rest of the menus are pretty self-explanatory, like sharing files on Drive a
                /post/mlsec2/images/restart_jupyter_hu12866283634190093853.webp 400w,
                /post/mlsec2/images/restart_jupyter_hu7454079972204997729.webp 760w,
                /post/mlsec2/images/restart_jupyter_hu5463740407822324788.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec2/images/restart_jupyter_hu12866283634190093853.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec2/images/restart_jupyter_hu12866283634190093853.webp&#34;
                width=&#34;698&#34;
                height=&#34;169&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -631,9 +895,9 @@ If you loaded the correct kernel `python3_drx` you will see your &#34;not so sec
     
     <item>
       <title>Machine Learning Meets Cybersecurity</title>
-      <link>https://mundruid.github.io/post/mlsec1/</link>
+      <link>http://localhost:1313/post/mlsec1/</link>
       <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/mlsec1/</guid>
+      <guid>http://localhost:1313/post/mlsec1/</guid>
       <description>&lt;p&gt;Machine Learning (ML) and Cybersecurity, is this a match made in heaven or yet another tech hype? Indeed, this is an interesting combination worth exploring for the security professional who wants to solve their problems in a non-traditional manner or for the data scientist who wants to be involved in a significant impact area. Where does one start, though? This series of blogs aims to give you a roadmap, tools, inspiration, and technical knowledge to combine these two areas.&lt;/p&gt;
 &lt;p&gt;Nowadays, there is a lot of hype about Large Language Models (LLMs). However, fundamentals such as statistics and traditional ML concepts, such as embeddings, are the foundations on which these models have been based. Learning about those fundamentals leads to a better understanding of today&amp;rsquo;s technologies.&lt;/p&gt;
 &lt;p&gt;This is a blog series that has been inspired by my personal background as a researcher. I enjoy both the ML and Cybersecurity areas and find it difficult to choose one over the other. I am passionate about conveying knowledge, especially theory and math, in an intuitive manner.&lt;/p&gt;
@@ -661,7 +925,7 @@ If you loaded the correct kernel `python3_drx` you will see your &#34;not so sec
                /post/mlsec1/images/Security-ML_hu14611670589039563762.webp 400w,
                /post/mlsec1/images/Security-ML_hu3190909061034653460.webp 760w,
                /post/mlsec1/images/Security-ML_hu12406407596204834386.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec1/images/Security-ML_hu14611670589039563762.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec1/images/Security-ML_hu14611670589039563762.webp&#34;
                width=&#34;657&#34;
                height=&#34;382&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -752,49 +1016,49 @@ There is some intersection between Cybersecurity and ML that helps make the lear
     
     <item>
       <title>Introduction to a Telemetry Stack - Part 3</title>
-      <link>https://mundruid.github.io/post/alerting/</link>
+      <link>http://localhost:1313/post/alerting/</link>
       <pubDate>Tue, 19 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/alerting/</guid>
+      <guid>http://localhost:1313/post/alerting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Forecasting the Network</title>
-      <link>https://mundruid.github.io/post/pandas3/</link>
+      <link>http://localhost:1313/post/pandas3/</link>
       <pubDate>Sun, 13 Mar 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas3/</guid>
+      <guid>http://localhost:1313/post/pandas3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Exploratory Data Analysis for Network Traffic</title>
-      <link>https://mundruid.github.io/post/pandas2/</link>
+      <link>http://localhost:1313/post/pandas2/</link>
       <pubDate>Thu, 13 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas2/</guid>
+      <guid>http://localhost:1313/post/pandas2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jupyter Notebooks for Development</title>
-      <link>https://mundruid.github.io/post/jupyter/</link>
+      <link>http://localhost:1313/post/jupyter/</link>
       <pubDate>Sat, 13 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/jupyter/</guid>
+      <guid>http://localhost:1313/post/jupyter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to Pandas for Network Development</title>
-      <link>https://mundruid.github.io/post/pandas1/</link>
+      <link>http://localhost:1313/post/pandas1/</link>
       <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas1/</guid>
+      <guid>http://localhost:1313/post/pandas1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to PromQL</title>
-      <link>https://mundruid.github.io/post/promql/</link>
+      <link>http://localhost:1313/post/promql/</link>
       <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/promql/</guid>
+      <guid>http://localhost:1313/post/promql/</guid>
       <description></description>
     </item>
     

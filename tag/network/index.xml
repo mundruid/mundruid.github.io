@@ -2,53 +2,53 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Network | Xenia Mountrouidou (DrX)</title>
-    <link>https://mundruid.github.io/tag/network/</link>
-      <atom:link href="https://mundruid.github.io/tag/network/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:1313/tag/network/</link>
+      <atom:link href="http://localhost:1313/tag/network/index.xml" rel="self" type="application/rss+xml" />
     <description>Network</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 19 Jul 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://mundruid.github.io/media/icon_hu2303159163448247487.png</url>
+      <url>http://localhost:1313/media/icon_hu2303159163448247487.png</url>
       <title>Network</title>
-      <link>https://mundruid.github.io/tag/network/</link>
+      <link>http://localhost:1313/tag/network/</link>
     </image>
     
     <item>
       <title>Introduction to a Telemetry Stack - Part 3</title>
-      <link>https://mundruid.github.io/post/alerting/</link>
+      <link>http://localhost:1313/post/alerting/</link>
       <pubDate>Tue, 19 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/alerting/</guid>
+      <guid>http://localhost:1313/post/alerting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Forecasting the Network</title>
-      <link>https://mundruid.github.io/post/pandas3/</link>
+      <link>http://localhost:1313/post/pandas3/</link>
       <pubDate>Sun, 13 Mar 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas3/</guid>
+      <guid>http://localhost:1313/post/pandas3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Exploratory Data Analysis for Network Traffic</title>
-      <link>https://mundruid.github.io/post/pandas2/</link>
+      <link>http://localhost:1313/post/pandas2/</link>
       <pubDate>Thu, 13 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas2/</guid>
+      <guid>http://localhost:1313/post/pandas2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to Pandas for Network Development</title>
-      <link>https://mundruid.github.io/post/pandas1/</link>
+      <link>http://localhost:1313/post/pandas1/</link>
       <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas1/</guid>
+      <guid>http://localhost:1313/post/pandas1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to PromQL</title>
-      <link>https://mundruid.github.io/post/promql/</link>
+      <link>http://localhost:1313/post/promql/</link>
       <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/promql/</guid>
+      <guid>http://localhost:1313/post/promql/</guid>
       <description></description>
     </item>
     

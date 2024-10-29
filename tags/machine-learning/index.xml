@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning | Xenia Mountrouidou (DrX)</title>
+    <link>https://mundruid.github.io/tags/machine-learning/</link>
+      <atom:link href="https://mundruid.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <description>Machine Learning</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Wed, 27 Sep 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
+      <title>Machine Learning</title>
+      <link>https://mundruid.github.io/tags/machine-learning/</link>
+    </image>
+    
+    <item>
+      <title>Decoding cybersecurity data with ML and AI</title>
+      <link>https://mundruid.github.io/project/cyber-ml/</link>
+      <pubDate>Wed, 27 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://mundruid.github.io/project/cyber-ml/</guid>
+      <description>&lt;p&gt;The next generation of cybersecurity engineers will be data engineers who happen to specialize in cybersecurity. This talk aims at showing how cybersecurity engineers can benefit from today’s technology to make sense of the sea of data that they are gathering. Currently, we are constantly bombarded with information about GPT, ML, AI, and a variety of abbreviations. The question is, though, how can we as cybersecurity engineers capitalize on these tools? I will answer this question with a concrete example of the usage of ML and AI from the perspective of a cybersecurity researcher. The goal of this project is to invent creative ways of deciphering cybersecurity data with ML and AI.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

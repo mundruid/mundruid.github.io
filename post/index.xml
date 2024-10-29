@@ -1,22 +1,287 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts | Xenia Mountrouidou (DrX)</title>
-    <link>http://localhost:1313/post/</link>
-      <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
-    <description>Posts</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 27 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <title>Blog | Xenia Mountrouidou (DrX)</title>
+    <link>https://mundruid.github.io/post/</link>
+      <atom:link href="https://mundruid.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <description>Blog</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 29 Oct 2024 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://localhost:1313/media/icon_hu2303159163448247487.png</url>
-      <title>Posts</title>
-      <link>http://localhost:1313/post/</link>
+      <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
+      <title>Blog</title>
+      <link>https://mundruid.github.io/post/</link>
     </image>
     
     <item>
+      <title>Show me the data (part 3)</title>
+      <link>https://mundruid.github.io/post/mlsec5/</link>
+      <pubDate>Tue, 29 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>https://mundruid.github.io/post/mlsec5/</guid>
+      <description>&lt;p&gt;We have reviewed several classes of data, but one of the most important—and challenging—types remains: network traffic data. Its significance stems from the fact that many attacks originate from network-based vectors. However, analyzing network data presents several challenges. First, network traffic generates massive volumes of data, much of which may have limited analytical value. Second, effective processing is crucial to identify meaningful patterns and potential threats within this data. Finally, network data&amp;rsquo;s complex structure poses unique difficulties: packet captures and network flows require specialized libraries and often custom code to transform them into structured formats suitable for machine learning models.&lt;/p&gt;
+&lt;p&gt;I have the opportunity here to share my personal experience, as I work with this type of data daily. You can find the code from this blog in the accompanying notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blob/f28c467812414d7a5c81baa9e4ed0a3b0467be5b/cyber_ml/blog_show_data_3.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_show_data_3.ipynb&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
+&lt;p&gt;Our big picture roadmap is listed below:&lt;/p&gt;
+&lt;div class=&#34;markmap&#34; style=&#34;height: 500px;&#34;&gt;
+
+&lt;pre&gt;- Cybersecurity Data
+    - Logs/Events (part 1)
+        - syslog
+        - server log
+        - host event logs
+    - Pandas (part 2)
+    - Unstructured text
+        - domains
+        - urls
+    - Binaries
+    - Traces (we are here)
+        - pcaps
+        - netflow&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&#34;traces&#34;&gt;Traces&lt;/h2&gt;
+&lt;p&gt;Network traces are collected as packet captures, or PCAP files, which contain a wealth of information but cannot be parsed with simple text-processing functions. The primary tool for visualizing PCAPs is Wireshark. In a previous example, I used a packet capture that I had exported to a CSV file. You can do this using Wireshark through the &amp;lsquo;Export Packet Dissections&amp;rsquo; option. Note that exporting to CSV includes only the visible data columns in Wireshark, which can lead to some data loss.&lt;/p&gt;
+&lt;p&gt;For more comprehensive parsing of packet captures, &lt;a href=&#34;https://scapy.readthedocs.io/en/latest/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;scapy&lt;/a&gt; is a great tool. Recently, I&amp;rsquo;ve also started using &lt;a href=&#34;https://github.com/KimiNewt/pyshark&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pyshark&lt;/a&gt;, a Python wrapper for tshark. Each library has its strengths and weaknesses, and I’ve encountered challenges like packet layer loss, parsing inconsistencies, and cross-platform version differences. Despite these issues, both libraries are robust enough to save you from having to build custom PCAP parsing solutions from scratch.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s start with reading a packet capture using &lt;code&gt;rdpcap&lt;/code&gt; from &lt;code&gt;scapy&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;scapy.all&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rdpcap&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;pcap&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rdpcap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;../data/blog3/2023-01-23-Google-ad-to-possible-TA505-activity.pcap&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this example, we read a pcap and store it in a special scapy object, the &lt;code&gt;PacketList&lt;/code&gt;. From there, the sky is the limit on what you can do since scapy can manipulate the whole OSI stack for your parsing.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;scapy.layers.inet&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;IP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;UDP&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;dns_count&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pcap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;try&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;# extract IP layer for UDP protocol&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;udp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;UDP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;# pick your favorite UDP service... it&amp;#39;s always DNS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;udp&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dport&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;53&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;dns_count&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;except&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;continue&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;dns_count&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can count DNS requests or any other protocol requests, create graphs, etc.&lt;/p&gt;
+&lt;h3 id=&#34;attack-payloads&#34;&gt;Attack payloads&lt;/h3&gt;
+&lt;p&gt;Another cool thing that you can do after you parse your packet capture is analyze payloads, such as HTTP, that you may suspect are malicious.&lt;/p&gt;
+&lt;p&gt;Below is an example that finds the payload in each packet, checks if it is HTTP, and then parses the method, path, and protocol, as well as headers if they exist. The result is a structured dictionary for each HTTP packet payload.&lt;/p&gt;
+&lt;p&gt;To extract all HTTP packets, we use the function &lt;code&gt;get_http&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;get_http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;scapy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;layers&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;l2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ether&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;dict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&amp;#34;Gets all http fields and the body of the request if it exists.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;    Args:
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;        packet (scapy.layers.l2.Ether): List of packets read from pcap.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;    Returns:
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;        dict: Dictionary of the form: {&amp;#34;http_fields&amp;#34;: http_fields, &amp;#34;body&amp;#34;: body}, where http_fields is a list of http request rows and body is a string with the body of the request.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;    &amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;http_fields&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;body&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;haslayer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TCP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;haslayer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Raw&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;try&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;c1&#34;&gt;# this generates UnicodeDecodeError if the Raw layer is not formatted properly&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;payload&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Raw&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;load&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;utf-8&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;HTTP/&amp;#34;&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;payload&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\r\n\r\n&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;payload&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;n&#34;&gt;body&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;payload&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;split&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\r\n\r\n&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;n&#34;&gt;body&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;payload&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;split&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;lt;!DOCTYPE html&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;c1&#34;&gt;# split each row of each http request, make a list of strings with these rows&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;http_fields&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;payload&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;split&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\r\n&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;except&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;http_fields&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;http_fields&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;body&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note that the &lt;code&gt;if&lt;/code&gt; statement &lt;code&gt;if packet.haslayer(TCP) and packet.haslayer(Raw):&lt;/code&gt; filters the HTTP requests by checking for both the TCP and application layers (Raw). We then extract the payload as a string from the packet with &lt;code&gt;payload = str(packet[Raw].load, &amp;quot;utf-8&amp;quot;)&lt;/code&gt;. This step can be tricky, as encoding issues may cause errors.&lt;/p&gt;
+&lt;p&gt;Next, we rely on the structure of an HTTP request, specifically recognizing that &lt;code&gt;\r\n\r\n&lt;/code&gt; is a common delimiter in HTTP messages. This sequence marks the end of the header section and the beginning of the body, where &lt;code&gt;\r\n&lt;/code&gt; represents a carriage return (&lt;code&gt;\r&lt;/code&gt;) followed by a newline (&lt;code&gt;\n&lt;/code&gt;), which is the standard line-ending sequence in HTTP headers. After splitting the payload by this sequence, the first line of the request, located at index &lt;code&gt;[0]&lt;/code&gt;, contains the start of the HTTP header, while the second element at index &lt;code&gt;[1]&lt;/code&gt; holds the message body. Below is an example of what the HTTP request may look like (modified from our pcap):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;GET&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;download&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AnyDeskSetup_26b30163&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;msi&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;HTTP&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;1.1&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Host&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;anydeskcloud&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tech&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Connection&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;keep&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alive&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Accept&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Encoding&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;gzip&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;deflate&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Accept&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Language&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;en&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;\&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;!&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;DOCTYPE&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this modified example, the HTTP body is:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;/html&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The rows above the HTTP body form the list of lines in http_fields. These two elements are what our function returns: a set of lines from which we can extract HTTP fields and the body of the request, both organized in a dictionary structure &lt;code&gt;return {&amp;quot;http_fields&amp;quot;: http_fields, &amp;quot;body&amp;quot;: body}&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Now we are ready to parse these HTTP fields into another neatly structured dictionary using the following function:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;parse_http_request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;http_request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;dict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;dict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&amp;#34;Parses HTTP request fields to a dictionary.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;    Args:
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;        http_request (dict): a list of http request rows.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;        body (str):tring with the body of the request.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;    Returns:
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;        dict: HTTP request fields dictionary.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;    &amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;try&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;# this generates a ValueError if the http request does not have the proper structure&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;protocol&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;http_request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;http_fields&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;split&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34; &amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;headers&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;header&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;http_request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:]:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;header&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;header_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;header_value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;header&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;split&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;:&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;maxsplit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;headers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;header_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;header_value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;strip&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;parsed_path&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;urllib&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;parse&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;urlparse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;timestamp&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;source_ip&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;dest_ip&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dst&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;source_port&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TCP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sport&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;dest_port&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TCP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dport&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;method&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;path&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;parsed_path&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;query_string&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;parsed_path&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;query&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;protocol&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;protocol&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;headers&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;headers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;body&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;http_request&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;body&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;except&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;# http header may be non-standard, may have no method or may be  error code like 302&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;timestamp&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;source_ip&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;dest_ip&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dst&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;source_port&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TCP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sport&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;dest_port&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TCP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dport&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;body&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;http_request&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;body&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We start by examining the first row in the &lt;code&gt;http_fields&lt;/code&gt; list: &lt;code&gt;method, path, protocol = http_request[&amp;quot;http_fields&amp;quot;][0].split(&amp;quot; &amp;quot;)&lt;/code&gt;. This line extracts important information such as the HTTP method, path, and protocol. Next, we retrieve all header fields, which, as shown, are separated from their values by &lt;code&gt;:&lt;/code&gt;. For instance, the &lt;code&gt;Host&lt;/code&gt; field in an HTTP request appears as &lt;code&gt;Host: anydeskcloud.tech&lt;/code&gt;. If the request does not follow the standard format, the code will handle this scenario by branching to the except block.&lt;/p&gt;
+&lt;p&gt;Finally, we put everything together and run the code with the pcap example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pcap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;http_request&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;get_http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;packet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;http_request&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;http_request&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;http_fields&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;parsed_payload&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;parse_http_request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;http_request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;parsed_payload&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;None&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;pprint&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pprint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;parsed_payload&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We use &lt;code&gt;pprint&lt;/code&gt; to do a pretty printout of the data.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-structured-pcap-printout&#34;&gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;pcap pprint&#34; srcset=&#34;
+               /post/mlsec5/images/pcap_hu897646e6b973bbb6fb072cbc7e0183be_118547_c208d5904e42e3069cf2f888d1ebc127.webp 400w,
+               /post/mlsec5/images/pcap_hu897646e6b973bbb6fb072cbc7e0183be_118547_366ea315dd92b7a15053448128a66465.webp 760w,
+               /post/mlsec5/images/pcap_hu897646e6b973bbb6fb072cbc7e0183be_118547_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/mlsec5/images/pcap_hu897646e6b973bbb6fb072cbc7e0183be_118547_c208d5904e42e3069cf2f888d1ebc127.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;387&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Structured pcap printout.
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;I hope you now have a sense of how complex it is to parse these traces. Even with sophisticated libraries like &lt;code&gt;scapy&lt;/code&gt;, we still need to put in considerable effort to extract all the meaningful fields for our models and organize them into a structured format, such as a dictionary. This structure is essential for applications like classification, prediction, and other powerful uses in machine learning.&lt;/p&gt;
+&lt;h2 id=&#34;netflow&#34;&gt;Netflow&lt;/h2&gt;
+&lt;p&gt;NetFlow is a Cisco protocol for network telemetry that provides statistics based on flows. A flow is defined as a unidirectional sequence of packets between a source and destination, identified by the tuple  &lt;code&gt;(source IP, source port, destination IP, destination port, protocol)&lt;/code&gt;. One tool for collecting and processing network data is &lt;code&gt;nfdump&lt;/code&gt;, which we will use to post-process &lt;a href=&#34;https://github.com/yousef-alkhanafseh/netflow-tutorial/tree/main/netflow_data&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;router data&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;First install &lt;code&gt;nfdump&lt;/code&gt; and convert the &lt;code&gt;nfcapd&lt;/code&gt; binary to a readable csv file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# install nfdump&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install nfdump
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# convert nfpcapd file to csv&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nfdump -r ./data/blog_show_data/nfcapd.202304172010 -o csv &amp;gt; netflow_data.csv 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now it is business as usual. Let&amp;rsquo;s convert the csv to a Pandas DataFrame, and then we can put the data in a dictionary and print it. The sky is the limit:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pandas&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pd&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Path to the converted NetFlow CSV file&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;csv_file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;../data/blog_show_data/netflow_data.csv&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Read the CSV file into a DataFrame&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read_csv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;csv_file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Set display options to show all columns&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set_option&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;display.max_columns&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;None&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;pd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set_option&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;display.expand_frame_repr&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Display the DataFrame&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-netflow-dataframe&#34;&gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;netflow dataframe&#34; srcset=&#34;
+               /post/mlsec5/images/netflow_hu7ce8c184b7e521ec376e40b6653e3335_64566_50b466f8a903278cc454e870d0a1741e.webp 400w,
+               /post/mlsec5/images/netflow_hu7ce8c184b7e521ec376e40b6653e3335_64566_552678f4e070c930e35f25b02b64cf03.webp 760w,
+               /post/mlsec5/images/netflow_hu7ce8c184b7e521ec376e40b6653e3335_64566_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/mlsec5/images/netflow_hu7ce8c184b7e521ec376e40b6653e3335_64566_50b466f8a903278cc454e870d0a1741e.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;206&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Netflow DataFrame.
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;recap&#34;&gt;Recap&lt;/h2&gt;
+&lt;p&gt;We&amp;rsquo;ve covered the foundational methods for parsing cybersecurity data, the first stage in ML projects. In the upcoming posts, we will dive into the next step: exploratory data analysis, where we treat the data as a black box with an intriguing story to uncover. Stay tuned&lt;/p&gt;
+&lt;p&gt;&amp;ndash; Xenia&lt;/p&gt;
+&lt;h2 id=&#34;going-even-deeper&#34;&gt;Going Even Deeper&lt;/h2&gt;
+&lt;p&gt;Code examples for this blog can be found in &lt;a href=&#34;https://github.com/mundruid/cyber-ml&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;cyber-ml&lt;/a&gt; repo.&lt;/p&gt;
+&lt;p&gt;Pcap&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Datasets
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.malware-traffic-analysis.net/training-exercises.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Malware Traffic Analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/tjcruz-dei/ICS_PCAPS&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ICS Pcaps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.kaggle.com/datasets/ymirsky/network-attack-dataset-kitsune&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kitsune Network Attack Dataset&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.kaggle.com/datasets/joebeachcapital/real-time-internet-of-things-rt-iot2022&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Cyber Attacks on Real-Time Internet of Things&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Python libraries for pcaps
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://scapy.net/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;scapy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://kiminewt.github.io/pyshark/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pyshark&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://dpkt.readthedocs.io/en/latest/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;dpkt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Netflow&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://staff.itee.uq.edu.au/marius/NIDS_datasets/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ML Based NIDS Datasets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/yousef-alkhanafseh/netflow-tutorial&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;netflow Tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;did-you-find-this-page-helpful-consider-sharing-it-&#34;&gt;Did you find this page helpful? Consider sharing it 🙌&lt;/h3&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Show me the data (part 2)</title>
-      <link>http://localhost:1313/post/mlsec4/</link>
+      <link>https://mundruid.github.io/post/mlsec4/</link>
       <pubDate>Tue, 27 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/mlsec4/</guid>
+      <guid>https://mundruid.github.io/post/mlsec4/</guid>
       <description>&lt;p&gt;Data collection, preparation, and cleaning take up to 80%–90% of time for an ML project. Therefore, it is not surprising that we need to cover it on multiple blogs.&lt;/p&gt;
 &lt;p&gt;In the first part, we talked mainly about theory: how we collect data from our systems and how we store it. We introduced data parsing using logs. In this second part, we will analyze more code examples useful for plain text parsing and packet capture. In addition, it is time to introduce the &lt;code&gt;pandas&lt;/code&gt; library for structuring our data. We start with the 1,000-foot view and then dive deep into it.&lt;/p&gt;
 &lt;p&gt;You will find the code from this blog in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blob/main/cyber_ml/blog_show_data_2.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_show_data_2.ipynb&lt;/a&gt;.&lt;/p&gt;
@@ -66,12 +331,12 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
 
 
 &lt;figure  id=&#34;figure-mirai-pcap-in-pandas-dataframe&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;mirai&#34; srcset=&#34;
-               /post/mlsec4/images/mirai_hu6603507532915231467.webp 400w,
-               /post/mlsec4/images/mirai_hu15694640737456743935.webp 760w,
-               /post/mlsec4/images/mirai_hu7293592180343727819.webp 1200w&#34;
-               src=&#34;http://localhost:1313/post/mlsec4/images/mirai_hu6603507532915231467.webp&#34;
+               /post/mlsec4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_06449f9a1d2defa281a8834e54a39f41.webp 400w,
+               /post/mlsec4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_67bdd50f2b131d46188c761d540ae702.webp 760w,
+               /post/mlsec4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/mlsec4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_06449f9a1d2defa281a8834e54a39f41.webp&#34;
                width=&#34;760&#34;
                height=&#34;220&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -101,12 +366,12 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
 
 
 &lt;figure  id=&#34;figure-first-three-rows-in-pandas-dataframe&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;three_rows&#34; srcset=&#34;
-               /post/mlsec4/images/three_rows_hu3835206418734138048.webp 400w,
-               /post/mlsec4/images/three_rows_hu11180988470985749718.webp 760w,
-               /post/mlsec4/images/three_rows_hu3529052503048681052.webp 1200w&#34;
-               src=&#34;http://localhost:1313/post/mlsec4/images/three_rows_hu3835206418734138048.webp&#34;
+               /post/mlsec4/images/three_rows_hu6ecc81a24dde947da090cc2c9e89ab67_38392_ea61d522bc84e5146185a90bf76b6409.webp 400w,
+               /post/mlsec4/images/three_rows_hu6ecc81a24dde947da090cc2c9e89ab67_38392_467dee32411fec13b185a4c28e94563b.webp 760w,
+               /post/mlsec4/images/three_rows_hu6ecc81a24dde947da090cc2c9e89ab67_38392_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/mlsec4/images/three_rows_hu6ecc81a24dde947da090cc2c9e89ab67_38392_ea61d522bc84e5146185a90bf76b6409.webp&#34;
                width=&#34;760&#34;
                height=&#34;83&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -134,12 +399,12 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
 
 
 &lt;figure  id=&#34;figure-first-ten-rows-and-columns-2-7-3-8-in-pandas-dataframe&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;rows_columns&#34; srcset=&#34;
-               /post/mlsec4/images/rows_columns_hu10379358319826704657.webp 400w,
-               /post/mlsec4/images/rows_columns_hu5908625773689013864.webp 760w,
-               /post/mlsec4/images/rows_columns_hu12574351031847856112.webp 1200w&#34;
-               src=&#34;http://localhost:1313/post/mlsec4/images/rows_columns_hu10379358319826704657.webp&#34;
+               /post/mlsec4/images/rows_columns_hu39489f240339e46a18128c0675408437_45297_76e31c8e199881db52d5b6bc26a9b134.webp 400w,
+               /post/mlsec4/images/rows_columns_hu39489f240339e46a18128c0675408437_45297_6319a6e4e197fcc628c7d955be108d42.webp 760w,
+               /post/mlsec4/images/rows_columns_hu39489f240339e46a18128c0675408437_45297_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/mlsec4/images/rows_columns_hu39489f240339e46a18128c0675408437_45297_76e31c8e199881db52d5b6bc26a9b134.webp&#34;
                width=&#34;404&#34;
                height=&#34;283&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -168,12 +433,12 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
 
 
 &lt;figure  id=&#34;figure-group-columns-source-ip-and-destination-port-then-add-packet-lengths&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;group_columns&#34; srcset=&#34;
-               /post/mlsec4/images/group_columns_hu5827145033248828252.webp 400w,
-               /post/mlsec4/images/group_columns_hu17035286994042936820.webp 760w,
-               /post/mlsec4/images/group_columns_hu4405365811436287244.webp 1200w&#34;
-               src=&#34;http://localhost:1313/post/mlsec4/images/group_columns_hu5827145033248828252.webp&#34;
+               /post/mlsec4/images/group_columns_huc7d444155b615ab0f504f9ebbfdd88ec_19556_0f37024a5c5dcb29c633be4dc3a2c402.webp 400w,
+               /post/mlsec4/images/group_columns_huc7d444155b615ab0f504f9ebbfdd88ec_19556_82a5d5f25b215fd228e5d446f94db8cf.webp 760w,
+               /post/mlsec4/images/group_columns_huc7d444155b615ab0f504f9ebbfdd88ec_19556_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/mlsec4/images/group_columns_huc7d444155b615ab0f504f9ebbfdd88ec_19556_0f37024a5c5dcb29c633be4dc3a2c402.webp&#34;
                width=&#34;352&#34;
                height=&#34;263&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -217,12 +482,12 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
 
 
 &lt;figure  id=&#34;figure-tlds&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;tlds&#34; srcset=&#34;
-               /post/mlsec4/images/tlds_hu790029103896093845.webp 400w,
-               /post/mlsec4/images/tlds_hu15958999827119083424.webp 760w,
-               /post/mlsec4/images/tlds_hu9185760546577765967.webp 1200w&#34;
-               src=&#34;http://localhost:1313/post/mlsec4/images/tlds_hu790029103896093845.webp&#34;
+               /post/mlsec4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_d3ced68cf25603a4f9492fec68892f86.webp 400w,
+               /post/mlsec4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_c8548610090d0cb85c5ed5d07664d05a.webp 760w,
+               /post/mlsec4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/mlsec4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_d3ced68cf25603a4f9492fec68892f86.webp&#34;
                width=&#34;325&#34;
                height=&#34;341&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -278,9 +543,9 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
     
     <item>
       <title>Show me the data (part 1)</title>
-      <link>http://localhost:1313/post/mlsec3/</link>
+      <link>https://mundruid.github.io/post/mlsec3/</link>
       <pubDate>Wed, 31 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/mlsec3/</guid>
+      <guid>https://mundruid.github.io/post/mlsec3/</guid>
       <description>&lt;p&gt;You have probably heard this saying many times before: &amp;ldquo;Garbage in, garbage out&amp;rdquo;. This is a big deal in machine learning projects and even more in ML cybersecurity projects because the model can only be as good as the data you input to it. That is why the first pillar of this ML cybersecurity series is about data. Data collection, preparation, and cleanup are important parts of an ML project, and we will dedicate three blogs to these topics.&lt;/p&gt;
 &lt;p&gt;You will find the code from this blog in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blob/main/cyber_ml/blog_show_data_1.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_show_data_1.ipynb&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
@@ -436,9 +701,9 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
     
     <item>
       <title>Building a bridge between ML and Cyber with a development environment</title>
-      <link>http://localhost:1313/post/mlsec2/</link>
+      <link>https://mundruid.github.io/post/mlsec2/</link>
       <pubDate>Wed, 26 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/mlsec2/</guid>
+      <guid>https://mundruid.github.io/post/mlsec2/</guid>
       <description>&lt;p&gt;At the beginning of our journey to ML and cybersecurity, we need to lay the foundations for a good development environment that fits our needs. This is the tale of three different environments: Google Colaboratory (Colab), Jupyter Server launched from your terminal, and VS Code. In addition, we will discuss essential topics for development environments, such as handling secrets securely with Jupyter and &lt;code&gt;pyenv&lt;/code&gt; to manage multiple Python versions.&lt;/p&gt;
 &lt;h2 id=&#34;table-of-contents----omit-in-toc---&#34;&gt;Table of Contents &lt;!-- omit in toc --&gt;&lt;/h2&gt;
 &lt;p&gt;This blog is longer than the rest of the series. You do not have to read all parts since you can pick one development environment and can drill into that. The ToC below will help you read only what you need.&lt;/p&gt;
@@ -541,12 +806,12 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
 
 
 &lt;figure  id=&#34;figure-colab-basics&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;add code colab&#34; srcset=&#34;
-               /post/mlsec2/images/hello_colab_hu14079509032743138904.webp 400w,
-               /post/mlsec2/images/hello_colab_hu14077200871949603652.webp 760w,
-               /post/mlsec2/images/hello_colab_hu14338933794883712126.webp 1200w&#34;
-               src=&#34;http://localhost:1313/post/mlsec2/images/hello_colab_hu14079509032743138904.webp&#34;
+               /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_b876c6fac17224b39102b1d791098836.webp 400w,
+               /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_51f462812624334cd30b3937357c5538.webp 760w,
+               /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_b876c6fac17224b39102b1d791098836.webp&#34;
                width=&#34;760&#34;
                height=&#34;473&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -675,9 +940,9 @@ The rest of the menus are pretty self-explanatory, like sharing files on Drive a
 
 
 &lt;figure  id=&#34;figure-jupyter-basics&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;hello jupyter&#34;
-           src=&#34;http://localhost:1313/post/mlsec2/images/helo_jupyter.gif&#34;
+           src=&#34;https://mundruid.github.io/post/mlsec2/images/helo_jupyter.gif&#34;
            loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;figcaption&gt;
       Jupyter Basics.
@@ -701,12 +966,12 @@ The rest of the menus are pretty self-explanatory, like sharing files on Drive a
 
 
 &lt;figure  id=&#34;figure-jupyter-environment-manual-selection&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;jupyter enb&#34; srcset=&#34;
-               /post/mlsec2/images/jupyter_env_hu15887431905156800928.webp 400w,
-               /post/mlsec2/images/jupyter_env_hu17770051610722117802.webp 760w,
-               /post/mlsec2/images/jupyter_env_hu15767195087121157447.webp 1200w&#34;
-               src=&#34;http://localhost:1313/post/mlsec2/images/jupyter_env_hu15887431905156800928.webp&#34;
+               /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_4454bf0b0fc9768239bc995c48633257.webp 400w,
+               /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_8953132b778f95264928bb45ce586e91.webp 760w,
+               /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_4454bf0b0fc9768239bc995c48633257.webp&#34;
                width=&#34;760&#34;
                height=&#34;184&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -740,12 +1005,12 @@ The rest of the menus are pretty self-explanatory, like sharing files on Drive a
 
 
 &lt;figure  id=&#34;figure-top-menu-restart&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;restart jupyter&#34; srcset=&#34;
-               /post/mlsec2/images/restart_jupyter_hu12866283634190093853.webp 400w,
-               /post/mlsec2/images/restart_jupyter_hu7454079972204997729.webp 760w,
-               /post/mlsec2/images/restart_jupyter_hu5463740407822324788.webp 1200w&#34;
-               src=&#34;http://localhost:1313/post/mlsec2/images/restart_jupyter_hu12866283634190093853.webp&#34;
+               /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_630c2f09b1338fdad101c709a749d2e8.webp 400w,
+               /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_605fdffe4b0614822b7e5a6fd4b2c97d.webp 760w,
+               /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_630c2f09b1338fdad101c709a749d2e8.webp&#34;
                width=&#34;698&#34;
                height=&#34;169&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -895,9 +1160,9 @@ If you loaded the correct kernel `python3_drx` you will see your &#34;not so sec
     
     <item>
       <title>Machine Learning Meets Cybersecurity</title>
-      <link>http://localhost:1313/post/mlsec1/</link>
+      <link>https://mundruid.github.io/post/mlsec1/</link>
       <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/mlsec1/</guid>
+      <guid>https://mundruid.github.io/post/mlsec1/</guid>
       <description>&lt;p&gt;Machine Learning (ML) and Cybersecurity, is this a match made in heaven or yet another tech hype? Indeed, this is an interesting combination worth exploring for the security professional who wants to solve their problems in a non-traditional manner or for the data scientist who wants to be involved in a significant impact area. Where does one start, though? This series of blogs aims to give you a roadmap, tools, inspiration, and technical knowledge to combine these two areas.&lt;/p&gt;
 &lt;p&gt;Nowadays, there is a lot of hype about Large Language Models (LLMs). However, fundamentals such as statistics and traditional ML concepts, such as embeddings, are the foundations on which these models have been based. Learning about those fundamentals leads to a better understanding of today&amp;rsquo;s technologies.&lt;/p&gt;
 &lt;p&gt;This is a blog series that has been inspired by my personal background as a researcher. I enjoy both the ML and Cybersecurity areas and find it difficult to choose one over the other. I am passionate about conveying knowledge, especially theory and math, in an intuitive manner.&lt;/p&gt;
@@ -920,12 +1185,12 @@ If you loaded the correct kernel `python3_drx` you will see your &#34;not so sec
 
 
 &lt;figure  id=&#34;figure-intersection-between-cybersecurity--ml&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Cyber-ML intersection&#34; srcset=&#34;
-               /post/mlsec1/images/Security-ML_hu14611670589039563762.webp 400w,
-               /post/mlsec1/images/Security-ML_hu3190909061034653460.webp 760w,
-               /post/mlsec1/images/Security-ML_hu12406407596204834386.webp 1200w&#34;
-               src=&#34;http://localhost:1313/post/mlsec1/images/Security-ML_hu14611670589039563762.webp&#34;
+               /post/mlsec1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_6d1b76cdc767911a130633e594c1136c.webp 400w,
+               /post/mlsec1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_fc138cb2aa5bc4390926a3c8dff8f278.webp 760w,
+               /post/mlsec1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://mundruid.github.io/post/mlsec1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_6d1b76cdc767911a130633e594c1136c.webp&#34;
                width=&#34;657&#34;
                height=&#34;382&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1016,49 +1281,49 @@ There is some intersection between Cybersecurity and ML that helps make the lear
     
     <item>
       <title>Introduction to a Telemetry Stack - Part 3</title>
-      <link>http://localhost:1313/post/alerting/</link>
+      <link>https://mundruid.github.io/post/alerting/</link>
       <pubDate>Tue, 19 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/alerting/</guid>
+      <guid>https://mundruid.github.io/post/alerting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Forecasting the Network</title>
-      <link>http://localhost:1313/post/pandas3/</link>
+      <link>https://mundruid.github.io/post/pandas3/</link>
       <pubDate>Sun, 13 Mar 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/pandas3/</guid>
+      <guid>https://mundruid.github.io/post/pandas3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Exploratory Data Analysis for Network Traffic</title>
-      <link>http://localhost:1313/post/pandas2/</link>
+      <link>https://mundruid.github.io/post/pandas2/</link>
       <pubDate>Thu, 13 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/pandas2/</guid>
+      <guid>https://mundruid.github.io/post/pandas2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jupyter Notebooks for Development</title>
-      <link>http://localhost:1313/post/jupyter/</link>
+      <link>https://mundruid.github.io/post/jupyter/</link>
       <pubDate>Sat, 13 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/jupyter/</guid>
+      <guid>https://mundruid.github.io/post/jupyter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to Pandas for Network Development</title>
-      <link>http://localhost:1313/post/pandas1/</link>
+      <link>https://mundruid.github.io/post/pandas1/</link>
       <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/pandas1/</guid>
+      <guid>https://mundruid.github.io/post/pandas1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to PromQL</title>
-      <link>http://localhost:1313/post/promql/</link>
+      <link>https://mundruid.github.io/post/promql/</link>
       <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/promql/</guid>
+      <guid>https://mundruid.github.io/post/promql/</guid>
       <description></description>
     </item>
     

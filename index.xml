@@ -174,7 +174,7 @@
     &lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;I refer to these packages as &amp;ldquo;automation tools&amp;rdquo; for EDA because they provide a wealth of visualizations and statistics with minimal coding effort. They have been helpful for gaining an initial understanding of my data, and I hope you will find them just as valuable.&lt;/p&gt;
-&lt;h1 id=&#34;pandas-ai&#34;&gt;Pandas AI&lt;/h1&gt;
+&lt;h2 id=&#34;pandas-ai&#34;&gt;Pandas AI&lt;/h2&gt;
 &lt;p&gt;The advancements in Large Language Models (LLMs) have paved the way for exciting new applications. One such innovation is the integration of LLMs with Pandas DataFrames, which opens up powerful new possibilities for data analysis.&lt;/p&gt;
 &lt;p&gt;To use Pandas AI, you will need an LLM API key. I am using OpenAI. To get started, you need to create an &lt;a href=&#34;https://platform.openai.com/account/api-keys&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OpenAI API key&lt;/a&gt;. Save the API key in a &lt;code&gt;.env&lt;/code&gt; file and ensure this file is included in your &lt;code&gt;.gitignore&lt;/code&gt; to protect your secrets from being exposed in version control systems. Then, securely load the key into your project using the &lt;code&gt;python-dotenv&lt;/code&gt; package:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;dotenv&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;load_dotenv&lt;/span&gt;

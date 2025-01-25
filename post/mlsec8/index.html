@@ -973,9 +973,9 @@
             </li>
           <li>
               <a
-                href="#"
+                href="#pandas-ai"
                 class="hb-docs-link"
-              ></a>
+              >Pandas AI</a>
             </li>
           <li>
               <a
@@ -1297,7 +1297,10 @@
       </li>
       <li class="my-2 scroll-my-6 scroll-py-6">
         <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#skimpy">skimpy</a>
-      </li></ul><ul>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#pandas-ai">Pandas AI</a>
+      </li>
       <li class="my-2 scroll-my-6 scroll-py-6">
         <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#interact-with-your-data">Interact with your data</a>
       </li>
@@ -1555,7 +1558,7 @@
     </figcaption></figure>
 </p>
 <p>I refer to these packages as &ldquo;automation tools&rdquo; for EDA because they provide a wealth of visualizations and statistics with minimal coding effort. They have been helpful for gaining an initial understanding of my data, and I hope you will find them just as valuable.</p>
-<h1 id="pandas-ai">Pandas AI</h1>
+<h2 id="pandas-ai">Pandas AI</h2>
 <p>The advancements in Large Language Models (LLMs) have paved the way for exciting new applications. One such innovation is the integration of LLMs with Pandas DataFrames, which opens up powerful new possibilities for data analysis.</p>
 <p>To use Pandas AI, you will need an LLM API key. I am using OpenAI. To get started, you need to create an <a href="https://platform.openai.com/account/api-keys" target="_blank" rel="noopener">OpenAI API key</a>. Save the API key in a <code>.env</code> file and ensure this file is included in your <code>.gitignore</code> to protect your secrets from being exposed in version control systems. Then, securely load the key into your project using the <code>python-dotenv</code> package:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>

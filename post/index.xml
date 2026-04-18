@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog | Xenia Mountrouidou (DrX)</title>
-    <link>https://mundruid.github.io/post/</link>
-      <atom:link href="https://mundruid.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:1313/post/</link>
+      <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Blog</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Wed, 22 Jan 2025 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://mundruid.github.io/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
+      <url>http://localhost:1313/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Blog</title>
-      <link>https://mundruid.github.io/post/</link>
+      <link>http://localhost:1313/post/</link>
     </image>
     
     <item>
       <title>Exploring the data - AI</title>
-      <link>https://mundruid.github.io/post/mlsec8/</link>
+      <link>http://localhost:1313/post/mlsec8/</link>
       <pubDate>Wed, 22 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/mlsec8/</guid>
+      <guid>http://localhost:1313/post/mlsec8/</guid>
       <description>&lt;p&gt;Exploratory Data Analysis (EDA) is an essential process for understanding your data, but it can often feel overwhelming. Summarizing datasets typically involves intricate mathematics, and generating meaningful visualizations requires extensive coding. To simplify this process, I am excited to discuss the &lt;a href=&#34;https://docs.pandas-ai.com/en/latest/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Pandas AI&lt;/a&gt; package, which enables you to perform EDA by asking questions in natural language. Automation plays a key role in reducing repetitive tasks and avoiding redundant efforts, and in this blog, we will explore Python libraries that streamline EDA.&lt;/p&gt;
 &lt;p&gt;We’ll start by experimenting with Python libraries that integrate statistics and visualization to automate EDA. Following this, we’ll dive into how Pandas has evolved with AI capabilities to make data exploration even more intuitive. You can find all the code used in this blog in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blob/main/cyber_ml/blog_eda_3.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_eda_3.ipynb&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
@@ -95,7 +95,7 @@
                /post/mlsec8/images/sweetviz_hu4e94353890b2c23dff7fd9e4c576f4e1_230746_9e23ad29b9227fe840e4ee726bbb1c81.webp 400w,
                /post/mlsec8/images/sweetviz_hu4e94353890b2c23dff7fd9e4c576f4e1_230746_886c8a7d2017967ec8aa52a32dc8b0d3.webp 760w,
                /post/mlsec8/images/sweetviz_hu4e94353890b2c23dff7fd9e4c576f4e1_230746_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec8/images/sweetviz_hu4e94353890b2c23dff7fd9e4c576f4e1_230746_9e23ad29b9227fe840e4ee726bbb1c81.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec8/images/sweetviz_hu4e94353890b2c23dff7fd9e4c576f4e1_230746_9e23ad29b9227fe840e4ee726bbb1c81.webp&#34;
                width=&#34;760&#34;
                height=&#34;338&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -130,7 +130,7 @@
                /post/mlsec8/images/summarytools_hu856a8dad9ee22d0619fa559353f9538d_123153_69d5004c0542fd825dc25dcacfb9aa82.webp 400w,
                /post/mlsec8/images/summarytools_hu856a8dad9ee22d0619fa559353f9538d_123153_7ee7539696f88a3a6dc1efc1118cc934.webp 760w,
                /post/mlsec8/images/summarytools_hu856a8dad9ee22d0619fa559353f9538d_123153_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec8/images/summarytools_hu856a8dad9ee22d0619fa559353f9538d_123153_69d5004c0542fd825dc25dcacfb9aa82.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec8/images/summarytools_hu856a8dad9ee22d0619fa559353f9538d_123153_69d5004c0542fd825dc25dcacfb9aa82.webp&#34;
                width=&#34;760&#34;
                height=&#34;509&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -165,7 +165,7 @@
                /post/mlsec8/images/skim_hub074dda646b6f6ecf5e413685a0a56f0_73534_6724c98ec05f40ffc5b3d87f8bc77526.webp 400w,
                /post/mlsec8/images/skim_hub074dda646b6f6ecf5e413685a0a56f0_73534_7989d3788c187cf73c9fb8a222856527.webp 760w,
                /post/mlsec8/images/skim_hub074dda646b6f6ecf5e413685a0a56f0_73534_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec8/images/skim_hub074dda646b6f6ecf5e413685a0a56f0_73534_6724c98ec05f40ffc5b3d87f8bc77526.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec8/images/skim_hub074dda646b6f6ecf5e413685a0a56f0_73534_6724c98ec05f40ffc5b3d87f8bc77526.webp&#34;
                width=&#34;760&#34;
                height=&#34;352&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -228,7 +228,7 @@
                /post/mlsec8/images/ips_hubc3cb3f9a0448a27705bf6b2e8a0a1c2_15060_7aef1994ac06d041efccffa901af6b2a.webp 400w,
                /post/mlsec8/images/ips_hubc3cb3f9a0448a27705bf6b2e8a0a1c2_15060_cad361b8d1a516fded90a264214d7942.webp 760w,
                /post/mlsec8/images/ips_hubc3cb3f9a0448a27705bf6b2e8a0a1c2_15060_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec8/images/ips_hubc3cb3f9a0448a27705bf6b2e8a0a1c2_15060_7aef1994ac06d041efccffa901af6b2a.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec8/images/ips_hubc3cb3f9a0448a27705bf6b2e8a0a1c2_15060_7aef1994ac06d041efccffa901af6b2a.webp&#34;
                width=&#34;234&#34;
                height=&#34;166&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -263,7 +263,7 @@
                /post/mlsec8/images/ports_hu07a5730f9f91b2507379607690c743fb_11328_32ee764dacef5394edbe501244c95ec8.webp 400w,
                /post/mlsec8/images/ports_hu07a5730f9f91b2507379607690c743fb_11328_bad48352c73d884effb9c1aebb765e5d.webp 760w,
                /post/mlsec8/images/ports_hu07a5730f9f91b2507379607690c743fb_11328_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec8/images/ports_hu07a5730f9f91b2507379607690c743fb_11328_32ee764dacef5394edbe501244c95ec8.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec8/images/ports_hu07a5730f9f91b2507379607690c743fb_11328_32ee764dacef5394edbe501244c95ec8.webp&#34;
                width=&#34;234&#34;
                height=&#34;166&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -300,7 +300,7 @@
                /post/mlsec8/images/scatter_huefb2574e9acf9b822a88a9e48f43ab89_29330_1dd584fbceb10d19587d48de9447928e.webp 400w,
                /post/mlsec8/images/scatter_huefb2574e9acf9b822a88a9e48f43ab89_29330_cc5e67c549e918a58e352cba51bf812c.webp 760w,
                /post/mlsec8/images/scatter_huefb2574e9acf9b822a88a9e48f43ab89_29330_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec8/images/scatter_huefb2574e9acf9b822a88a9e48f43ab89_29330_1dd584fbceb10d19587d48de9447928e.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec8/images/scatter_huefb2574e9acf9b822a88a9e48f43ab89_29330_1dd584fbceb10d19587d48de9447928e.webp&#34;
                width=&#34;582&#34;
                height=&#34;463&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -331,7 +331,7 @@
                /post/mlsec8/images/histogram_hub3207a16f90093cf944ae62be79f444b_27900_c2fc47ffe1574ef241aeea6bf151abac.webp 400w,
                /post/mlsec8/images/histogram_hub3207a16f90093cf944ae62be79f444b_27900_718656cf11f271baa05ab3ab226778ea.webp 760w,
                /post/mlsec8/images/histogram_hub3207a16f90093cf944ae62be79f444b_27900_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec8/images/histogram_hub3207a16f90093cf944ae62be79f444b_27900_c2fc47ffe1574ef241aeea6bf151abac.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec8/images/histogram_hub3207a16f90093cf944ae62be79f444b_27900_c2fc47ffe1574ef241aeea6bf151abac.webp&#34;
                width=&#34;631&#34;
                height=&#34;437&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -397,9 +397,9 @@ It is worth writing a series of blogs on Langchain itself. However, for now, I w
     
     <item>
       <title>Exploring the data - Statistics</title>
-      <link>https://mundruid.github.io/post/mlsec7/</link>
+      <link>http://localhost:1313/post/mlsec7/</link>
       <pubDate>Wed, 25 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/mlsec7/</guid>
+      <guid>http://localhost:1313/post/mlsec7/</guid>
       <description>&lt;p&gt;Graphs are excellent for visual learners. However, sometimes you just need to &amp;ldquo;show the numbers.&amp;rdquo; Exploratory Data Analysis (EDA) using statistics offers a compact summary of your data, providing a clear narrative without requiring extensive coding. Thanks to many readily available packages, this process is both accessible and efficient.&lt;/p&gt;
 &lt;p&gt;In this blog, we will dive into the basics of statistical EDA using Pandas. Along the way, we will revisit key statistical concepts that challenge assumptions about your data. The accompanying code can be found in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blob/main/cyber_ml/blog_eda_2.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_eda_2.ipynb&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
@@ -611,7 +611,7 @@ A Pandas DataFrame opens the door to statistical EDA and visualizations, enablin
                /post/mlsec7/images/columns_hu53aab30e7b2d2dcad43e0a6026c8cbf1_13583_4ae11b765274b43b30efa5fb8e3917b7.webp 400w,
                /post/mlsec7/images/columns_hu53aab30e7b2d2dcad43e0a6026c8cbf1_13583_873be28126c40e85ed1e154c677a0d9b.webp 760w,
                /post/mlsec7/images/columns_hu53aab30e7b2d2dcad43e0a6026c8cbf1_13583_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec7/images/columns_hu53aab30e7b2d2dcad43e0a6026c8cbf1_13583_4ae11b765274b43b30efa5fb8e3917b7.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec7/images/columns_hu53aab30e7b2d2dcad43e0a6026c8cbf1_13583_4ae11b765274b43b30efa5fb8e3917b7.webp&#34;
                width=&#34;620&#34;
                height=&#34;80&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -645,7 +645,7 @@ A Pandas DataFrame opens the door to statistical EDA and visualizations, enablin
                /post/mlsec7/images/dtypes_hu29910d02ace9d12e8856ef74143003b4_15285_aab03be01b7649ec4a28174feeee2e08.webp 400w,
                /post/mlsec7/images/dtypes_hu29910d02ace9d12e8856ef74143003b4_15285_0cde479cd645755fd7dabb89fa26cfe3.webp 760w,
                /post/mlsec7/images/dtypes_hu29910d02ace9d12e8856ef74143003b4_15285_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec7/images/dtypes_hu29910d02ace9d12e8856ef74143003b4_15285_aab03be01b7649ec4a28174feeee2e08.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec7/images/dtypes_hu29910d02ace9d12e8856ef74143003b4_15285_aab03be01b7649ec4a28174feeee2e08.webp&#34;
                width=&#34;257&#34;
                height=&#34;199&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -679,7 +679,7 @@ A Pandas DataFrame opens the door to statistical EDA and visualizations, enablin
                /post/mlsec7/images/describe_hu047f7aba237078fa598d423c51d5ce3b_47836_8de10c6686a384b73cd1ba237d5e6625.webp 400w,
                /post/mlsec7/images/describe_hu047f7aba237078fa598d423c51d5ce3b_47836_ef95a28c8aefc9faffdb328b6edf8132.webp 760w,
                /post/mlsec7/images/describe_hu047f7aba237078fa598d423c51d5ce3b_47836_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec7/images/describe_hu047f7aba237078fa598d423c51d5ce3b_47836_8de10c6686a384b73cd1ba237d5e6625.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec7/images/describe_hu047f7aba237078fa598d423c51d5ce3b_47836_8de10c6686a384b73cd1ba237d5e6625.webp&#34;
                width=&#34;726&#34;
                height=&#34;231&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -710,9 +710,9 @@ A Pandas DataFrame opens the door to statistical EDA and visualizations, enablin
 &lt;h2 id=&#34;identifying-outliers&#34;&gt;Identifying outliers&lt;/h2&gt;
 &lt;p&gt;Outliers are extreme values in a dataset that deviate significantly from the majority of data points. These can often indicate abnormal activity, particularly in network packet captures. One effective method for detecting outliers is by calculating the Z-score.&lt;/p&gt;
 &lt;p&gt;The Z-score quantifies how far a data point is from the mean, expressed in terms of standard deviations. It is calculated using the formula:&lt;/p&gt;
-&lt;p&gt;$$
+$$
 Z = (data\ point - mean\ of\ data\ points) \over standard\ deviation\ of\ data\ points
-$$&lt;/p&gt;
+$$
 &lt;p&gt;Using this measure, we can identify outliers by determining which values lie significantly far from the average. For example, the &lt;code&gt;zscore&lt;/code&gt; function can be used to detect outliers in the total flow length within the Mirai packet capture dataset.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;detect_outliers_zscore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;column&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;threshold&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;zscores&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;np&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;abs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;zscore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;column&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]))&lt;/span&gt;
@@ -742,7 +742,7 @@ $$&lt;/p&gt;
                /post/mlsec7/images/outliers_hu46a69ec0043324e549d39b0909d0db5c_121900_0a4377a6b79d12746d2a9ec07a6954c9.webp 400w,
                /post/mlsec7/images/outliers_hu46a69ec0043324e549d39b0909d0db5c_121900_7effb2cdf6d5e58eabf2828c31da47e0.webp 760w,
                /post/mlsec7/images/outliers_hu46a69ec0043324e549d39b0909d0db5c_121900_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec7/images/outliers_hu46a69ec0043324e549d39b0909d0db5c_121900_0a4377a6b79d12746d2a9ec07a6954c9.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec7/images/outliers_hu46a69ec0043324e549d39b0909d0db5c_121900_0a4377a6b79d12746d2a9ec07a6954c9.webp&#34;
                width=&#34;585&#34;
                height=&#34;490&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -790,7 +790,7 @@ $$&lt;/p&gt;
                /post/mlsec7/images/dtypes2_hu5ca006417c8c954a8b8f28b06a10334f_16214_1b4798f6048c45955c8875a12e45d3be.webp 400w,
                /post/mlsec7/images/dtypes2_hu5ca006417c8c954a8b8f28b06a10334f_16214_01fc3cead73725a28dcb5e02473bf8a1.webp 760w,
                /post/mlsec7/images/dtypes2_hu5ca006417c8c954a8b8f28b06a10334f_16214_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec7/images/dtypes2_hu5ca006417c8c954a8b8f28b06a10334f_16214_1b4798f6048c45955c8875a12e45d3be.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec7/images/dtypes2_hu5ca006417c8c954a8b8f28b06a10334f_16214_1b4798f6048c45955c8875a12e45d3be.webp&#34;
                width=&#34;295&#34;
                height=&#34;197&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -832,7 +832,7 @@ $$&lt;/p&gt;
                /post/mlsec7/images/correlation_hu8b97e9b13e2a7f9ce73bc38886ba0f80_135476_0858216e75f4b2e53c0acb2fdae5c8ab.webp 400w,
                /post/mlsec7/images/correlation_hu8b97e9b13e2a7f9ce73bc38886ba0f80_135476_dd81e82636dd3b973be4e56d9d168172.webp 760w,
                /post/mlsec7/images/correlation_hu8b97e9b13e2a7f9ce73bc38886ba0f80_135476_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec7/images/correlation_hu8b97e9b13e2a7f9ce73bc38886ba0f80_135476_0858216e75f4b2e53c0acb2fdae5c8ab.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec7/images/correlation_hu8b97e9b13e2a7f9ce73bc38886ba0f80_135476_0858216e75f4b2e53c0acb2fdae5c8ab.webp&#34;
                width=&#34;650&#34;
                height=&#34;647&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -868,7 +868,7 @@ $$&lt;/p&gt;
                /post/mlsec7/images/autocorrelation_hu6fa945bcd15d91b3d7f0be09828d6b73_7410_680e3747826d33c3db4546442a616fcd.webp 400w,
                /post/mlsec7/images/autocorrelation_hu6fa945bcd15d91b3d7f0be09828d6b73_7410_a3bed7920d9d47132ac01f1e9b5876cf.webp 760w,
                /post/mlsec7/images/autocorrelation_hu6fa945bcd15d91b3d7f0be09828d6b73_7410_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec7/images/autocorrelation_hu6fa945bcd15d91b3d7f0be09828d6b73_7410_680e3747826d33c3db4546442a616fcd.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec7/images/autocorrelation_hu6fa945bcd15d91b3d7f0be09828d6b73_7410_680e3747826d33c3db4546442a616fcd.webp&#34;
                width=&#34;365&#34;
                height=&#34;44&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -908,9 +908,9 @@ $$&lt;/p&gt;
     
     <item>
       <title>Exploring the data - Graphs</title>
-      <link>https://mundruid.github.io/post/mlsec6/</link>
+      <link>http://localhost:1313/post/mlsec6/</link>
       <pubDate>Tue, 26 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/mlsec6/</guid>
+      <guid>http://localhost:1313/post/mlsec6/</guid>
       <description>&lt;p&gt;While it may lack the allure of machine learning models that predict, classify, or &amp;ldquo;talk,&amp;rdquo; data exploration is a crucial step that rewards the time you invest in it. By analyzing your data using graphical and mathematical techniques, you can significantly enhance feature engineering, model selection, and model tuning.&lt;/p&gt;
 &lt;p&gt;This blog focuses on practical applications of data exploration in security, providing code examples and additional resources. We&amp;rsquo;ll review some valuable visualization techniques with corresponding code and discuss their relevance from a cybersecurity perspective. As always, the code featured in this blog is available in the repository &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blob/main/cyber_ml/blog_eda_1.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_eda_1&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
@@ -989,7 +989,7 @@ $$&lt;/p&gt;
                /post/mlsec6/images/hist-pandas_hue1a918195fd5fb13ac7a3c64a28b5765_9125_f392973adfb4393f03dccf2e0ffd2043.webp 400w,
                /post/mlsec6/images/hist-pandas_hue1a918195fd5fb13ac7a3c64a28b5765_9125_b1080f0a25aad07a0cb201d85f8af465.webp 760w,
                /post/mlsec6/images/hist-pandas_hue1a918195fd5fb13ac7a3c64a28b5765_9125_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec6/images/hist-pandas_hue1a918195fd5fb13ac7a3c64a28b5765_9125_f392973adfb4393f03dccf2e0ffd2043.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec6/images/hist-pandas_hue1a918195fd5fb13ac7a3c64a28b5765_9125_f392973adfb4393f03dccf2e0ffd2043.webp&#34;
                width=&#34;524&#34;
                height=&#34;397&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1024,7 +1024,7 @@ $$&lt;/p&gt;
                /post/mlsec6/images/hist-seaborn_hu356446148f69ce529ce2535277b489cf_8376_a9883bcccf53d0ed049ddc3adbd6496b.webp 400w,
                /post/mlsec6/images/hist-seaborn_hu356446148f69ce529ce2535277b489cf_8376_9d9d2f4e872fc9e9d250c9dd226573fa.webp 760w,
                /post/mlsec6/images/hist-seaborn_hu356446148f69ce529ce2535277b489cf_8376_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec6/images/hist-seaborn_hu356446148f69ce529ce2535277b489cf_8376_a9883bcccf53d0ed049ddc3adbd6496b.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec6/images/hist-seaborn_hu356446148f69ce529ce2535277b489cf_8376_a9883bcccf53d0ed049ddc3adbd6496b.webp&#34;
                width=&#34;574&#34;
                height=&#34;409&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1066,7 +1066,7 @@ $$&lt;/p&gt;
                /post/mlsec6/images/scatter_hua5576b39c995159f1324f18b73da9b63_19838_0ee23945167276da71f7c250bfa90f40.webp 400w,
                /post/mlsec6/images/scatter_hua5576b39c995159f1324f18b73da9b63_19838_f37421a8b041bfd0b4176d50c46f7ac8.webp 760w,
                /post/mlsec6/images/scatter_hua5576b39c995159f1324f18b73da9b63_19838_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec6/images/scatter_hua5576b39c995159f1324f18b73da9b63_19838_0ee23945167276da71f7c250bfa90f40.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec6/images/scatter_hua5576b39c995159f1324f18b73da9b63_19838_0ee23945167276da71f7c250bfa90f40.webp&#34;
                width=&#34;574&#34;
                height=&#34;419&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1102,7 +1102,7 @@ $$&lt;/p&gt;
                /post/mlsec6/images/scater-seaborn_huf291be7c996041b496f38bb42992455d_17267_b7e33a948314b4051805a03a5c289eff.webp 400w,
                /post/mlsec6/images/scater-seaborn_huf291be7c996041b496f38bb42992455d_17267_a4476fd57e203f0004967205764adf35.webp 760w,
                /post/mlsec6/images/scater-seaborn_huf291be7c996041b496f38bb42992455d_17267_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec6/images/scater-seaborn_huf291be7c996041b496f38bb42992455d_17267_b7e33a948314b4051805a03a5c289eff.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec6/images/scater-seaborn_huf291be7c996041b496f38bb42992455d_17267_b7e33a948314b4051805a03a5c289eff.webp&#34;
                width=&#34;554&#34;
                height=&#34;397&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1138,7 +1138,7 @@ $$&lt;/p&gt;
                /post/mlsec6/images/box_hu58893253771402eb2fc8a0bb7bd5eded_13155_82834160add6eb768065889009961dda.webp 400w,
                /post/mlsec6/images/box_hu58893253771402eb2fc8a0bb7bd5eded_13155_315c57bf4f8610cd11b28021947481ba.webp 760w,
                /post/mlsec6/images/box_hu58893253771402eb2fc8a0bb7bd5eded_13155_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec6/images/box_hu58893253771402eb2fc8a0bb7bd5eded_13155_82834160add6eb768065889009961dda.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec6/images/box_hu58893253771402eb2fc8a0bb7bd5eded_13155_82834160add6eb768065889009961dda.webp&#34;
                width=&#34;572&#34;
                height=&#34;417&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1189,7 +1189,7 @@ $$&lt;/p&gt;
                /post/mlsec6/images/barplot_hu0ba6cfc3817f930365730be6a0e19631_18851_922b778e3e88b8e596e602aa742ea021.webp 400w,
                /post/mlsec6/images/barplot_hu0ba6cfc3817f930365730be6a0e19631_18851_cecfa5de20b75b699f086044436558cf.webp 760w,
                /post/mlsec6/images/barplot_hu0ba6cfc3817f930365730be6a0e19631_18851_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec6/images/barplot_hu0ba6cfc3817f930365730be6a0e19631_18851_922b778e3e88b8e596e602aa742ea021.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec6/images/barplot_hu0ba6cfc3817f930365730be6a0e19631_18851_922b778e3e88b8e596e602aa742ea021.webp&#34;
                width=&#34;656&#34;
                height=&#34;438&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1248,7 +1248,7 @@ $$&lt;/p&gt;
                /post/mlsec6/images/wordplot_hu6898551146002f5f715f7ca81841bba8_114357_0617d0ebf845397331d19f9da949f7bc.webp 400w,
                /post/mlsec6/images/wordplot_hu6898551146002f5f715f7ca81841bba8_114357_61c4794df3a11a766033b6e8b07835ac.webp 760w,
                /post/mlsec6/images/wordplot_hu6898551146002f5f715f7ca81841bba8_114357_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec6/images/wordplot_hu6898551146002f5f715f7ca81841bba8_114357_0617d0ebf845397331d19f9da949f7bc.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec6/images/wordplot_hu6898551146002f5f715f7ca81841bba8_114357_0617d0ebf845397331d19f9da949f7bc.webp&#34;
                width=&#34;589&#34;
                height=&#34;548&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1299,7 +1299,7 @@ $$&lt;/p&gt;
                /post/mlsec6/images/treeplot_hu67fec465575920d84bc31753f6a5c42a_17617_67357ff23c2b45cff1585739c75d2ea9.webp 400w,
                /post/mlsec6/images/treeplot_hu67fec465575920d84bc31753f6a5c42a_17617_889da0efe39c28745d08eeff82ec8d79.webp 760w,
                /post/mlsec6/images/treeplot_hu67fec465575920d84bc31753f6a5c42a_17617_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec6/images/treeplot_hu67fec465575920d84bc31753f6a5c42a_17617_67357ff23c2b45cff1585739c75d2ea9.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec6/images/treeplot_hu67fec465575920d84bc31753f6a5c42a_17617_67357ff23c2b45cff1585739c75d2ea9.webp&#34;
                width=&#34;501&#34;
                height=&#34;375&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1346,9 +1346,9 @@ $$&lt;/p&gt;
     
     <item>
       <title>Show me the data (part 3)</title>
-      <link>https://mundruid.github.io/post/mlsec5/</link>
+      <link>http://localhost:1313/post/mlsec5/</link>
       <pubDate>Tue, 29 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/mlsec5/</guid>
+      <guid>http://localhost:1313/post/mlsec5/</guid>
       <description>&lt;p&gt;We have reviewed several classes of data, but one of the most important—and challenging—types remains: network traffic data. Its significance stems from the fact that many attacks originate from network-based vectors. However, analyzing network data presents several challenges. First, network traffic generates massive volumes of data, much of which may have limited analytical value. Second, effective processing is crucial to identify meaningful patterns and potential threats within this data. Finally, network data&amp;rsquo;s complex structure poses unique difficulties: packet captures and network flows require specialized libraries and often custom code to transform them into structured formats suitable for machine learning models.&lt;/p&gt;
 &lt;p&gt;I have the opportunity here to share my personal experience, as I work with this type of data daily. You can find the code from this blog in the accompanying notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blob/f28c467812414d7a5c81baa9e4ed0a3b0467be5b/cyber_ml/blog_show_data_3.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_show_data_3.ipynb&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
@@ -1515,7 +1515,7 @@ $$&lt;/p&gt;
                /post/mlsec5/images/pcap_hu897646e6b973bbb6fb072cbc7e0183be_118547_c208d5904e42e3069cf2f888d1ebc127.webp 400w,
                /post/mlsec5/images/pcap_hu897646e6b973bbb6fb072cbc7e0183be_118547_366ea315dd92b7a15053448128a66465.webp 760w,
                /post/mlsec5/images/pcap_hu897646e6b973bbb6fb072cbc7e0183be_118547_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec5/images/pcap_hu897646e6b973bbb6fb072cbc7e0183be_118547_c208d5904e42e3069cf2f888d1ebc127.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec5/images/pcap_hu897646e6b973bbb6fb072cbc7e0183be_118547_c208d5904e42e3069cf2f888d1ebc127.webp&#34;
                width=&#34;760&#34;
                height=&#34;387&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1569,7 +1569,7 @@ $$&lt;/p&gt;
                /post/mlsec5/images/netflow_hu7ce8c184b7e521ec376e40b6653e3335_64566_50b466f8a903278cc454e870d0a1741e.webp 400w,
                /post/mlsec5/images/netflow_hu7ce8c184b7e521ec376e40b6653e3335_64566_552678f4e070c930e35f25b02b64cf03.webp 760w,
                /post/mlsec5/images/netflow_hu7ce8c184b7e521ec376e40b6653e3335_64566_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec5/images/netflow_hu7ce8c184b7e521ec376e40b6653e3335_64566_50b466f8a903278cc454e870d0a1741e.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec5/images/netflow_hu7ce8c184b7e521ec376e40b6653e3335_64566_50b466f8a903278cc454e870d0a1741e.webp&#34;
                width=&#34;760&#34;
                height=&#34;206&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1611,9 +1611,9 @@ $$&lt;/p&gt;
     
     <item>
       <title>Show me the data (part 2)</title>
-      <link>https://mundruid.github.io/post/mlsec4/</link>
+      <link>http://localhost:1313/post/mlsec4/</link>
       <pubDate>Tue, 27 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/mlsec4/</guid>
+      <guid>http://localhost:1313/post/mlsec4/</guid>
       <description>&lt;p&gt;Data collection, preparation, and cleaning take up to 80%–90% of time for an ML project. Therefore, it is not surprising that we need to cover it on multiple blogs.&lt;/p&gt;
 &lt;p&gt;In the first part, we talked mainly about theory: how we collect data from our systems and how we store it. We introduced data parsing using logs. In this second part, we will analyze more code examples useful for plain text parsing and packet capture. In addition, it is time to introduce the &lt;code&gt;pandas&lt;/code&gt; library for structuring our data. We start with the 1,000-foot view and then dive deep into it.&lt;/p&gt;
 &lt;p&gt;You will find the code from this blog in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blob/main/cyber_ml/blog_show_data_2.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_show_data_2.ipynb&lt;/a&gt;.&lt;/p&gt;
@@ -1668,7 +1668,7 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
                /post/mlsec4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_06449f9a1d2defa281a8834e54a39f41.webp 400w,
                /post/mlsec4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_67bdd50f2b131d46188c761d540ae702.webp 760w,
                /post/mlsec4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_06449f9a1d2defa281a8834e54a39f41.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec4/images/mirai_hu14201508e8aedfcb7c3f8a76d0807e73_121104_06449f9a1d2defa281a8834e54a39f41.webp&#34;
                width=&#34;760&#34;
                height=&#34;220&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1703,7 +1703,7 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
                /post/mlsec4/images/three_rows_hu6ecc81a24dde947da090cc2c9e89ab67_38392_ea61d522bc84e5146185a90bf76b6409.webp 400w,
                /post/mlsec4/images/three_rows_hu6ecc81a24dde947da090cc2c9e89ab67_38392_467dee32411fec13b185a4c28e94563b.webp 760w,
                /post/mlsec4/images/three_rows_hu6ecc81a24dde947da090cc2c9e89ab67_38392_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec4/images/three_rows_hu6ecc81a24dde947da090cc2c9e89ab67_38392_ea61d522bc84e5146185a90bf76b6409.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec4/images/three_rows_hu6ecc81a24dde947da090cc2c9e89ab67_38392_ea61d522bc84e5146185a90bf76b6409.webp&#34;
                width=&#34;760&#34;
                height=&#34;83&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1736,7 +1736,7 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
                /post/mlsec4/images/rows_columns_hu39489f240339e46a18128c0675408437_45297_76e31c8e199881db52d5b6bc26a9b134.webp 400w,
                /post/mlsec4/images/rows_columns_hu39489f240339e46a18128c0675408437_45297_6319a6e4e197fcc628c7d955be108d42.webp 760w,
                /post/mlsec4/images/rows_columns_hu39489f240339e46a18128c0675408437_45297_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec4/images/rows_columns_hu39489f240339e46a18128c0675408437_45297_76e31c8e199881db52d5b6bc26a9b134.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec4/images/rows_columns_hu39489f240339e46a18128c0675408437_45297_76e31c8e199881db52d5b6bc26a9b134.webp&#34;
                width=&#34;404&#34;
                height=&#34;283&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1770,7 +1770,7 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
                /post/mlsec4/images/group_columns_huc7d444155b615ab0f504f9ebbfdd88ec_19556_0f37024a5c5dcb29c633be4dc3a2c402.webp 400w,
                /post/mlsec4/images/group_columns_huc7d444155b615ab0f504f9ebbfdd88ec_19556_82a5d5f25b215fd228e5d446f94db8cf.webp 760w,
                /post/mlsec4/images/group_columns_huc7d444155b615ab0f504f9ebbfdd88ec_19556_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec4/images/group_columns_huc7d444155b615ab0f504f9ebbfdd88ec_19556_0f37024a5c5dcb29c633be4dc3a2c402.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec4/images/group_columns_huc7d444155b615ab0f504f9ebbfdd88ec_19556_0f37024a5c5dcb29c633be4dc3a2c402.webp&#34;
                width=&#34;352&#34;
                height=&#34;263&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1819,7 +1819,7 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
                /post/mlsec4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_d3ced68cf25603a4f9492fec68892f86.webp 400w,
                /post/mlsec4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_c8548610090d0cb85c5ed5d07664d05a.webp 760w,
                /post/mlsec4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_d3ced68cf25603a4f9492fec68892f86.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec4/images/tlds_hua0a09c953c277db0d0367754cad0cc41_33657_d3ced68cf25603a4f9492fec68892f86.webp&#34;
                width=&#34;325&#34;
                height=&#34;341&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1875,9 +1875,9 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
     
     <item>
       <title>Show me the data (part 1)</title>
-      <link>https://mundruid.github.io/post/mlsec3/</link>
+      <link>http://localhost:1313/post/mlsec3/</link>
       <pubDate>Wed, 31 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/mlsec3/</guid>
+      <guid>http://localhost:1313/post/mlsec3/</guid>
       <description>&lt;p&gt;You have probably heard this saying many times before: &amp;ldquo;Garbage in, garbage out&amp;rdquo;. This is a big deal in machine learning projects and even more in ML cybersecurity projects because the model can only be as good as the data you input to it. That is why the first pillar of this ML cybersecurity series is about data. Data collection, preparation, and cleanup are important parts of an ML project, and we will dedicate three blogs to these topics.&lt;/p&gt;
 &lt;p&gt;You will find the code from this blog in the notebook &lt;a href=&#34;https://github.com/mundruid/cyber-ml/blob/main/cyber_ml/blog_show_data_1.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog_show_data_1.ipynb&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;1000-ft-view&#34;&gt;1,000 ft view&lt;/h2&gt;
@@ -2033,9 +2033,9 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
     
     <item>
       <title>Building a bridge between ML and Cyber with a development environment</title>
-      <link>https://mundruid.github.io/post/mlsec2/</link>
+      <link>http://localhost:1313/post/mlsec2/</link>
       <pubDate>Wed, 26 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/mlsec2/</guid>
+      <guid>http://localhost:1313/post/mlsec2/</guid>
       <description>&lt;p&gt;At the beginning of our journey to ML and cybersecurity, we need to lay the foundations for a good development environment that fits our needs. This is the tale of three different environments: Google Colaboratory (Colab), Jupyter Server launched from your terminal, and VS Code. In addition, we will discuss essential topics for development environments, such as handling secrets securely with Jupyter and &lt;code&gt;pyenv&lt;/code&gt; to manage multiple Python versions.&lt;/p&gt;
 &lt;h2 id=&#34;table-of-contents----omit-in-toc---&#34;&gt;Table of Contents &lt;!-- omit in toc --&gt;&lt;/h2&gt;
 &lt;p&gt;This blog is longer than the rest of the series. You do not have to read all parts since you can pick one development environment and can drill into that. The ToC below will help you read only what you need.&lt;/p&gt;
@@ -2143,7 +2143,7 @@ The columns of the Dataframe are called &lt;a href=&#34;https://pandas.pydata.or
                /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_b876c6fac17224b39102b1d791098836.webp 400w,
                /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_51f462812624334cd30b3937357c5538.webp 760w,
                /post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_b876c6fac17224b39102b1d791098836.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec2/images/hello_colab_hu1bf94c77cff3360778938b1e7733bc7f_107769_b876c6fac17224b39102b1d791098836.webp&#34;
                width=&#34;760&#34;
                height=&#34;473&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -2274,7 +2274,7 @@ The rest of the menus are pretty self-explanatory, like sharing files on Drive a
 &lt;figure  id=&#34;figure-jupyter-basics&#34;&gt;
   &lt;div class=&#34;flex justify-center	&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;hello jupyter&#34;
-           src=&#34;https://mundruid.github.io/post/mlsec2/images/helo_jupyter.gif&#34;
+           src=&#34;http://localhost:1313/post/mlsec2/images/helo_jupyter.gif&#34;
            loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;figcaption&gt;
       Jupyter Basics.
@@ -2303,7 +2303,7 @@ The rest of the menus are pretty self-explanatory, like sharing files on Drive a
                /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_4454bf0b0fc9768239bc995c48633257.webp 400w,
                /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_8953132b778f95264928bb45ce586e91.webp 760w,
                /post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_4454bf0b0fc9768239bc995c48633257.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec2/images/jupyter_env_huea64df411b0faad7a7dd2238407b0945_62625_4454bf0b0fc9768239bc995c48633257.webp&#34;
                width=&#34;760&#34;
                height=&#34;184&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -2342,7 +2342,7 @@ The rest of the menus are pretty self-explanatory, like sharing files on Drive a
                /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_630c2f09b1338fdad101c709a749d2e8.webp 400w,
                /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_605fdffe4b0614822b7e5a6fd4b2c97d.webp 760w,
                /post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_630c2f09b1338fdad101c709a749d2e8.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec2/images/restart_jupyter_huf998d78f064492a112df5d58298f0f77_33446_630c2f09b1338fdad101c709a749d2e8.webp&#34;
                width=&#34;698&#34;
                height=&#34;169&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -2492,9 +2492,9 @@ If you loaded the correct kernel `python3_drx` you will see your &#34;not so sec
     
     <item>
       <title>Machine Learning Meets Cybersecurity</title>
-      <link>https://mundruid.github.io/post/mlsec1/</link>
+      <link>http://localhost:1313/post/mlsec1/</link>
       <pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/mlsec1/</guid>
+      <guid>http://localhost:1313/post/mlsec1/</guid>
       <description>&lt;p&gt;Machine Learning (ML) and Cybersecurity, is this a match made in heaven or yet another tech hype? Indeed, this is an interesting combination worth exploring for the security professional who wants to solve their problems in a non-traditional manner or for the data scientist who wants to be involved in a significant impact area. Where does one start, though? This series of blogs aims to give you a roadmap, tools, inspiration, and technical knowledge to combine these two areas.&lt;/p&gt;
 &lt;p&gt;Nowadays, there is a lot of hype about Large Language Models (LLMs). However, fundamentals such as statistics and traditional ML concepts, such as embeddings, are the foundations on which these models have been based. Learning about those fundamentals leads to a better understanding of today&amp;rsquo;s technologies.&lt;/p&gt;
 &lt;p&gt;This is a blog series that has been inspired by my personal background as a researcher. I enjoy both the ML and Cybersecurity areas and find it difficult to choose one over the other. I am passionate about conveying knowledge, especially theory and math, in an intuitive manner.&lt;/p&gt;
@@ -2522,7 +2522,7 @@ If you loaded the correct kernel `python3_drx` you will see your &#34;not so sec
                /post/mlsec1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_6d1b76cdc767911a130633e594c1136c.webp 400w,
                /post/mlsec1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_fc138cb2aa5bc4390926a3c8dff8f278.webp 760w,
                /post/mlsec1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_1200x1200_fit_q80_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://mundruid.github.io/post/mlsec1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_6d1b76cdc767911a130633e594c1136c.webp&#34;
+               src=&#34;http://localhost:1313/post/mlsec1/images/Security-ML_hu20bac11f43146d6c6f358771de3ccf53_78704_6d1b76cdc767911a130633e594c1136c.webp&#34;
                width=&#34;657&#34;
                height=&#34;382&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -2613,49 +2613,49 @@ There is some intersection between Cybersecurity and ML that helps make the lear
     
     <item>
       <title>Introduction to a Telemetry Stack - Part 3</title>
-      <link>https://mundruid.github.io/post/alerting/</link>
+      <link>http://localhost:1313/post/alerting/</link>
       <pubDate>Tue, 19 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/alerting/</guid>
+      <guid>http://localhost:1313/post/alerting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Forecasting the Network</title>
-      <link>https://mundruid.github.io/post/pandas3/</link>
+      <link>http://localhost:1313/post/pandas3/</link>
       <pubDate>Sun, 13 Mar 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas3/</guid>
+      <guid>http://localhost:1313/post/pandas3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Exploratory Data Analysis for Network Traffic</title>
-      <link>https://mundruid.github.io/post/pandas2/</link>
+      <link>http://localhost:1313/post/pandas2/</link>
       <pubDate>Thu, 13 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas2/</guid>
+      <guid>http://localhost:1313/post/pandas2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jupyter Notebooks for Development</title>
-      <link>https://mundruid.github.io/post/jupyter/</link>
+      <link>http://localhost:1313/post/jupyter/</link>
       <pubDate>Sat, 13 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/jupyter/</guid>
+      <guid>http://localhost:1313/post/jupyter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to Pandas for Network Development</title>
-      <link>https://mundruid.github.io/post/pandas1/</link>
+      <link>http://localhost:1313/post/pandas1/</link>
       <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/pandas1/</guid>
+      <guid>http://localhost:1313/post/pandas1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to PromQL</title>
-      <link>https://mundruid.github.io/post/promql/</link>
+      <link>http://localhost:1313/post/promql/</link>
       <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>https://mundruid.github.io/post/promql/</guid>
+      <guid>http://localhost:1313/post/promql/</guid>
       <description></description>
     </item>
     

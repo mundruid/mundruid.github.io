@@ -2,6 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://mundruid.github.io/event/cackalackycon2025/</loc>
+    <lastmod>2025-05-17T17:30:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://mundruid.github.io/event/</loc>
+    <lastmod>2025-05-17T17:30:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://mundruid.github.io/event/sansai2025/</loc>
+    <lastmod>2025-04-20T17:30:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
     <loc>https://mundruid.github.io/post/</loc>
     <lastmod>2025-01-22T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -43,10 +55,6 @@
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://mundruid.github.io/event/cackalackycon2024/</loc>
-    <lastmod>2024-05-17T17:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://mundruid.github.io/event/</loc>
     <lastmod>2024-05-17T17:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>

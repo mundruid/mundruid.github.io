@@ -2,93 +2,101 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Recent &amp; Upcoming Talks | Xenia Mountrouidou (DrX)</title>
-    <link>http://localhost:38695/event/</link>
-      <atom:link href="http://localhost:38695/event/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:44665/event/</link>
+      <atom:link href="http://localhost:44665/event/index.xml" rel="self" type="application/rss+xml" />
     <description>Recent &amp; Upcoming Talks</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Sat, 17 May 2025 17:30:00 +0000</lastBuildDate>
     <image>
-      <url>http://localhost:38695/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
+      <url>http://localhost:44665/media/icon_hua2095bab5d0320b9fa94e88a1b0d114e_7033_512x512_fill_lanczos_center_3.png</url>
       <title>Recent &amp; Upcoming Talks</title>
-      <link>http://localhost:38695/event/</link>
+      <link>http://localhost:44665/event/</link>
     </image>
     
     <item>
-      <title>Decoding Cybersecurity Data: A Journey through ML and AI Innovations</title>
-      <link>http://localhost:38695/event/cackalackycon2025/</link>
+      <title>How to train your Llama</title>
+      <link>http://localhost:44665/event/cackalackycon_aivillage_2025/</link>
       <pubDate>Sat, 17 May 2025 17:30:00 +0000</pubDate>
-      <guid>http://localhost:38695/event/cackalackycon2025/</guid>
+      <guid>http://localhost:44665/event/cackalackycon_aivillage_2025/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Unclocking Cyber Insights with AI</title>
-      <link>http://localhost:38695/event/sansai2025/</link>
+      <link>http://localhost:44665/event/cackalackycon2025/</link>
+      <pubDate>Sat, 17 May 2025 17:30:00 +0000</pubDate>
+      <guid>http://localhost:44665/event/cackalackycon2025/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unclocking Cyber Insights with AI</title>
+      <link>http://localhost:44665/event/sansai2025/</link>
       <pubDate>Sun, 20 Apr 2025 17:30:00 +0000</pubDate>
-      <guid>http://localhost:38695/event/sansai2025/</guid>
+      <guid>http://localhost:44665/event/sansai2025/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Decoding Cybersecurity Data: A Journey through ML and AI Innovations</title>
-      <link>http://localhost:38695/event/cackalackycon2024/</link>
+      <link>http://localhost:44665/event/cackalackycon2024/</link>
       <pubDate>Fri, 17 May 2024 17:30:00 +0000</pubDate>
-      <guid>http://localhost:38695/event/cackalackycon2024/</guid>
+      <guid>http://localhost:44665/event/cackalackycon2024/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Feature engineering art and science</title>
-      <link>http://localhost:38695/event/datasciencemeetup_feature_engineering/</link>
+      <link>http://localhost:44665/event/datasciencemeetup_feature_engineering/</link>
       <pubDate>Thu, 14 Mar 2024 17:30:00 +0000</pubDate>
-      <guid>http://localhost:38695/event/datasciencemeetup_feature_engineering/</guid>
+      <guid>http://localhost:44665/event/datasciencemeetup_feature_engineering/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Harnessing ML and AI for Next-Gen Security Engineering</title>
-      <link>http://localhost:38695/event/bsidesaug2023/</link>
+      <link>http://localhost:44665/event/bsidesaug2023/</link>
       <pubDate>Sat, 07 Oct 2023 12:30:00 +0000</pubDate>
-      <guid>http://localhost:38695/event/bsidesaug2023/</guid>
+      <guid>http://localhost:44665/event/bsidesaug2023/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Level up your Data Science workflows with VS Code, Jupyter and ChatGPT</title>
-      <link>http://localhost:38695/event/datasciencemeetup_vscode/</link>
+      <link>http://localhost:44665/event/datasciencemeetup_vscode/</link>
       <pubDate>Thu, 23 Feb 2023 18:30:00 +0000</pubDate>
-      <guid>http://localhost:38695/event/datasciencemeetup_vscode/</guid>
+      <guid>http://localhost:44665/event/datasciencemeetup_vscode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>IoT Spy: Observability and Alerting for Internet of Things (IoT) Security</title>
-      <link>http://localhost:38695/event/bsidesatl2022/</link>
+      <link>http://localhost:44665/event/bsidesatl2022/</link>
       <pubDate>Sat, 27 Aug 2022 13:00:00 +0000</pubDate>
-      <guid>http://localhost:38695/event/bsidesatl2022/</guid>
+      <guid>http://localhost:44665/event/bsidesatl2022/</guid>
       <description></description>
     </item>
     
     <item>
       <title>IoT spy: Security metrics for smart devices with Telegraf, InfluxDB, and Grafana</title>
-      <link>http://localhost:38695/event/grafanaobservability2021/</link>
+      <link>http://localhost:44665/event/grafanaobservability2021/</link>
       <pubDate>Tue, 01 Jun 2021 13:00:00 +0000</pubDate>
-      <guid>http://localhost:38695/event/grafanaobservability2021/</guid>
+      <guid>http://localhost:44665/event/grafanaobservability2021/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Testing your Python Code</title>
-      <link>http://localhost:38695/event/interop2020/</link>
+      <link>http://localhost:44665/event/interop2020/</link>
       <pubDate>Sun, 01 Nov 2020 13:00:00 +0000</pubDate>
-      <guid>http://localhost:38695/event/interop2020/</guid>
+      <guid>http://localhost:44665/event/interop2020/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Security Metrics: Is this even possible?</title>
-      <link>http://localhost:38695/event/bsideschs2019/</link>
+      <link>http://localhost:44665/event/bsideschs2019/</link>
       <pubDate>Fri, 01 Nov 2019 13:00:00 +0000</pubDate>
-      <guid>http://localhost:38695/event/bsideschs2019/</guid>
+      <guid>http://localhost:44665/event/bsideschs2019/</guid>
       <description></description>
     </item>
     

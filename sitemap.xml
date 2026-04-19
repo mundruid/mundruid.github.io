@@ -2,215 +2,219 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:44665/event/cackalackycon_aivillage_2025/</loc>
+    <loc>http://localhost:41333/event/</loc>
+    <lastmod>2026-03-04T17:30:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>http://localhost:41333/event/unprompted2026/</loc>
+    <lastmod>2026-03-04T17:30:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>http://localhost:41333/event/cackalackycon_aivillage_2025/</loc>
     <lastmod>2025-05-17T17:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/event/</loc>
+    <loc>http://localhost:41333/event/cackalackycon2025/</loc>
     <lastmod>2025-05-17T17:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/event/cackalackycon2025/</loc>
-    <lastmod>2025-05-17T17:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>http://localhost:44665/event/sansai2025/</loc>
+    <loc>http://localhost:41333/event/sansai2025/</loc>
     <lastmod>2025-04-20T17:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/</loc>
+    <loc>http://localhost:41333/post/</loc>
     <lastmod>2025-01-22T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/mlsec8/</loc>
+    <loc>http://localhost:41333/post/mlsec8/</loc>
     <lastmod>2025-01-22T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/mlsec7/</loc>
+    <loc>http://localhost:41333/post/mlsec7/</loc>
     <lastmod>2024-12-25T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/mlsec6/</loc>
+    <loc>http://localhost:41333/post/mlsec6/</loc>
     <lastmod>2024-11-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/mlsec5/</loc>
+    <loc>http://localhost:41333/post/mlsec5/</loc>
     <lastmod>2024-10-29T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/mlsec4/</loc>
+    <loc>http://localhost:41333/post/mlsec4/</loc>
     <lastmod>2024-08-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/mlsec3/</loc>
+    <loc>http://localhost:41333/post/mlsec3/</loc>
     <lastmod>2024-07-31T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/mlsec2/</loc>
+    <loc>http://localhost:41333/post/mlsec2/</loc>
     <lastmod>2024-06-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/mlsec1/</loc>
+    <loc>http://localhost:41333/post/mlsec1/</loc>
     <lastmod>2024-06-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/projects/</loc>
+    <loc>http://localhost:41333/projects/</loc>
     <lastmod>2024-05-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/event/cackalackycon2024/</loc>
+    <loc>http://localhost:41333/event/cackalackycon2024/</loc>
     <lastmod>2024-05-17T17:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/event/datasciencemeetup_feature_engineering/</loc>
+    <loc>http://localhost:41333/event/datasciencemeetup_feature_engineering/</loc>
     <lastmod>2024-03-14T17:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/experience/</loc>
+    <loc>http://localhost:41333/experience/</loc>
     <lastmod>2023-10-24T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/event/bsidesaug2023/</loc>
+    <loc>http://localhost:41333/event/bsidesaug2023/</loc>
     <lastmod>2023-10-07T12:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/cybersecurity/</loc>
+    <loc>http://localhost:41333/tags/cybersecurity/</loc>
     <lastmod>2023-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/project/cyber-ml/</loc>
+    <loc>http://localhost:41333/project/cyber-ml/</loc>
     <lastmod>2023-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/machine-learning/</loc>
+    <loc>http://localhost:41333/tags/machine-learning/</loc>
     <lastmod>2023-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/network-security/</loc>
+    <loc>http://localhost:41333/tags/network-security/</loc>
     <lastmod>2023-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/project/</loc>
+    <loc>http://localhost:41333/project/</loc>
     <lastmod>2023-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/</loc>
+    <loc>http://localhost:41333/tags/</loc>
     <lastmod>2023-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/event/datasciencemeetup_vscode/</loc>
+    <loc>http://localhost:41333/event/datasciencemeetup_vscode/</loc>
     <lastmod>2023-02-23T18:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/</loc>
+    <loc>http://localhost:41333/</loc>
     <lastmod>2022-10-24T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/event/bsidesatl2022/</loc>
+    <loc>http://localhost:41333/event/bsidesatl2022/</loc>
     <lastmod>2022-08-27T13:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/data-analytics/</loc>
+    <loc>http://localhost:41333/tags/data-analytics/</loc>
     <lastmod>2022-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/alerting/</loc>
+    <loc>http://localhost:41333/post/alerting/</loc>
     <lastmod>2022-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/network/</loc>
+    <loc>http://localhost:41333/tags/network/</loc>
     <lastmod>2022-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/pandas/</loc>
+    <loc>http://localhost:41333/tags/pandas/</loc>
     <lastmod>2022-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/traffic/</loc>
+    <loc>http://localhost:41333/tags/traffic/</loc>
     <lastmod>2022-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/pandas3/</loc>
+    <loc>http://localhost:41333/post/pandas3/</loc>
     <lastmod>2022-03-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/pandas2/</loc>
+    <loc>http://localhost:41333/post/pandas2/</loc>
     <lastmod>2022-01-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/jupyter/</loc>
+    <loc>http://localhost:41333/tags/jupyter/</loc>
     <lastmod>2021-11-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/jupyter/</loc>
+    <loc>http://localhost:41333/post/jupyter/</loc>
     <lastmod>2021-11-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/poetry/</loc>
+    <loc>http://localhost:41333/tags/poetry/</loc>
     <lastmod>2021-11-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/project/iot-metrics/</loc>
+    <loc>http://localhost:41333/project/iot-metrics/</loc>
     <lastmod>2021-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/security-metrics/</loc>
+    <loc>http://localhost:41333/tags/security-metrics/</loc>
     <lastmod>2021-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/telemetry/</loc>
+    <loc>http://localhost:41333/tags/telemetry/</loc>
     <lastmod>2021-09-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/event/grafanaobservability2021/</loc>
+    <loc>http://localhost:41333/event/grafanaobservability2021/</loc>
     <lastmod>2021-06-01T13:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/pandas1/</loc>
+    <loc>http://localhost:41333/post/pandas1/</loc>
     <lastmod>2021-05-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/automation/</loc>
+    <loc>http://localhost:41333/tags/automation/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/post/promql/</loc>
+    <loc>http://localhost:41333/post/promql/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/promql/</loc>
+    <loc>http://localhost:41333/tags/promql/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/tags/time-series-database/</loc>
+    <loc>http://localhost:41333/tags/time-series-database/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/publication_types/1/</loc>
+    <loc>http://localhost:41333/publication_types/1/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/publication/iot_security_metrics/</loc>
+    <loc>http://localhost:41333/publication/iot_security_metrics/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/publication_types/</loc>
+    <loc>http://localhost:41333/publication_types/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/publication/</loc>
+    <loc>http://localhost:41333/publication/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/publication/cyberhunt2019/</loc>
+    <loc>http://localhost:41333/publication/cyberhunt2019/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/event/interop2020/</loc>
+    <loc>http://localhost:41333/event/interop2020/</loc>
     <lastmod>2020-11-01T13:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:44665/event/bsideschs2019/</loc>
+    <loc>http://localhost:41333/event/bsideschs2019/</loc>
     <lastmod>2019-11-01T13:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
